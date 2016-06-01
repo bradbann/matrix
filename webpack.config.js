@@ -16,6 +16,7 @@ if ( env != 'production' ){
     loaders.push(
         { test: /\.css$/, loader: "style!css!postcss" },
         { test: /\.less$/, loader: "style!css!postcss!less" },
+        { test: /\.scss$/, loader: "style!css!postcss!sass" },
         { test: /\.html$/, loader: "html" }
     );
 }
@@ -23,6 +24,7 @@ else{
     loaders.push(
         { test: /\.css$/, loader: ExtractTextPlugin.extract("style", "css!postcss") },
         { test: /\.less$/, loader: ExtractTextPlugin.extract("style", "css!postcss!less") },
+        { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!postcss!sass")  },
         { test: /\.html$/, loader: "html!html-minify" }
     );
 
