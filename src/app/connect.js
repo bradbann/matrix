@@ -8,11 +8,13 @@ export default class Connect extends EventEmitter {
         super();
         this.route = '/';
         this.stack = [];
+        this.webviews = [];
     }
 
     _route(route, fn, options){
         let handle = fn;
         let path = route;
+        const that = this;
 
         // default route to '/'
         if (typeof route !== 'string') {
@@ -24,6 +26,8 @@ export default class Connect extends EventEmitter {
         if ( typeof handle.handle === 'function' ) {
             let server = handle;
             server.route = path;
+            Object.defineProperty(server, '$node', { get(){ return that.$node; } });
+            Object.defineProperty(server, '$server', { get(){ return that.$server; } });
             handle = function (next) {
                 server.handle(next);
             };
@@ -33,6 +37,8 @@ export default class Connect extends EventEmitter {
         if ( path[path.length - 1] === '/' ) {
             path = path.slice(0, -1);
         }
+
+        if ( !path ) path = '/';
 
         // add the middleware
         this.stack.push(new Layer(path, handle, options));
@@ -56,6 +62,17 @@ export default class Connect extends EventEmitter {
         });
     }
 
+    publish(webview, next){
+        const direction = this.$server.action;
+        const webviewNode = document.createElement('div');
+        this.$node.appendChild(webviewNode);
+        webviewNode.classList.add('mx-webview');
+        const $webview = new webview(webviewNode);
+        $webview.$root = this;
+        $webview._publish(direction, next);
+        this.webviews.push($webview);
+    }
+
     handle(done){
         let index = 0;
         let stack = this.stack;
@@ -63,9 +80,11 @@ export default class Connect extends EventEmitter {
 
         function next(err){
             const layer = stack[index++];
-
             if ( !layer ) {
-              setImmediate(done, err);
+              setImmediate(function(){
+                   that.emit('route:end');
+                   done();
+              }, err);
               return;
             }
 
@@ -85,7 +104,7 @@ export default class Connect extends EventEmitter {
         var arity = handle.length;
         var error = err;
         var hasError = Boolean(err);
-
+        this.$server.params = params;
         try {
             if (hasError && arity === 2) {
               // error-handling middleware

@@ -109,9 +109,9 @@ export default class Http extends EventEmitter {
         });
     }
 
-    _go(url, type){
+    redirect(url){
         const object = parse(url);
-        this.action = type;
+        this.action = 'FOWARD';
         this.history.push({
             pathname: object.pathname,
             search: object.search,
@@ -122,12 +122,33 @@ export default class Http extends EventEmitter {
         })
     }
 
-    redirect(url){
-        this._go(url, 'FOWARD');
-    }
-
     reback(url){
-        this._go(url, 'BACK');
+        let len = window.sessionStorage.length;
+        let index = 0;
+        while( len-- ){
+            let key = window.sessionStorage.key(len);
+            if( key.indexOf('@@History') === 0 ){
+                let state = JSON.parse(window.sessionStorage.getItem(key));
+                if ( state.url === url ){
+                    index = state.index;
+                    break;
+                }
+            }
+        }
+        if ( index > 0 ){
+            history.go(index - this._next);
+        }else{
+            const object = parse(url);
+            this.action = 'BACKWARD';
+            this.history.push({
+                pathname: object.pathname,
+                search: object.search,
+                state: {
+                    index: window.history.length,
+                    url: url
+                }
+            })
+        }
     }
 
     refresh(){

@@ -4,8 +4,10 @@ import Ready from 'domready';
 import FastClick from 'fastclick';
 import Vue from 'vue';
 import Server from './app/connect';
+import Webview from './app/webview';
 
 export const server = Server;
+export const webview = Webview;
 
 export const bootstrap = function(){
     const app = new Bootstrap();
