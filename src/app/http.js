@@ -31,6 +31,7 @@ export default class Http extends EventEmitter {
     }
 
     _listen(local){
+        this.pathname = local.pathname;
         if ( !local.state && this._first ){
             delete this._first;
             this._removeAll(() => {
@@ -103,7 +104,9 @@ export default class Http extends EventEmitter {
         const searchQuery = parse(search || '', true);
         this.query = exto(searchQuery.query, this.extra);
         this._first && (delete this._first);
-        this.emit('http:change', this.action);
+        this.emit('http:change', () => {
+            this.action = null;
+        });
     }
 
     _go(url, type){

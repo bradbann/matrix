@@ -36,6 +36,7 @@
     "events": "^1.1.0",
     "fastclick": "^1.0.6",
     "history": "^2.1.2",
+    "path-to-regexp": "^1.5.0",
     "setimmediate": "^1.0.4",
     "unique-array": "^1.0.1",
     "url": "^0.11.0",
