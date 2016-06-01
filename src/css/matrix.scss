@@ -1,3 +1,13 @@
-body{
-    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+
+
+//变量
+@import "_variable";
+//公共基础样式;
+@import "_base";
+
+//带命名空间 样式
+.#{$namespace}{
+    @import "_font";
+    @import "_text";
+    @import "_webview";
 }
