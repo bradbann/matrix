@@ -1,5 +1,11 @@
 import { ready, bootstrap } from './main';
 
+
+require('normalize.css');
+require('./css/matrix.scss')
+
+
+
 ready(function(){
     const simplize = bootstrap();
     on('a', function(){
