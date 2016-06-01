@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev node_modules/.bin/webpack-dev-server --host 0.0.0.0 --progress --colors --inline --hot --display-error-details --content-base src/",
-    "build": "rimraf ./build && cross-env NODE_ENV=production webpack -p"
+    "build": "rimraf ./build && cross-env NODE_ENV=production webpack -p",
+    "git": "git add . && git commit -am 'update' && git push"
   },
   "author": "",
   "license": "MIT",

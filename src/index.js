@@ -19,6 +19,8 @@ ready(function(){
         console.log(this.action)
         this.action = null;
     })
+
+    simplize.listen();
 })
 
 function $(id){

@@ -1,5 +1,5 @@
 import 'setimmediate';
-import Bootstrap from './app/bootstrap';
+import Bootstrap from './app/boot';
 import Ready from 'domready';
 import FastClick from 'fastclick';
 import Vue from 'vue';
