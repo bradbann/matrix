@@ -7,7 +7,11 @@
 
 //带命名空间 样式
 .#{$namespace}{
+    //ui
     @import "_font";
     @import "_text";
+
+    //construct
+    @import "_app";
     @import "_webview";
 }

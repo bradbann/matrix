@@ -1,3 +1,100 @@
 &webview{
-    
+    &{
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling:touch;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &-upper{
+        z-index:1000;
+    }
+    &-under{
+        z-index:999
+    }
+    &-forward{
+        transform-style: preserve-3d;
+        transform: perspective(300px);
+        &.#{$namespace}webview-upper{
+            animation: webviewGetInUpper $webview-animate-duration $webview-animate-in-timing-function forwards;
+        }
+        &.#{$namespace}webview-under{
+            animation: webviewGetInUnder $webview-animate-duration $webview-animate-in-timing-function forwards;
+        }
+
+    }
+    &-backward{
+        transform-style: preserve-3d;
+        transform: perspective(300px);
+        &.#{$namespace}webview-upper{
+            animation: webviewGetOutUpper $webview-animate-duration $webview-animate-out-timing-function forwards;
+        }
+        &.#{$namespace}webview-under{
+            animation: webviewGetOutUnder $webview-animate-duration $webview-animate-out-timing-function forwards;
+        }
+    }
+}
+
+@keyframes webviewGetInUpper{
+    0%{
+        transform: translate3d(100%,0,0);
+    }
+    100%{
+        transform: translate3d(0%,0,0) ;
+    }
+
+}
+@keyframes webviewGetInUnder{
+    0%{
+        transform: translate3d(0,0,0);
+    }
+    100%{
+        transform: translate3d(-20%,0,0) ;
+    }
+}
+@keyframes webviewGetOutUpper{
+    0%{
+        transform: translate3d(0,0,0);
+    }
+    100%{
+        transform: translate3d(100%,0,0);
+    }
+
+}
+@keyframes webviewGetOutUnder{
+    0%{
+        transform: translate3d(-20%,0,0);
+    }
+    100%{
+        transform: translate3d(0,0,0);
+    }
+
+}
+// 测试用
+
+
+@at-root #wb1{
+    background-image: linear-gradient(to left,rgb(112, 60, 218),lighten(rgb(112, 60, 218),20%));
+}
+@at-root #wb2{
+    background-image: linear-gradient(to left,rgb(37, 190, 176),lighten(rgb(37, 190, 176),20%));
+}
+
+
+@at-root #pg1{
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    width: 100%;
+    z-index: 9999;
+}
+@at-root .mx-btn{
+    display: inline-block;
+    background-color: rgb(194, 235, 79);
+    min-width: 10em;
+    padding: 0.5em;
+    text-align: center;
+    border-radius: 5px;
 }

@@ -1,12 +1,24 @@
 
+*{
+    box-sizing: border-box;
+    user-select:none;
+}
 html {
     font-size  : $font-size-base;
     line-height: $font-lineHeight-base;
     font-family: $font-family-base;
     color: $font-color-base;
 }
+body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
 a{
     color:$link-color;
     cursor: $link-cursor;
     text-decoration: none;
+}
+input,textarea{
+    user-select:text;
 }
