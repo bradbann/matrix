@@ -5,6 +5,8 @@
 //公共基础样式;
 @import "_base";
 
+@import "_test";
+
 //带命名空间 样式
 .#{$namespace}{
     //ui

@@ -27,9 +27,14 @@ $webview-background-color: #fff;
 //sidebar
 
 //边栏打开的状态 (transform ..)
-@mixin sidebar-open-state {}
+@mixin sidebar-open-state {
+    transform: translateX(0) rotateX(0);
+}
 //边栏关闭时的状态
-@mixin sidebar-close-state {}
+@mixin sidebar-close-state {
+    transform: translateX(-20%) rotateX(-20deg);
+    transition: transform 200ms ease-out;
+}
 
 //边栏打开时 app的状态
 @mixin sidebar-open-app-state {
