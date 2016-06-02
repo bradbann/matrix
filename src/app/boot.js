@@ -7,6 +7,8 @@ export default class Simplize extends Connect {
     constructor(){
         super();
         this.$server = new Http();
+        this.$webviews = {};
+        this.$server.$app = this;
     }
 
     listen(){

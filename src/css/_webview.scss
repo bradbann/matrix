@@ -8,33 +8,19 @@
         top: 0;
         left: 0;
         background-color: $webview-background-color;
-    }
-    &-upper{
-        z-index:1000;
-    }
-    &-under{
-        z-index:999
+        z-index: 900;
     }
     &-forward{
-        transform-style: preserve-3d;
-        transform: perspective(300px);
-        &.#{$namespace}webview-upper{
-            animation: webviewGetInUpper $webview-animate-duration $webview-animate-in-timing-function forwards;
-        }
-        &.#{$namespace}webview-under{
-            animation: webviewGetInUnder $webview-animate-duration $webview-animate-in-timing-function forwards;
-        }
-
+        transform: translate3d(100%,0,0);
     }
     &-backward{
-        transform-style: preserve-3d;
-        transform: perspective(300px);
-        &.#{$namespace}webview-upper{
-            animation: webviewGetOutUpper $webview-animate-duration $webview-animate-out-timing-function forwards;
-        }
-        &.#{$namespace}webview-under{
-            animation: webviewGetOutUnder $webview-animate-duration $webview-animate-out-timing-function forwards;
-        }
+        transform: translate3d(-20%,0,0);
+    }
+    &.mx-webview-compiling{
+        z-index: 999;
+    }
+    &.acitve{
+        z-index: 1000;
     }
 }
 

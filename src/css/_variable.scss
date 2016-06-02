@@ -25,14 +25,20 @@ $webview-animate-out-timing-function: ease-in;
 $webview-background-color: #fff;
 
 //sidebar
+
+//边栏打开的状态 (transform ..)
 @mixin sidebar-open-state {}
+//边栏关闭时的状态
 @mixin sidebar-close-state {}
-@mixin sidebar-open-webview-state {
+
+//边栏打开时 app的状态
+@mixin sidebar-open-app-state {
     transform-style : preserve-3d;
     transform       : translate3d(60%,0,100px) scale(0.9) rotateX(0deg) rotateY(-20deg);
     box-shadow      : 0 0 50px rgba(0,0,0,0.2);
     transform-origin: right center;
 }
-@mixin sidebar-close-webview-state {
+//边栏关闭时 app的状态
+@mixin sidebar-close-app-state {
     transition: transform 200ms ease-out,box-shadow 100ms ease-out 100ms;
 }

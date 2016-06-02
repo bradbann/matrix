@@ -9,7 +9,7 @@ class a extends webview {
         super(node);
     }
     a(){
-        alert(1)
+        this.$reback('/')
     }
     render(){
         return {
@@ -29,7 +29,7 @@ class b extends webview {
         super(node);
     }
     a(){
-        alert(2)
+        this.$redirect('/a/b/c')
     }
     render(){
         return {
@@ -48,18 +48,6 @@ class b extends webview {
 
 ready(function(){
     const app = bootstrap();
-    on('a', function(){
-        app.$server.redirect('/a/b/c?a=1&b=2');
-    })
-    on('b', function(){
-        app.$server.reback('/');
-    })
-    on('c', function(){
-        history.back();
-    })
-    on('d', function(){
-        history.go(1);
-    })
 
     app.on('route:end', function(){
         //console.log('end', this.action);
@@ -80,11 +68,3 @@ ready(function(){
     app.listen();
     console.log(app)
 })
-
-function $(id){
-    return document.getElementById(id);
-}
-
-function on(el, fn){
-    $(el).addEventListener('click', fn);
-}
