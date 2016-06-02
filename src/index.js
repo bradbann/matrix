@@ -9,13 +9,20 @@ class a extends webview {
         super(node);
     }
     a(){
+        this.$back('/')
+    }
+    b(){
         this.$reback('/')
     }
     render(){
         return {
-            template: `<div class="ddd" @click="a">111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</d>`,
+            template: `
+                <div class="ddd" @click="a">a back</div>
+                <div class="ddd" @click="b">a reback</div>
+            `,
             methods: {
-                a: this.a
+                a: this.a,
+                b: this.b
             },
             ready(){
                 //console.log(this)
@@ -29,13 +36,20 @@ class b extends webview {
         super(node);
     }
     a(){
+        this.$forward('/a/b/c')
+    }
+    b(){
         this.$redirect('/a/b/c')
     }
     render(){
         return {
-            template: `<div class="ddd" @click="a">222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222</d>`,
+            template: `
+                <div class="ddd" @click="b">b redirect</div>
+                <div class="ddd" @click="a">b forward</div>
+            `,
             methods: {
-                a: this.a
+                a: this.a,
+                b: this.b
             },
             ready(){
                 //console.log(this)

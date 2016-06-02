@@ -14,7 +14,7 @@
         transform: translate3d(100%,0,0);
     }
     &-backward{
-        transform: translate3d(-20%,0,0);
+        transform: translate3d(-100%,0,0);
     }
     &-in{
         transition: transform 300ms ease;
