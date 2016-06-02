@@ -7,8 +7,11 @@ export default class Http extends EventEmitter {
     constructor(){
         super();
         this._first = true;
+        this._id = null;
+        this._oid =null;
         this._prev = 0;
         this._next = 0;
+        this._key = null;
         this.query = {};
         this.params = {};
         this.action = null;
@@ -32,8 +35,8 @@ export default class Http extends EventEmitter {
 
     _listen(local){
         this.pathname = local.pathname;
+        this._key = local.key;
         if ( !local.state && this._first ){
-            delete this._first;
             this._removeAll(() => {
                 this.history.replace({
                     pathname: local.pathname,
@@ -51,12 +54,14 @@ export default class Http extends EventEmitter {
                 stateData.index = history.length;
                 window.sessionStorage.setItem(locationKey, JSON.stringify(stateData));
                 local.state = stateData;
-                if ( local.action === 'REPLACE' ) this.action = 'REFRESH';
+                if ( local.action === 'REPLACE' ){
+                    this.action = 'REFRESH';
+                }
                 this._removeByKey(stateData.index, locationKey, () => {
-                    this._process(local.state.index, local.search);
+                    this._process(local.state.index, local.search, local.state.id);
                 });
             }else{
-                this._process(local.state.index, local.search);
+                this._process(local.state.index, local.search, local.state.id);
             }
         }
     }
@@ -74,55 +79,63 @@ export default class Http extends EventEmitter {
 
     _removeByKey(index, localkey, cb){
         let len = window.sessionStorage.length;
+        let removes = [];
         while( len-- ){
             let key = window.sessionStorage.key(len)
             if( key.indexOf('@@History') === 0 ){
                 let state = JSON.parse(window.sessionStorage.getItem(key));
                 if ( state.index >= index && key != localkey ){
+                    removes.push(state.id);
                     window.sessionStorage.removeItem(key);
                 }
             }
         }
-        setImmediate(cb);
+        setImmediate(() => {
+            if ( removes.length ){
+                this.removes = removes;
+            }
+            cb();
+        });
     }
 
-    _process(index, search){
-        if ( this._first ){ this._next = index; }
+    _process(index, search, id){
+        console.log(1)
+        if ( this._first ){
+            this._next = index;
+            this._id = id;
+        }
         else{
             if ( this.action !== 'REFRESH' ){
                 this._prev = this._next;
                 this._next = index;
+                this._oid = this._id;
+                this._id = id;
             }
 
             if ( !this.action ){
-                if ( this._next > this._prev ){ this.action = 'FOWARD'; }
-                else if ( this._next < this._prev ){ this.action = 'BACK'; }
+                if ( this._next > this._prev ){ this.action = 'HISTORY:FORWARD'; }
+                else if ( this._next < this._prev ){ this.action = 'HISTORY:BACKWARD'; }
                 else{ this.action = 'REFRESH'; }
             }
         }
-
         const searchQuery = parse(search || '', true);
         this.query = exto(searchQuery.query, this.extra);
         this._first && (delete this._first);
         this.emit('http:change', () => {
+            if ( this.removes && this.removes.length ){
+                this.removes.forEach(item => {
+                    if ( this.$app.$webviews[item] ){
+                        this.$app.$webviews[item].$destroy();
+                        delete this.$app.$webviews[item];
+                    }
+                });
+                delete this.removes;
+            }
             this.action = null;
         });
     }
 
-    redirect(url){
-        const object = parse(url);
-        this.action = 'FOWARD';
-        this.history.push({
-            pathname: object.pathname,
-            search: object.search,
-            state: {
-                index: window.history.length,
-                url: url
-            }
-        })
-    }
-
-    reback(url){
+    _jump(url, type){
         let len = window.sessionStorage.length;
         let index = 0;
         while( len-- ){
@@ -138,17 +151,49 @@ export default class Http extends EventEmitter {
         if ( index > 0 ){
             history.go(index - this._next);
         }else{
-            const object = parse(url);
-            this.action = 'BACKWARD';
-            this.history.push({
-                pathname: object.pathname,
-                search: object.search,
-                state: {
-                    index: window.history.length,
-                    url: url
-                }
-            })
+            this.jump(url, type);
         }
+    }
+
+    jump(url, type){
+        const object = parse(url);
+        this.action = type;
+        this.history.push({
+            pathname: object.pathname,
+            search: object.search,
+            state: {
+                index: window.history.length,
+                url: url
+            }
+        })
+    }
+
+    forward(url){
+        if ( !isNaN(url) ){
+            let i = Number(url);
+            if ( i < 0 ){ i = i * -1; }
+            window.history.go(i);
+        }else{
+            this._jump(url, 'APPLICATION:FORWARD');
+        }
+    }
+
+    back(url){
+        if ( !isNaN(url) ){
+            let i = Number(url);
+            if ( i > 0 ){ i = i * -1; }
+            window.history.go(i);
+        }else{
+            this._jump(url, 'APPLICATION:BACKWARD');
+        }
+    }
+
+    redirect(url){
+        this.jump(url, 'APPLICATION:FORWARD');
+    }
+
+    reback(url){
+        this.jump(url, 'APPLICATION:BACKWARD');
     }
 
     refresh(){
@@ -161,5 +206,12 @@ export default class Http extends EventEmitter {
                 url: url
             }
         })
+    }
+
+    setWebview(id){
+        const locationKey = '@@History/' + this._key;
+        let stateData = JSON.parse(window.sessionStorage.getItem(locationKey));
+        stateData.id = id;
+        window.sessionStorage.setItem(locationKey, JSON.stringify(stateData));
     }
 }
