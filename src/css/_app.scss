@@ -3,10 +3,10 @@
         width   : 100%;
         height  : 100%;
         background-color: $app-background-color;
-        @include sidebar-close-webview-state;
+        @include sidebar-close-app-state;
     }
     .#{$namespace}sidebar-open & {
-        @include sidebar-open-webview-state;
+        @include sidebar-open-app-state;
     }
     .mobile & {
         position: absolute;
