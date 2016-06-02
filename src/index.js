@@ -13,7 +13,7 @@ class a extends webview {
     }
     render(){
         return {
-            template: `<div class="ddd" @click="a">111</d>`,
+            template: `<div class="ddd" @click="a">111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</d>`,
             methods: {
                 a: this.a
             },
@@ -33,7 +33,7 @@ class b extends webview {
     }
     render(){
         return {
-            template: `<div class="ddd" @click="a">222</d>`,
+            template: `<div class="ddd" @click="a">222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222</d>`,
             methods: {
                 a: this.a
             },
@@ -66,5 +66,4 @@ ready(function(){
     })
 
     app.listen();
-    console.log(app)
 })

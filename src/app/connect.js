@@ -3,7 +3,7 @@
 import { EventEmitter } from 'events';
 import Layer from './layer';
 
-import { animateForward } from './animate';
+import { animateForward, animateBackward } from './animate';
 
 let id = 0;
 
@@ -38,11 +38,10 @@ export default class Connect extends EventEmitter {
         }
 
         // strip trailing slash
-        if ( path[path.length - 1] === '/' ) {
+        if ( path !== '/' && path[path.length - 1] === '/' ) {
             path = path.slice(0, -1);
         }
 
-        if ( !path ) path = '/';
 
         // add the middleware
         this.stack.push(new Layer(path, handle, options));
@@ -78,6 +77,7 @@ export default class Connect extends EventEmitter {
                 this._applicationForward(webview, next);
                 break;
             case 'APPLICATION:BACKWARD':
+                this._applicationBackward(webview, next);
                 break;
             case 'REFRESH':
                 this._refresh(webview, next);
@@ -92,11 +92,48 @@ export default class Connect extends EventEmitter {
     }
 
     _applicationForward(webview, next){
-        const oldWebview = this.$webviews[this.$server._oid];
-        if ( typeof this.$server._id !== 'number' || !this.$webviews[this.$server._id] ){
-            this._create(webview, newWebview => animateForward(oldWebview, newWebview, next));
+        const _oldWebview = this.$webviews[this.$server._id];
+        const _newWebview = this.$webviews[this.$server.id];
+
+        if ( !_newWebview ){
+            if ( !_oldWebview ){
+                this.$server._oid = null;
+                this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
+            }else{
+                this.$server._oid = this.$server._id;
+                this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
+            }
         }else{
-            animateForward(oldWebview, this.$webviews[this.$server._id], next);
+            if ( !_oldWebview ){
+                this.$server._oid = null;
+            }else{
+                this.$server._oid = this.$server._id;
+            }
+            this.$server._id = this.$server.id;
+            animateForward(_oldWebview, _newWebview, next);
+        }
+    }
+
+    _applicationBackward(webview, next){
+        const _oldWebview = this.$webviews[this.$server._id];
+        const _newWebview = this.$webviews[this.$server.id];
+
+        if ( !_newWebview ){
+            if ( !_oldWebview ){
+                this.$server._oid = null;
+                this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
+            }else{
+                this.$server._oid = this.$server._id;
+                this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
+            }
+        }else{
+            if ( !_oldWebview ){
+                this.$server._oid = null;
+            }else{
+                this.$server._oid = this.$server._id;
+            }
+            this.$server._id = this.$server.id;
+            animateBackward(_oldWebview, _newWebview, next);
         }
     }
 
@@ -108,20 +145,23 @@ export default class Connect extends EventEmitter {
                 next();
             });
         }else{
-            this.$webviews[this.$server._id].refresh();
+            this.$webviews[this.$server._id].refresh && this.$webviews[this.$server._id].refresh();
         }
     }
 
     _create(webview, next){
+        id++;
         const webviewNode = document.createElement('div');
         this.$node.appendChild(webviewNode);
         webviewNode.classList.add('mx-webview');
         webviewNode.classList.add('mx-webview-compiling');
         const $webview = new webview(webviewNode);
+        this.$webviews[id] = $webview;
         $webview.$root = this;
-        $webview._publish(next);
-        this.$server.setWebview(id);
-        this.$webviews[id++] = $webview;
+        this.$server._id = id;
+        this.$server.setWebview(id, function(){
+            $webview._publish(next);
+        });
     }
 
     handle(done){

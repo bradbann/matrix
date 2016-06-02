@@ -9,7 +9,6 @@
         left: 0;
         background-color: $webview-background-color;
         z-index: 900;
-        transition: transform 300ms ease;
     }
     &-forward{
         transform: translate3d(100%,0,0);
@@ -17,10 +16,22 @@
     &-backward{
         transform: translate3d(-20%,0,0);
     }
+    &-in{
+        transition: transform 300ms ease;
+        transform: translate3d(0,0,0);
+    }
+    &-out{
+        transition: transform 300ms ease;
+        transform: translate3d(-100%,0,0);
+    }
+    &-back{
+        transition: transform 300ms ease;
+        transform: translate3d(100%,0,0);
+    }
     &.mx-webview-compiling{
         z-index: 999;
     }
-    &.acitve{
+    &.active{
         z-index: 1000;
     }
 }
