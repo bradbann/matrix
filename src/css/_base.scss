@@ -8,6 +8,9 @@ html {
     line-height: $font-lineHeight-base;
     font-family: $font-family-base;
     color: $font-color-base;
+    width: 100%;
+    overflow: hidden;
+    max-width: 100%;
 }
 body{
     height: 100%;
@@ -22,3 +25,6 @@ a{
 input,textarea{
     user-select:text;
 }
+
+
+// test
