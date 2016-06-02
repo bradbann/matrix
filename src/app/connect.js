@@ -70,8 +70,10 @@ export default class Connect extends EventEmitter {
         console.log('in',direction)
         switch (direction){
             case 'HISTORY:FORWARD':
+                this._historyForward(webview, next);
                 break;
             case 'HISTORY:BACKWARD':
+                this._historyBackward(webview, next);
                 break;
             case 'APPLICATION:FORWARD':
                 this._applicationForward(webview, next);
@@ -88,6 +90,34 @@ export default class Connect extends EventEmitter {
                     newWebview.$node.classList.add('active');
                     next();
                 });
+        }
+    }
+
+    _historyForward(webview, next){
+        const _oldWebview = this.$webviews[this.$server._id];
+        const _newWebview = this.$webviews[this.$server.id];
+        
+        this.$server._oid = this.$server._id;
+        this.$server._id = this.$server.id;
+
+        if ( !_newWebview ){
+            this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
+        }else{
+            animateForward(_oldWebview, _newWebview, next);
+        }
+    }
+
+    _historyBackward(webview, next){
+        const _oldWebview = this.$webviews[this.$server._id];
+        const _newWebview = this.$webviews[this.$server.id];
+
+        this.$server._oid = this.$server._id;
+        this.$server._id = this.$server.id;
+
+        if ( !_newWebview ){
+            this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
+        }else{
+            animateBackward(_oldWebview, _newWebview, next);
         }
     }
 

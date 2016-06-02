@@ -110,7 +110,6 @@ export default class Http extends EventEmitter {
                 this._prev = this._next;
                 this._next = index;
             }
-
             if ( !this.action ){
                 if ( this._next > this._prev ){ this.action = 'HISTORY:FORWARD'; }
                 else if ( this._next < this._prev ){ this.action = 'HISTORY:BACKWARD'; }
@@ -151,7 +150,8 @@ export default class Http extends EventEmitter {
             }
         }
         if ( index > 0 ){
-            history.go(index - this._next);
+            this.action = type;
+            window.history.go(index - this._next);
         }else{
             this.jump(url, type);
         }
@@ -171,9 +171,11 @@ export default class Http extends EventEmitter {
     }
 
     forward(url){
+        if ( !url ) return window.history.forward();
         if ( !isNaN(url) ){
             let i = Number(url);
             if ( i < 0 ){ i = i * -1; }
+            this.action = 'HISTORY:FORWARD';
             window.history.go(i);
         }else{
             this._jump(url, 'APPLICATION:FORWARD');
@@ -181,9 +183,11 @@ export default class Http extends EventEmitter {
     }
 
     back(url){
+        if ( !url ) return window.history.back();
         if ( !isNaN(url) ){
             let i = Number(url);
             if ( i > 0 ){ i = i * -1; }
+            this.action = 'HISTORY:BACKWARD';
             window.history.go(i);
         }else{
             this._jump(url, 'APPLICATION:BACKWARD');
