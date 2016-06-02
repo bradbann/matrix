@@ -84,7 +84,7 @@ export default class Connect extends EventEmitter {
                 break;
             default:
                 this._create(webview, newWebview => {
-                    newWebview.$node.classList.remove('mx-webview-zindex-compiling');
+                    newWebview.$node.classList.remove('mx-webview-compiling');
                     newWebview.$node.classList.add('active');
                     next();
                 });
@@ -103,7 +103,7 @@ export default class Connect extends EventEmitter {
     _refresh(webview, next){
         if ( typeof this.$server._id !== 'number' || !this.$webviews[this.$server._id] ){
             this._create(webview, newWebview => {
-                newWebview.$node.classList.remove('mx-webview-zindex-compiling');
+                newWebview.$node.classList.remove('mx-webview-compiling');
                 newWebview.$node.classList.add('active');
                 next();
             });
@@ -116,7 +116,7 @@ export default class Connect extends EventEmitter {
         const webviewNode = document.createElement('div');
         this.$node.appendChild(webviewNode);
         webviewNode.classList.add('mx-webview');
-        webviewNode.classList.add('mx-webview-zindex-compiling');
+        webviewNode.classList.add('mx-webview-compiling');
         const $webview = new webview(webviewNode);
         $webview.$root = this;
         $webview._publish(next);
