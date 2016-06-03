@@ -92,7 +92,7 @@ export default class Connect extends EventEmitter {
         }
     }
 
-    _historyForward(webview, next){
+    _historyDirection(webview, next, animate){
         const _oldWebview = this.$webviews[this.$server._id];
         const _newWebview = this.$webviews[this.$server.id];
 
@@ -100,68 +100,48 @@ export default class Connect extends EventEmitter {
         this.$server._id = this.$server.id;
 
         if ( !_newWebview ){
-            this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
+            this._create(webview, newWebview => animate(_oldWebview, newWebview, next));
         }else{
-            animateForward(_oldWebview, _newWebview, next);
+            animate(_oldWebview, _newWebview, next);
         }
+    }
+
+    _applicationDirection(webview, next, animate){
+        const _oldWebview = this.$webviews[this.$server._id];
+        const _newWebview = this.$webviews[this.$server.id];
+
+        if ( !_newWebview ){
+            if ( !_oldWebview ){
+                this.$server._oid = null;
+            }else{
+                this.$server._oid = this.$server._id;
+            }
+            this._create(webview, newWebview => animate(_oldWebview, newWebview, next));
+        }else{
+            if ( !_oldWebview ){
+                this.$server._oid = null;
+            }else{
+                this.$server._oid = this.$server._id;
+            }
+            this.$server._id = this.$server.id;
+            animate(_oldWebview, _newWebview, next);
+        }
+    }
+
+    _historyForward(webview, next){
+        this._historyDirection(webview, next, animateForward);
     }
 
     _historyBackward(webview, next){
-        const _oldWebview = this.$webviews[this.$server._id];
-        const _newWebview = this.$webviews[this.$server.id];
-
-        this.$server._oid = this.$server._id;
-        this.$server._id = this.$server.id;
-
-        if ( !_newWebview ){
-            this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
-        }else{
-            animateBackward(_oldWebview, _newWebview, next);
-        }
+        this._historyDirection(webview, next, animateBackward);
     }
 
     _applicationForward(webview, next){
-        const _oldWebview = this.$webviews[this.$server._id];
-        const _newWebview = this.$webviews[this.$server.id];
-
-        if ( !_newWebview ){
-            if ( !_oldWebview ){
-                this.$server._oid = null;
-            }else{
-                this.$server._oid = this.$server._id;
-            }
-            this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
-        }else{
-            if ( !_oldWebview ){
-                this.$server._oid = null;
-            }else{
-                this.$server._oid = this.$server._id;
-            }
-            this.$server._id = this.$server.id;
-            animateForward(_oldWebview, _newWebview, next);
-        }
+        this._applicationDirection(webview, next, animateForward);
     }
 
     _applicationBackward(webview, next){
-        const _oldWebview = this.$webviews[this.$server._id];
-        const _newWebview = this.$webviews[this.$server.id];
-
-        if ( !_newWebview ){
-            if ( !_oldWebview ){
-                this.$server._oid = null;
-            }else{
-                this.$server._oid = this.$server._id;
-            }
-            this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
-        }else{
-            if ( !_oldWebview ){
-                this.$server._oid = null;
-            }else{
-                this.$server._oid = this.$server._id;
-            }
-            this.$server._id = this.$server.id;
-            animateBackward(_oldWebview, _newWebview, next);
-        }
+        this._applicationDirection(webview, next, animateBackward);
     }
 
     _refresh(webview, next){
