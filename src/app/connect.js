@@ -142,7 +142,7 @@ export default class Connect extends EventEmitter {
 
     _applicationBackward(webview, next){
         this._applicationDirection(webview, next, animateBackward);
-    }
+    } 
 
     _refresh(webview, next){
         const _Webview = this.$webviews[this.$server._id];
