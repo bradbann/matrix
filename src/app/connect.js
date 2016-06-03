@@ -96,7 +96,7 @@ export default class Connect extends EventEmitter {
     _historyForward(webview, next){
         const _oldWebview = this.$webviews[this.$server._id];
         const _newWebview = this.$webviews[this.$server.id];
-        
+
         this.$server._oid = this.$server._id;
         this.$server._id = this.$server.id;
 
@@ -184,7 +184,6 @@ export default class Connect extends EventEmitter {
         const webviewNode = document.createElement('div');
         this.$node.appendChild(webviewNode);
         webviewNode.classList.add('mx-webview');
-        webviewNode.classList.add('mx-webview-compiling');
         const $webview = new webview(webviewNode);
         this.$webviews[id] = $webview;
         $webview.$root = this;
