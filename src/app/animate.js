@@ -20,7 +20,7 @@ export const animateForward = function(oldWebview, newWebview, cb){
     }, 0)
 }
 
-export const animateBackward = function(oldWebview, newWebview, cb){ 
+export const animateBackward = function(oldWebview, newWebview, cb){
     addClass(newWebview, 'active');
     removeClass(oldWebview, 'active');
     addClass(newWebview, 'mx-webview-backward');
