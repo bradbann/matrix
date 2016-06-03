@@ -9,13 +9,10 @@ export const animateForward = function(oldWebview, newWebview, cb){
     newWebview.$node.style.zIndex = 1000;
     oldWebview.$node.style.zIndex = 999;
 
-    console.log("old:",oldWebview,"new :",newWebview);
-
     newWebview.$node.style.transition="none";
     addClass(newWebview,'mx-webview-forward');
 
     setTimeout(function(){
-        console.log("webviews start animation");
         newWebview.$node.style.transition="";
         addClass(oldWebview,'mx-webview-backward');
         removeClass(oldWebview,'active');
@@ -26,7 +23,6 @@ export const animateForward = function(oldWebview, newWebview, cb){
     onTransitionEnd(newWebview.$node, expectedDuration, function(){
 
         addClass(newWebview,'active');
-        console.log("***********"+" END1 "+"**********");
         removeClass(oldWebview, 'mx-webview-backward');
         newWebview.$node.style.zIndex = "";
         oldWebview.$node.style.zIndex = "";
@@ -38,7 +34,6 @@ export const animateForward = function(oldWebview, newWebview, cb){
 
 export const animateBackward = function(oldWebview, newWebview, cb){
 
-    console.log("old:",oldWebview,"new :",newWebview);
     newWebview.$node.style.zIndex = 999;
     oldWebview.$node.style.zIndex = 1000;
 
@@ -52,7 +47,6 @@ export const animateBackward = function(oldWebview, newWebview, cb){
     },1000/60);
 
     onTransitionEnd(newWebview.$node, expectedDuration, function(){
-        console.log("***********"+" END2 "+"**********");
         addClass(newWebview,'active');
         removeClass(oldWebview, 'mx-webview-forward');
         removeClass(oldWebview, 'active');

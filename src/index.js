@@ -1,5 +1,4 @@
-import { ready, bootstrap, webview } from './main';
-
+import { ready, bootstrap, webview, Promise } from './main';
 
 require('normalize.css');
 require('./css/matrix.scss');
@@ -63,12 +62,17 @@ class b extends webview {
 ready(function(){
     const app = bootstrap();
 
+    app.on('route:start', function(){
+        console.log('route start');
+    })
+
     app.on('route:end', function(){
-        //console.log('end', this.action);
+        console.log(app)
+        console.log('route end');
     })
 
     app.on('ready', function(){
-        //console.log('ready');
+        console.log('ready');
     })
 
     app.at('/', function(next){

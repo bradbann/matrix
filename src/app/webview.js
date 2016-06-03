@@ -28,6 +28,7 @@ export default class Webview extends EventEmitter {
 
         options.ready = function(){
             _ready && _ready.call(this);
+            this.$server = this.$app.$server;
             that._bind(next);
         }
 
@@ -41,11 +42,11 @@ export default class Webview extends EventEmitter {
         if ( !options.methods ){
             options.methods = {};
         }
-        options.methods.$redirect = function(url){ that.$root.$server.redirect(url); }
-        options.methods.$reback = function(url){ that.$root.$server.reback(url); }
-        options.methods.$forward = function(url){ that.$root.$server.forward(url); }
-        options.methods.$back = function(url){ that.$root.$server.back(url); }
-        options.methods.$refresh = function(){ that.$root.$server.refresh(); }
+        options.methods.$redirect = function(url){ that.$server.redirect(url); }
+        options.methods.$reback = function(url){ that.$server.reback(url); }
+        options.methods.$forward = function(url){ that.$server.forward(url); }
+        options.methods.$back = function(url){ that.$server.back(url); }
+        options.methods.$refresh = function(){ that.$server.refresh(); }
         return options;
     }
 }
