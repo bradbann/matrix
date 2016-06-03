@@ -17,6 +17,7 @@ export default class Http extends EventEmitter {
         this.action = null;
         this._location();
         this._init();
+        this._animating = false;
     }
 
     _location(){
@@ -132,6 +133,7 @@ export default class Http extends EventEmitter {
             }
             this.action = null;
             if ( this.id !== undefined ) delete this.id;
+            this._animating = false;
             console.log(this.$app)
         });
     }
@@ -171,6 +173,8 @@ export default class Http extends EventEmitter {
     }
 
     forward(url){
+        if ( this._animating ) return;
+        this._animating = true;
         if ( !url ) return window.history.forward();
         if ( !isNaN(url) ){
             let i = Number(url);
@@ -183,6 +187,8 @@ export default class Http extends EventEmitter {
     }
 
     back(url){
+        if ( this._animating ) return;
+        this._animating = true;
         if ( !url ) return window.history.back();
         if ( !isNaN(url) ){
             let i = Number(url);
@@ -195,14 +201,20 @@ export default class Http extends EventEmitter {
     }
 
     redirect(url){
+        if ( this._animating ) return;
+        this._animating = true;
         this.jump(url, 'APPLICATION:FORWARD');
     }
 
     reback(url){
+        if ( this._animating ) return;
+        this._animating = true;
         this.jump(url, 'APPLICATION:BACKWARD');
     }
 
     refresh(){
+        if ( this._animating ) return;
+        this._animating = true;
         this.action = 'REFRESH';
         this.history.replace({
             pathname: this.pathname,
