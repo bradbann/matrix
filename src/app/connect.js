@@ -191,13 +191,13 @@ export default class Connect extends EventEmitter {
                 return next(err);
             }
 
-            that.compile(layer.handle, params, err, next);
+            that._compile(layer.handle, params, err, next);
         }
 
         next();
     }
 
-    compile(handle, params, err, next){
+    _compile(handle, params, err, next){
         var arity = handle.length;
         var error = err;
         var hasError = Boolean(err);
