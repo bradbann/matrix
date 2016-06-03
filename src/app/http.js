@@ -133,7 +133,7 @@ export default class Http extends EventEmitter {
             }
             this.action = null;
             if ( this.id !== undefined ) delete this.id;
-            this._animating = false;
+            setImmediate(() => this._animating = false);
             console.log(this.$app)
         });
     }

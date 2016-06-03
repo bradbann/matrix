@@ -1,0 +1,47 @@
+
+// style for test
+
+.mx-sidebar{
+    .avatar{
+        margin: 30px auto;
+        text-align: center;
+        position: relative;
+        img{
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            object-position: center center;
+            border-radius: 50%;
+        }
+        .upload{
+            position: absolute;
+            left: 50%;
+            margin-left: 55px;
+            top: 0%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #009ee7;
+        }
+    }
+}
+
+.test-bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left:0;
+    z-index: -2;
+    -webkit-mask:linear-gradient(to bottom ,#6563A4,#000000);
+    img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left top;
+        &:nth-child(2){
+            opacity: 0.3;
+        }
+    }
+}

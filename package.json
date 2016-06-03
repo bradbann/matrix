@@ -36,11 +36,12 @@
   },
   "dependencies": {
     "domready": "^1.0.8",
+    "es6-promise": "^3.2.1",
     "events": "^1.1.0",
     "fastclick": "^1.0.6",
     "history": "^2.1.2",
-    "on-transition-end": "^1.0.5",
     "path-to-regexp": "^1.5.0",
+    "prefix-property": "^1.0.23",
     "setimmediate": "^1.0.4",
     "unique-array": "^1.0.1",
     "url": "^0.11.0",
