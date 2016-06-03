@@ -86,7 +86,6 @@ export default class Connect extends EventEmitter {
                 break;
             default:
                 this._create(webview, newWebview => {
-                    newWebview.$node.classList.remove('mx-webview-compiling');
                     newWebview.$node.classList.add('active');
                     next();
                 });
@@ -96,7 +95,7 @@ export default class Connect extends EventEmitter {
     _historyForward(webview, next){
         const _oldWebview = this.$webviews[this.$server._id];
         const _newWebview = this.$webviews[this.$server.id];
-        
+
         this.$server._oid = this.$server._id;
         this.$server._id = this.$server.id;
 
@@ -128,11 +127,10 @@ export default class Connect extends EventEmitter {
         if ( !_newWebview ){
             if ( !_oldWebview ){
                 this.$server._oid = null;
-                this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
             }else{
                 this.$server._oid = this.$server._id;
-                this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
             }
+            this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
         }else{
             if ( !_oldWebview ){
                 this.$server._oid = null;
@@ -151,11 +149,10 @@ export default class Connect extends EventEmitter {
         if ( !_newWebview ){
             if ( !_oldWebview ){
                 this.$server._oid = null;
-                this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
             }else{
                 this.$server._oid = this.$server._id;
-                this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
             }
+            this._create(webview, newWebview => animateBackward(_oldWebview, newWebview, next));
         }else{
             if ( !_oldWebview ){
                 this.$server._oid = null;
@@ -168,9 +165,9 @@ export default class Connect extends EventEmitter {
     }
 
     _refresh(webview, next){
-        if ( typeof this.$server._id !== 'number' || !this.$webviews[this.$server._id] ){
+        const _Webview = this.$webviews[this.$server._id];
+        if ( !_Webview ){
             this._create(webview, newWebview => {
-                newWebview.$node.classList.remove('mx-webview-compiling');
                 newWebview.$node.classList.add('active');
                 next();
             });
