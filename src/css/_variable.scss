@@ -39,14 +39,7 @@ $webview-background-color: #fff;
     opacity: 0.9;
     transform:translate3d(-20%,0,0);
 }
-@mixin webview-animate-forward-state{
-    transform:translate3d(0,100%,0);
-    box-shadow: -8px 0 10px rgba(0,0,0,0.05);
-}
-@mixin webview-animate-backward-state{
-    opacity: 0.9;
-    transform:translate3d(0,-20%,0);
-}
+
 
 //sidebar
 //边栏打开的状态 (transform ..)
@@ -72,7 +65,7 @@ $webview-background-color: #fff;
     transition: transform 200ms ease-out,box-shadow 100ms ease-out 100ms;
 }
 
-//其他效果
+//其他效果1
 //
 // @mixin webview-animate-forward-state{
 //     transform:translate3d(100%,0,0);
@@ -106,4 +99,14 @@ $webview-background-color: #fff;
 // }
 // //边栏关闭时 app的状态
 // @mixin sidebar-close-app-state {
+// }
+
+//其他效果2
+// @mixin webview-animate-forward-state{
+//     transform:translate3d(0,100%,0);
+//     box-shadow: -8px 0 10px rgba(0,0,0,0.05);
+// }
+// @mixin webview-animate-backward-state{
+//     opacity: 0.9;
+//     transform:translate3d(0,-20%,0);
 // }
