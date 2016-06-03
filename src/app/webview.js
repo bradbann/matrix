@@ -42,11 +42,11 @@ export default class Webview extends EventEmitter {
         if ( !options.methods ){
             options.methods = {};
         }
-        options.methods.$redirect = function(url){ that.$server.redirect(url); }
-        options.methods.$reback = function(url){ that.$server.reback(url); }
-        options.methods.$forward = function(url){ that.$server.forward(url); }
-        options.methods.$back = function(url){ that.$server.back(url); }
-        options.methods.$refresh = function(){ that.$server.refresh(); }
+        options.methods.$redirect = function(url){ this.$server.redirect(url); }
+        options.methods.$reback = function(url){ this.$server.reback(url); }
+        options.methods.$forward = function(url){ this.$server.forward(url); }
+        options.methods.$back = function(url){ this.$server.back(url); }
+        options.methods.$refresh = function(){ this.$server.refresh(); }
         return options;
     }
 }
