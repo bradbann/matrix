@@ -1,6 +1,7 @@
 'use strict';
 
 import { EventEmitter } from 'events';
+import { redirect, reback, forward, back, refresh } from './directive';
 import Vue from 'vue';
 
 
@@ -14,14 +15,11 @@ export default class Webview extends EventEmitter {
         this.$vm.$destroy(true);
     }
 
-    _bind(next){
-        next(this);
-    }
-
     _publish(next){
         const that = this;
         let options = this.render ? this.render() : {};
         const _ready = options.ready;
+        const _destroyed = options.destroyed;
 
         options.el = this.$node;
         options.replace = false;
@@ -29,10 +27,21 @@ export default class Webview extends EventEmitter {
         options.ready = function(){
             _ready && _ready.call(this);
             this.$server = this.$app.$server;
-            that._bind(next);
+            if ( that.ready ){
+                that.ready();
+            }
+            next(that);
+        }
+
+        options.destroyed = function(){
+            _destroyed && _destroyed.call(this);
+            if ( that.destroyed ){
+                that.destroyed();
+            }
         }
 
         options = this._extend(options);
+        console.log(options)
         this.$vm = new Vue(options);
         this.$vm.$webview = this;
     }
@@ -47,6 +56,15 @@ export default class Webview extends EventEmitter {
         options.methods.$forward = function(url){ this.$server.forward(url); }
         options.methods.$back = function(url){ this.$server.back(url); }
         options.methods.$refresh = function(){ this.$server.refresh(); }
+        if ( !options.mixins ){
+            options.mixins = [];
+        }
+        if ( !Array.isArray(options.mixins) ){
+            options.mixins = [options.mixins];
+        }
+        options.mixins.push({
+            directives: { redirect, reback, forward, back, refresh }
+        });
         return options;
     }
 }
