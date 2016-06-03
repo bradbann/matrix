@@ -92,25 +92,7 @@ export default class Connect extends EventEmitter {
         }
     }
 
-<<<<<<< HEAD
-    _historyForward(webview, next){
-        const _oldWebview = this.$webviews[this.$server._id];
-        const _newWebview = this.$webviews[this.$server.id];
-
-        this.$server._oid = this.$server._id;
-        this.$server._id = this.$server.id;
-
-        if ( !_newWebview ){
-            this._create(webview, newWebview => animateForward(_oldWebview, newWebview, next));
-        }else{
-            animateForward(_oldWebview, _newWebview, next);
-        }
-    }
-
-    _historyBackward(webview, next){
-=======
     _historyDirection(webview, next, animate){
->>>>>>> 24e945fd650d664b7ae424d34c890a209cd73517
         const _oldWebview = this.$webviews[this.$server._id];
         const _newWebview = this.$webviews[this.$server.id];
 
@@ -160,7 +142,7 @@ export default class Connect extends EventEmitter {
 
     _applicationBackward(webview, next){
         this._applicationDirection(webview, next, animateBackward);
-    } 
+    }
 
     _refresh(webview, next){
         const _Webview = this.$webviews[this.$server._id];
