@@ -6,8 +6,11 @@ import Vue from 'vue';
 import Server from './app/connect';
 import Webview from './app/webview';
 
+export { Promise } from 'es6-promise';
+export { EventEmitter } from 'events';
 export const server = Server;
 export const webview = Webview;
+export const vue = Vue;
 
 export const bootstrap = function(){
     const app = new Bootstrap();

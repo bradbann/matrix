@@ -35,7 +35,6 @@ export default class Http extends EventEmitter {
     }
 
     _listen(local){
-        console.log('ccc', !local.state && this._first)
         this.pathname = local.pathname;
         this._key = local.key;
         if ( !local.state && this._first ){
@@ -50,7 +49,6 @@ export default class Http extends EventEmitter {
                 });
             });
         }else{
-            console.log('ddd', local.action)
             if( local.action === 'PUSH' || local.action === 'REPLACE' ){
                 const locationKey = '@@History/' + local.key;
                 let stateData = JSON.parse(window.sessionStorage.getItem(locationKey));
@@ -134,7 +132,6 @@ export default class Http extends EventEmitter {
             this.action = null;
             if ( this.id !== undefined ) delete this.id;
             setImmediate(() => this._animating = false);
-            console.log(this.$app)
         });
     }
 

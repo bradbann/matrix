@@ -67,7 +67,6 @@ export default class Connect extends EventEmitter {
 
     publish(webview, next){
         const direction = this.$server.action;
-        console.log('in',direction)
         switch (direction){
             case 'HISTORY:FORWARD':
                 this._historyForward(webview, next);
@@ -178,9 +177,9 @@ export default class Connect extends EventEmitter {
         function next(err){
             const layer = stack[index++];
             if ( !layer ) {
-              setImmediate(function(){
-                   that.emit('route:end');
+              setImmediate(function(){       
                    done();
+                   that.emit('route:end');
               }, err);
               return;
             }

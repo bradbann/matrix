@@ -21,6 +21,6 @@ export default class Simplize extends Connect {
             this.emit('route:start');
             this.handle(reset);
         });
-        setImmediate(() => this.emit('ready'));
+        this.emit('ready');
     }
 }
