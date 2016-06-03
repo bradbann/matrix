@@ -24,8 +24,16 @@ $webview-animate-in-timing-function: ease-out;
 $webview-animate-out-timing-function: ease-in;
 $webview-background-color: #fff;
 
-//sidebar
+@mixin webview-animate-forward-state{
+    transform:translate3d(100%,0,0);
+}
+@mixin webview-animate-backward-state{
+    transform-origin: right center;
+    transform:translate3d(10%,0,0) scale(0.9);
+}
 
+
+//sidebar
 //边栏打开的状态 (transform ..)
 @mixin sidebar-open-state {
     transform: translateX(0) rotateX(0);
