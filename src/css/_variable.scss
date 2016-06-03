@@ -25,17 +25,27 @@ $webview-animate-out-timing-function: ease-in;
 $webview-background-color: #fff;
 
 @mixin webview-animate-current-state{
-    transition-property: transform,box-shadow;
+    transition-property: transform,box-shadow,opacity;
     transition-timing-function: ease;
     transition-duration: $webview-animate-duration;
     box-shadow: -8px 0 10px rgba(0,0,0,0.2);
+    opacity: 1;
 }
 @mixin webview-animate-forward-state{
     transform:translate3d(100%,0,0);
     box-shadow: -8px 0 10px rgba(0,0,0,0.05);
 }
 @mixin webview-animate-backward-state{
+    opacity: 0.9;
     transform:translate3d(-20%,0,0);
+}
+@mixin webview-animate-forward-state{
+    transform:translate3d(0,100%,0);
+    box-shadow: -8px 0 10px rgba(0,0,0,0.05);
+}
+@mixin webview-animate-backward-state{
+    opacity: 0.9;
+    transform:translate3d(0,-20%,0);
 }
 
 //sidebar
@@ -63,7 +73,7 @@ $webview-background-color: #fff;
 }
 
 //其他效果
-// 
+//
 // @mixin webview-animate-forward-state{
 //     transform:translate3d(100%,0,0);
 //     box-shadow: none;
