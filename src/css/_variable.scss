@@ -28,12 +28,21 @@ $webview-background-color: #fff;
     transform:translate3d(100%,0,0);
 }
 @mixin webview-animate-backward-state{
-    transform-origin: right center;
-    transform:translate3d(10%,0,0) scale(0.9);
+    transform:translate3d(-20%,0,0);
+}
+@mixin webview-animate-forward-state{
+    transform:translate3d(100%,0,0);
+}
+@mixin webview-animate-backward-state{
+    opacity: 0.8;
+    transform-origin: right bottom;
+    transform: translate3d(5%,0,0) scale(0.95);
 }
 
 
 //sidebar
+
+
 //边栏打开的状态 (transform ..)
 @mixin sidebar-open-state {
     transform: translateX(0) rotateX(0);
@@ -44,6 +53,7 @@ $webview-background-color: #fff;
     transition: transform 200ms ease-out;
 }
 
+
 //边栏打开时 app的状态
 @mixin sidebar-open-app-state {
     transform-style : preserve-3d;
@@ -53,5 +63,31 @@ $webview-background-color: #fff;
 }
 //边栏关闭时 app的状态
 @mixin sidebar-close-app-state {
+
     transition: transform 200ms ease-out,box-shadow 100ms ease-out 100ms;
 }
+
+
+
+// //边栏打开的状态 (transform ..)
+// @mixin sidebar-open-state {
+//     transform: translateX(0) rotateX(0);
+//     box-shadow: 0 0 20px #888;
+// }
+// //边栏关闭时的状态
+// @mixin sidebar-close-state {
+//     z-index: 1001;
+//     width: 250px;
+//     padding-right: 0;
+//     background-color: #fff;
+//     transform: translateX(-100%);
+//     transition: transform 200ms ease-out,box-shadow 200ms ease-out;
+// }
+//
+// //边栏打开时 app的状态
+// @mixin sidebar-open-app-state {
+//
+// }
+// //边栏关闭时 app的状态
+// @mixin sidebar-close-app-state {
+// }
