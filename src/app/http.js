@@ -35,7 +35,6 @@ export default class Http extends EventEmitter {
 
     _listen(local){
         if ( this._force ) {
-            console.log('delete force1')
             delete this._force;
             return;
         }
@@ -103,7 +102,6 @@ export default class Http extends EventEmitter {
     }
 
     _process(index, search){
-        console.info('in')
         if ( this._first ){
             this._next = index;
         }
@@ -134,7 +132,6 @@ export default class Http extends EventEmitter {
             }
             this.action = null;
             if ( this._force ) {
-                console.log('delete force2')
                 delete this._force;
             }
             setImmediate(() => {
