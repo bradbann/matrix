@@ -54,7 +54,7 @@ class b extends webview {
                 <h1 class="ddd" @click="a">b forward</h1>
 
                 <cells>
-                    <cell>
+                    <cell linked>
                         <cell:head>head</cell:head>
                         <cell:body>body</cell:body>
                         <cell:foot>foot</cell:foot>
