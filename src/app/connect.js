@@ -5,8 +5,6 @@ import Layer from './layer';
 
 import { animateForward, animateBackward } from './animate';
 
-let id = 0;
-
 export default class Connect extends EventEmitter {
     constructor(){
         super();
@@ -69,16 +67,16 @@ export default class Connect extends EventEmitter {
         const direction = this.$server.action;
         switch (direction){
             case 'HISTORY:FORWARD':
-                this._historyForward(webview, next);
+                this._useForward(webview, next);
                 break;
             case 'HISTORY:BACKWARD':
-                this._historyBackward(webview, next);
+                this._useBackward(webview, next);
                 break;
             case 'APPLICATION:FORWARD':
-                this._applicationForward(webview, next);
+                this._useForward(webview, next);
                 break;
             case 'APPLICATION:BACKWARD':
-                this._applicationBackward(webview, next);
+                this._useBackward(webview, next);
                 break;
             case 'REFRESH':
                 this._refresh(webview, next);
@@ -91,82 +89,50 @@ export default class Connect extends EventEmitter {
         }
     }
 
-    _historyDirection(webview, next, animate){
-        const _oldWebview = this.$webviews[this.$server._id];
-        const _newWebview = this.$webviews[this.$server.id];
-
-        this.$server._oid = this.$server._id;
-        this.$server._id = this.$server.id;
+    _direction(webview, next, animate){
+        const _oldWebview = this.$server._webview;
+        const _newWebview = this.$webviews[this.$server._key];
 
         if ( !_newWebview ){
             this._create(webview, newWebview => animate(_oldWebview, newWebview, next));
         }else{
+            this.$server._webview = _newWebview;
             animate(_oldWebview, _newWebview, next);
         }
     }
 
-    _applicationDirection(webview, next, animate){
-        const _oldWebview = this.$webviews[this.$server._id];
-        const _newWebview = this.$webviews[this.$server.id];
-
-        if ( !_newWebview ){
-            if ( !_oldWebview ){
-                this.$server._oid = null;
-            }else{
-                this.$server._oid = this.$server._id;
-            }
-            this._create(webview, newWebview => animate(_oldWebview, newWebview, next));
-        }else{
-            if ( !_oldWebview ){
-                this.$server._oid = null;
-            }else{
-                this.$server._oid = this.$server._id;
-            }
-            this.$server._id = this.$server.id;
-            animate(_oldWebview, _newWebview, next);
-        }
+    _useForward(webview, next){
+        this._direction(webview, next, animateForward);
     }
 
-    _historyForward(webview, next){
-        this._historyDirection(webview, next, animateForward);
-    }
-
-    _historyBackward(webview, next){
-        this._historyDirection(webview, next, animateBackward);
-    }
-
-    _applicationForward(webview, next){
-        this._applicationDirection(webview, next, animateForward);
-    }
-
-    _applicationBackward(webview, next){
-        this._applicationDirection(webview, next, animateBackward);
+    _useBackward(webview, next){
+        this._direction(webview, next, animateBackward);
     }
 
     _refresh(webview, next){
-        const _Webview = this.$webviews[this.$server._id];
+        const _Webview = this.$server._webview;
         if ( !_Webview ){
             this._create(webview, newWebview => {
                 newWebview.$node.classList.add('active');
                 next();
             });
         }else{
-            this.$webviews[this.$server._id].refresh && this.$webviews[this.$server._id].refresh();
+            if ( this.$webviews[this.$server._id].refresh ){
+                this.$webviews[this.$server._id].refresh();
+            }
+            next();
         }
     }
 
     _create(webview, next){
-        id++;
         const webviewNode = document.createElement('div');
         this.$node.appendChild(webviewNode);
         webviewNode.classList.add('mx-webview');
         const $webview = new webview(webviewNode);
-        this.$webviews[id] = $webview;
+        this.$webviews[this.$server._key] = $webview;
         $webview.$root = this;
-        this.$server._id = id;
-        this.$server.setWebview(id, function(){
-            $webview._publish(next);
-        });
+        this.$server._webview = $webview;
+        $webview._publish(next);
     }
 
     handle(done){
@@ -177,10 +143,7 @@ export default class Connect extends EventEmitter {
         function next(err){
             const layer = stack[index++];
             if ( !layer ) {
-              setImmediate(function(){       
-                   done();
-                   that.emit('route:end');
-              }, err);
+              setImmediate(done, err);
               return;
             }
 

@@ -73,7 +73,6 @@ ready(function(){
     })
 
     app.on('route:end', function(){
-        console.log(app)
         console.log('route end');
     })
 

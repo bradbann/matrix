@@ -7,8 +7,7 @@ export default class Http extends EventEmitter {
     constructor(){
         super();
         this._first = true;
-        this._id = null;
-        this._oid =null;
+        this._webview = null;
         this._prev = 0;
         this._next = 0;
         this._key = null;
@@ -54,15 +53,14 @@ export default class Http extends EventEmitter {
                 let stateData = JSON.parse(window.sessionStorage.getItem(locationKey));
                 stateData.index = history.length;
                 window.sessionStorage.setItem(locationKey, JSON.stringify(stateData));
-                //local.state = stateData;
                 if ( local.action === 'REPLACE' ){
                     this.action = 'REFRESH';
                 }
                 this._removeByKey(stateData.index, locationKey, () => {
-                    this._process(stateData.index, local.search, stateData.id);
+                    this._process(stateData.index, local.search);
                 });
             }else{
-                this._process(local.state.index, local.search, local.state.id);
+                this._process(local.state.index, local.search);
             }
         }
     }
@@ -82,11 +80,11 @@ export default class Http extends EventEmitter {
         let len = window.sessionStorage.length;
         let removes = [];
         while( len-- ){
-            let key = window.sessionStorage.key(len)
+            let key = window.sessionStorage.key(len);
             if( key.indexOf('@@History') === 0 ){
                 let state = JSON.parse(window.sessionStorage.getItem(key));
                 if ( state.index >= index && key != localkey ){
-                    removes.push(state.id);
+                    removes.push(key.split('/')[1]);
                     window.sessionStorage.removeItem(key);
                 }
             }
@@ -99,8 +97,8 @@ export default class Http extends EventEmitter {
         });
     }
 
-    _process(index, search, id){
-        this.id = id;
+    _process(index, search){
+        console.info('in')
         if ( this._first ){
             this._next = index;
         }
@@ -119,7 +117,7 @@ export default class Http extends EventEmitter {
         const searchQuery = parse(search || '', true);
         this.query = exto(searchQuery.query, this.extra);
         this._first && (delete this._first);
-        this.emit('http:change', () => {
+        this.emit('http:change', cb => {
             if ( this.removes && this.removes.length ){
                 this.removes.forEach(item => {
                     if ( this.$app.$webviews[item] ){
@@ -130,8 +128,10 @@ export default class Http extends EventEmitter {
                 delete this.removes;
             }
             this.action = null;
-            if ( this.id !== undefined ) delete this.id;
-            setImmediate(() => this._animating = false);
+            setImmediate(() => {
+                this._animating = false;
+                cb && cb();
+            });
         });
     }
 
@@ -221,13 +221,5 @@ export default class Http extends EventEmitter {
                 url: url
             }
         })
-    }
-
-    setWebview(id, cb){
-        const locationKey = '@@History/' + this._key;
-        let stateData = JSON.parse(window.sessionStorage.getItem(locationKey));
-        stateData.id = id;
-        window.sessionStorage.setItem(locationKey, JSON.stringify(stateData));
-        cb && setImmediate(cb);
     }
 }

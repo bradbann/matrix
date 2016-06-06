@@ -41,7 +41,6 @@ export default class Webview extends EventEmitter {
         }
 
         options = this._extend(options);
-        console.log(options)
         this.$vm = new Vue(options);
         this.$vm.$webview = this;
     }
