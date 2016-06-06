@@ -59,6 +59,11 @@ class b extends webview {
                         <cell:body>body</cell:body>
                         <cell:foot>foot</cell:foot>
                     </cell>
+                    <cell>
+                        <cell:head>head</cell:head>
+                        <cell:body>body</cell:body>
+                        <cell:foot>foot</cell:foot>
+                    </cell>
                 </cells>
                 <flex>
                     <flex:item>dasfads</flex:item>

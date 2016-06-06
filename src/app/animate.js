@@ -15,6 +15,8 @@ export const animateForward = function(oldWebview, newWebview, cb){
     newWebview.$node.style.visibility = "visible";
     oldWebview.$node.style.visibility = "visible";
 
+
+
     newWebview.$node.style.transition="none";
     addClass(newWebview,'mx-webview-forward');
 

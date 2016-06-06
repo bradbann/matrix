@@ -41,6 +41,15 @@ $webview-background-color: #fff;
 }
 
 
+//
+
+$border-color-base:#999;
+$border-color-dark:darken($border-color-base,10%);
+$border-color-light:lighten($border-color-base,20%);
+$border-color-lightest:lighten($border-color-base,30%);
+
+
+
 //sidebar
 //边栏打开的状态 (transform ..)
 @mixin sidebar-open-state {
