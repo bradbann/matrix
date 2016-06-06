@@ -11,4 +11,25 @@ export default class Flex extends Component {
         }
         return `<div class="mx-flex-box"><slot></slot></div>`;
     }
+
+    _props(props){
+        if ( !props ){ props = {} };
+
+        props.direction = {
+            type: String,
+            default: 'row'
+        }
+
+        props.align = {
+            type: String,
+            default: 'middle'
+        }
+
+        props.space = {
+            type: String,
+            default: 'around'
+        }
+
+        return props;
+    }
 }
