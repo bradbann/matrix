@@ -60,6 +60,9 @@ class b extends webview {
                         <cell:foot>foot</cell:foot>
                     </cell>
                 </cells>
+                <flex>
+                    <flex:item>dasfads</flex:item>
+                </flex>
             `,
             methods: {
                 a: this.a,
