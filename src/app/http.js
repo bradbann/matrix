@@ -34,6 +34,11 @@ export default class Http extends EventEmitter {
     }
 
     _listen(local){
+        if ( this._force ) {
+            console.log('delete force1')
+            delete this._force;
+            return;
+        }
         this.pathname = local.pathname;
         this._key = local.key;
         if ( !local.state && this._first ){
@@ -128,6 +133,10 @@ export default class Http extends EventEmitter {
                 delete this.removes;
             }
             this.action = null;
+            if ( this._force ) {
+                console.log('delete force2')
+                delete this._force;
+            }
             setImmediate(() => {
                 this._animating = false;
                 cb && cb();

@@ -16,8 +16,8 @@ class a extends webview {
     render(){
         return {
             template: `
-                <div class="ddd" v-back url="/">a back</div>
-                <div class="ddd" v-reback url="/">a reback</div>
+                <h1 class="ddd" v-back url="/">a back</h1>
+                <h1 class="ddd" v-reback url="/">a reback</h1>
 
                 <h1 class="ddd" @click="a">a back</h1>
                 <h1 class="ddd" @click="b">a reback</h1>
@@ -46,8 +46,8 @@ class b extends webview {
     render(){
         return {
             template: `
-                <div class="ddd" v-redirect url="/a/b/c">b redirect</div>
-                <div class="ddd" v-forward url="/a/b/c">b forward</div>
+                <h1 class="ddd" v-redirect url="/a/b/c">b redirect</h1>
+                <h1 class="ddd" v-forward url="/a/b/c">b forward</h1>
 
                 <h1 class="ddd" @click="b">b redirect</h1>
                 <h1 class="ddd" @click="a">b forward</h1>

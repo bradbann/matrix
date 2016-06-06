@@ -93,6 +93,8 @@ export default class Connect extends EventEmitter {
         const _oldWebview = this.$server._webview;
         const _newWebview = this.$webviews[this.$server._key];
 
+        this.$server._force = true;
+
         if ( !_newWebview ){
             this._create(webview, newWebview => animate(_oldWebview, newWebview, next));
         }else{
