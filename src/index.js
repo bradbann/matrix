@@ -66,7 +66,10 @@ class b extends webview {
                     </cell>
                 </cells>
                 <flex>
-                    <flex:item>dasfads</flex:item>
+                    <flex:item :grow="1">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX2</flex:item>
+                    <flex:item :grow="2">X</flex:item>
+                    <flex:item :grow="3">X</flex:item>
+                    <flex:item :grow="4">X</flex:item>
                 </flex>
                 <btn block>xxxx</btn>
             `,
