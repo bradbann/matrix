@@ -52,13 +52,21 @@ class b extends webview {
 
                 <h1 class="ddd" @click="b">b redirect</h1>
                 <h1 class="ddd" @click="a">b forward</h1>
+
+                <cells>
+                    <cell>
+                        <cell:head>head</cell:head>
+                        <cell:body>body</cell:body>
+                        <cell:foot>foot</cell:foot>
+                    </cell>
+                </cells>
             `,
             methods: {
                 a: this.a,
                 b: this.b
             },
             ready(){
-                //console.log(this)
+                console.log(this)
             }
         }
     }
