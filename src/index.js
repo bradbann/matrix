@@ -63,13 +63,14 @@ class b extends webview {
                 <flex>
                     <flex:item>dasfads</flex:item>
                 </flex>
+                <btn block>xxxx</btn>
             `,
             methods: {
                 a: this.a,
                 b: this.b
             },
             ready(){
-                console.log(this)
+                //console.log(this)
             }
         }
     }

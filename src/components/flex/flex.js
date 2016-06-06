@@ -30,6 +30,10 @@ export default class Flex extends Component {
             default: 'around'
         }
 
+        if ( typeof this.props === 'function' ){
+            props = this.props(props);
+        }
+
         return props;
     }
 }
