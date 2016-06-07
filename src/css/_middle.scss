@@ -1,0 +1,7 @@
+&middle{
+    display: table;
+    &>div{
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
