@@ -22,6 +22,7 @@ export default class Simplize extends Connect {
             this.emit('route:start');
             this.handle(() => reset(() => this.emit('route:end')));
         });
+        this.on('route:end', () => this.$node.style.backgroundColor = '#222');
         this.emit('ready');
     }
 }
