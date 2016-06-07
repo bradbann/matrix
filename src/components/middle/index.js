@@ -5,18 +5,32 @@ export default class Middle extends Component {
         super();
         this.name = 'middle';
     }
+    _computed(options){
+        if ( !options ){ options = {} }
+        options.class = function(){
+            const cls = [];
+            if ( this.align ){
+                cls.push('mx-text-' + this.align);
+            }
+            return cls.join(' ');
+        }
+        if ( typeof this.computed === 'function' ){
+            options = this.computed(options);
+        }
+        return options;
+    }
 
     _template(){
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-middle-outter" role="middle" :style="{height:height}" :class="{'mx-text-center': center}"><div class="mx-middle-inner"><slot></slot></div></div>`;
+        return `<div class="mx-middle-outter" role="middle" :style="{height:height}" :class="class"><div class="mx-middle-inner"><slot></slot></div></div>`;
     }
 
     _props(props){
         if ( !props ){ props = {} };
         props.height = Number;
-        props.center = Boolean;
+        props.align = String;
 
         if ( typeof this.props === 'function' ){
             props = this.props(props);
