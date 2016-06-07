@@ -1,0 +1,15 @@
+&ratio{
+    background-color: rgb(230, 136, 26);
+    position: relative;
+    &-inner{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    &-after{
+        display: inline-block;
+        width: 0px;
+    }
+}
