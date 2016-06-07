@@ -12,6 +12,7 @@ Icons.name = 'icon';
 const COMPONENTS = {
     // middle
     "middle"        : Middle,
+    
     //ratio
     "ratio"         :Ratio,
 
