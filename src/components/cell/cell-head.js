@@ -9,6 +9,6 @@ export default class Cell_Head extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-cell-head"><slot></slot></div>`;
+        return `<div class="mx-cell-head" role="cell:head"><slot></slot></div>`;
     }
 }

@@ -3,12 +3,17 @@ $namespace: "mx-"; //命名空间
 
 
 $container-padding-side:15px;
-$container-padding-base:0.5em;
+$container-padding-base:1em;
+$container-padding-small:0.6em;
+$container-padding-big:1.5em;
 $container-margin-base:8px 0;
 
 // font
 $font-family-base: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 $font-size-base: 14px;
+$font-size-big:1.2rem;
+$font-size-small:0.8rem;
+
 $font-lineHeight-base: 1.6;
 $font-color-base: #666;
 $font-color-help: #999;

@@ -4,40 +4,38 @@
 <h1 class="ddd" @click="b">b redirect</h1>
 <h1 class="ddd" @click="a">b forward</h1>
 
-<icon name="fa-angle-right"></icon>
 
-<icon name="fa-angle-right"></icon>
-<icon name="iconic-chevron-right"></icon>
 
-<cells border-color="#aaa" >
-    <cell linked border-color="#ccc">
+<cells border-color="#ccc">
+    <cell linked v-for="item in 10" border-color="#eee">
         <cell:head>head</cell:head>
-        <cell:body>body</cell:body>
+        <cell:body>body{{$index}} </cell:body>
         <cell:foot>foot</cell:foot>
     </cell>
-    <cell>
-        <cell:head>head</cell:head>
-        <cell:body>body</cell:body>
-        <cell:foot>foot</cell:foot>
-    </cell>
-</cells>
-<cells >
-    <cell linked border-color="red">
-        <cell:head>head</cell:head>
-        <cell:body>body</cell:body>
-        <cell:foot>foot</cell:foot>
-    </cell>
-    <cell >
-        <cell:head>head</cell:head>
-        <cell:body>body</cell:body>
+    <cell v-for="item in 5" border-color="rgba(200,200,200,0.5)">
+
+        <cell:body>body{{$index}} </cell:body>
         <cell:foot>foot</cell:foot>
     </cell>
 </cells>
 
-<panel border-color="red">
-    <panel:head>1</panel:head>
-    <panel:body>2</panel:body>
-    <panel:foot>3</panel:foot>
+<panel border-color="#ccc">
+    <panel:head>
+        阅读理解
+    </panel:head>
+    <panel:body>
+        <h3>水调歌头</h3>
+        <p>明月几时有？把酒问青天。不知天上宫阙、今夕是何年？我欲乘风归去，惟恐琼楼玉宇，高处不胜寒．起舞弄清影，何似在人间？  转朱阁，低绮户，照无眠。不应有恨、何事长向别时圆？人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共蝉娟。</p>
+    </panel:body>
+    <panel:foot>
+        <cell linked left=0>
+            <cell:body>查看原文</cell:body>
+        </cell>
+
+        <cell linked left=0 >
+            <cell:body>查看原文</cell:body>
+        </cell>
+    </panel:foot>
 </panel>
 
 <flex>

@@ -9,7 +9,7 @@ export default class Cells extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-cells" :style="{'border-color':borderColor}"><slot></slot></div>`;
+        return `<div class="mx-cells" role="cells" :style="{'border-color':borderColor}"><slot></slot></div>`;
     }
 
     _props(props){

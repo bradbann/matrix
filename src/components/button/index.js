@@ -24,7 +24,7 @@ export default class Button extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-button" :class="class"><slot></slot></div>`;
+        return `<div class="mx-button" role="button" :class="class"><slot></slot></div>`;
     }
 
     _props(props){

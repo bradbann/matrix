@@ -9,7 +9,7 @@ export default class Cell extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-cell" :class="{'mx-cell-linked':linked}" :style="{'border-color':borderColor}"><slot></slot></div>`;
+        return `<div class="mx-cell" role="cell" data-left="0" :class="{'mx-cell-linked':linked}" :style="{'border-color':borderColor,'padding-left':left}"><slot></slot></div>`;
     }
 
     _props(props){
@@ -17,6 +17,8 @@ export default class Cell extends Component {
         props.linked = Boolean;
 
         props.borderColor = String;
+
+        props.left= {type:String,default:''}
 
         if ( typeof this.props === 'function' ){
             props = this.props(props);
