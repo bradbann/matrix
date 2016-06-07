@@ -1,7 +1,9 @@
+import { components } from '../main';
+
 export default class Component {
     constructor(){
         this._isMx = true;
-        this._vue_options = {};
+        this._vue_options = { mixins: [{components}] };
     }
 
     $_extend(property, defaults){
