@@ -1,6 +1,8 @@
 &ratio{
     background-color: rgb(230, 136, 26);
     position: relative;
+    display: inline-block;
+
     &-inner{
         position: absolute;
         width: 100%;
