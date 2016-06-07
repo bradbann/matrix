@@ -1,5 +1,3 @@
-import * as MX from '../main';
-
 export default class Component {
     constructor(){
         this._isMx = true;
