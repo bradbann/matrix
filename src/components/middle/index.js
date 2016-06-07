@@ -10,7 +10,7 @@ export default class Middle extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-middle" role="middle" :style="{height:height}" :class="{'mx-text-center': center}"><slot></slot></div>`;
+        return `<div class="mx-middle-outter" role="middle" :style="{height:height}" :class="{'mx-text-center': center}"><div class="mx-middle-inner"><slot></slot></div></div>`;
     }
 
     _props(props){
