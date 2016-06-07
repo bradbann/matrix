@@ -46,3 +46,4 @@ while ( i-- ){
 }
 
 Vue.mixin({ components: COMPONENTS });
+export const widgets = COMPONENTS;
