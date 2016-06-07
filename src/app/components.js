@@ -8,7 +8,7 @@ import Middle from '../components/middle/index';
 
 Icons.name = 'icon';
 
-export default {
+const COMPONENTS = {
     // middle
     "middle"        : Middle,
 
@@ -38,3 +38,22 @@ export default {
     // button
     "btn"           : Btn
 }
+
+let keys = Object.keys(COMPONENTS);
+let i = keys.length;
+let result = {};
+
+while ( i-- ){
+    let cp = COMPONENTS[keys[i]];
+    if ( !!cp.prototype ){
+        cp = new cp();
+        cp.$_install();
+        result[keys[i]] = cp._vue_options;
+    }
+    else {
+        result[keys[i]] = cp;
+    }
+}
+
+export const Components = COMPONENTS;
+export const COMPONENTLIST = result;

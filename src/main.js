@@ -5,16 +5,16 @@ import FastClick from 'fastclick';
 import Vue from 'vue';
 import Server from './app/connect';
 import Webview from './app/webview';
-import MXCOMPONENTS from './app/components';
-import MXCOMPONENT from './app/component';
+import { Components, COMPONENTLIST } from './app/components';
+import ComponentConstructor from './app/component';
 
 export { Promise } from 'es6-promise';
 export { EventEmitter } from 'events';
 export const server = Server;
 export const webview = Webview;
 export const vue = Vue;
-export const components = MXCOMPONENTS;
-export const component = MXCOMPONENT;
+export const components = Components;
+export const component = ComponentConstructor;
 
 export const bootstrap = function(){
     const app = new Bootstrap();
@@ -28,22 +28,6 @@ export const ready = function(cb){
         cb();
     });
 };
-
-let keys = Object.keys(MXCOMPONENTS);
-let i = keys.length;
-let COMPONENTS = {};
-
-while ( i-- ){
-    let cp = MXCOMPONENTS[keys[i]];
-    if ( !!cp.prototype ){
-        cp = new cp();
-        cp.$_install();
-        COMPONENTS[keys[i]] = cp._vue_options;
-    }
-    else {
-        COMPONENTS[keys[i]] = cp;
-    }
-}
 
 export const $define = function(name, cb){
     let _component;
@@ -59,10 +43,10 @@ export const $define = function(name, cb){
     if ( !!_component.prototype ){
         let cp = new _component();
         cp.$_install();
-        widgets[name] = cp._vue_options;
+        COMPONENTLIST[name] = cp._vue_options;
     }else{
-        widgets[name] = _component;
+        COMPONENTLIST[name] = _component;
     }
 }
 
-export const widgets = COMPONENTS;
+export const widgets = COMPONENTLIST;
