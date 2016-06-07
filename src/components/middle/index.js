@@ -28,9 +28,8 @@ export default class Middle extends Component {
     }
 
     _props(props){
-        if ( !props ){ props = {} };
-        props.height = String;
-        props.align = String;
+        if ( !props ){ props = [] };
+        props.push('height', 'align');
 
         if ( typeof this.props === 'function' ){
             props = this.props(props);
