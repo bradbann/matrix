@@ -24,12 +24,12 @@ export default class Middle extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-middle-outter" role="middle" :style="{height:height}" :class="class"><div class="mx-middle-inner"><slot></slot></div></div>`;
+        return `<div class="mx-middle-outter" role="middle" :style="{'height':height}" :class="class"><div class="mx-middle-inner"><slot></slot></div></div>`;
     }
 
     _props(props){
         if ( !props ){ props = {} };
-        props.height = Number;
+        props.height = String;
         props.align = String;
 
         if ( typeof this.props === 'function' ){
