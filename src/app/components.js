@@ -5,12 +5,15 @@ import Icons from 'vue-icons';
 import { Flex, Flex_item } from '../components/flex/index';
 import Btn from '../components/button/index';
 import Middle from '../components/middle/index';
+import Ratio from '../components/ratio/index';
 
 Icons.name = 'icon';
 
 const COMPONENTS = {
     // middle
     "middle"        : Middle,
+    //ratio
+    "ratio"         :Ratio,
 
     //container
     "container"     : Container,
