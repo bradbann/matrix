@@ -3,6 +3,7 @@ import Component from '../../app/component';
 export default class Button extends Component {
     constructor(){
         super();
+        this.name = 'button';
     }
 
     _computed(options){

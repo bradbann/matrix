@@ -3,6 +3,7 @@ import Component from '../../app/component';
 export default class Flex extends Component {
     constructor(){
         super();
+        this.name = 'flex';
     }
 
     _template(){

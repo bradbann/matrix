@@ -4,6 +4,8 @@ import Icons from 'vue-icons';
 import { Flex, Flex_item } from '../components/flex/index';
 import Btn from '../components/button/index';
 
+Icons.name = 'icon';
+
 export default {
     "icon"          : Icons,
     // cell

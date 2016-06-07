@@ -3,6 +3,7 @@ import Component from '../../app/component';
 export default class Cell_Foot extends Component {
     constructor(){
         super();
+        this.name = 'cell-foot';
     }
 
     _template(){
