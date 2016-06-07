@@ -14,7 +14,8 @@ export default class Cells extends Component {
 
     _props(props){
         if ( !props ){ props = {} };
-        props.borderColor = "";
+
+        props.borderColor = String;
 
         if ( typeof this.props === 'function' ){
             props = this.props(props);

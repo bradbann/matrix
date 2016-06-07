@@ -20,10 +20,12 @@
 
         padding-left: $container-padding-side;
         padding-right: $container-padding-side;
+
+        border-color: $border-color-light;
         &:not(:last-child){
             @include mx-1px-side($border-color-light,bottom,before);
-
             &::before{
+                border-color: inherit;
                 left:$container-padding-side;
             }
         }
