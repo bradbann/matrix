@@ -5,6 +5,7 @@
         position        : absolute;
         content         : "";
         transform-origin: 0 0;
+
         // z-index         : 99;
     }
     @if $direction == top {

@@ -1,0 +1,5 @@
+&panel{
+    margin: $container-margin-base;
+    @include mx-1px-side($border-color-base,top,before);
+    @include mx-1px-side($border-color-base,bottom,after);
+}

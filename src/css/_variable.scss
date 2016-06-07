@@ -4,6 +4,7 @@ $namespace: "mx-"; //命名空间
 
 $container-padding-side:15px;
 $container-padding-base:0.5em;
+$container-margin-base:8px 0;
 
 // font
 $font-family-base: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
@@ -13,6 +14,13 @@ $font-color-base: #666;
 $font-color-help: #999;
 $font-color-disable: #ccc;
 
+//border
+$border-color-base:#ccc;
+$border-color-dark:darken($border-color-base,10%);
+$border-color-darkest:darken($border-color-base,20%);
+$border-color-light:lighten($border-color-base,10%);
+$border-color-lightest:lighten($border-color-base,15%);
+
 //link
 $link-color: #2db7f5;
 $link-cursor: pointer;
@@ -21,6 +29,11 @@ $link-text-decoration: none;
 //app
 $app-background-color: #222;
 $app-desktop-maxWidth: 750px;
+
+//cell
+$cells-default-margin:$container-margin-base;
+$cell-linked-icon-color:$border-color-dark;
+$cell-clicked-background:rgba(0,0,0,0.05);
 
 //webview
 $webview-animate-duration: 350ms;
@@ -45,11 +58,7 @@ $webview-background-color: #fff;
 }
 
 
-//border
-$border-color-base:#999;
-$border-color-dark:darken($border-color-base,10%);
-$border-color-light:lighten($border-color-base,20%);
-$border-color-lightest:lighten($border-color-base,30%);
+
 
 
 

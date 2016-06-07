@@ -46,38 +46,7 @@ class b extends webview {
     }
     render(){
         return {
-            template: `
-                <h1 class="ddd" v-redirect url="/a/b/c">b redirect</h1>
-                <h1 class="ddd" v-forward url="/a/b/c">b forward</h1>
-
-                <h1 class="ddd" @click="b">b redirect</h1>
-                <h1 class="ddd" @click="a">b forward</h1>
-
-                <icon name="fa-angle-right"></icon>
-
-                <icon name="fa-angle-right"></icon>
-                <icon name="iconic-chevron-right"></icon>
-
-                <cells>
-                    <cell linked>
-                        <cell:head>head</cell:head>
-                        <cell:body>body</cell:body>
-                        <cell:foot>foot</cell:foot>
-                    </cell>
-                    <cell>
-                        <cell:head>head</cell:head>
-                        <cell:body>body</cell:body>
-                        <cell:foot>foot</cell:foot>
-                    </cell>
-                </cells>
-                <flex>
-                    <flex:item :grow="1">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX2</flex:item>
-                    <flex:item :grow="2">X</flex:item>
-                    <flex:item :grow="3">X</flex:item>
-                    <flex:item :grow="4">X</flex:item>
-                </flex>
-                <btn block>xxxx</btn>
-            `,
+            template: require("./temp/index.html"),
             methods: {
                 a: this.a,
                 b: this.b

@@ -4,34 +4,60 @@
         @include mx-1px-side($border-color-base,top,before);
         @include mx-1px-side($border-color-base,bottom,after);
         background-color: #fff;
-        padding-left: $container-padding-side;
+        margin:$cells-default-margin;
+        border-color: $border-color-base;
+        &::before,&::after{
+            border-color: inherit;
+        }
+
+        // padding-left: $container-padding-side;
     }
     // .mx-cell
     &{
         @extend  .mx-flex-box,
                  .mx-flex-justify-center,
                  .mx-flex-align-center;
-        &:not(:last-child){
-            @include mx-1px-side(lighten($border-color-base,20%),bottom,before);
 
+        padding-left: $container-padding-side;
+        padding-right: $container-padding-side;
+        &:not(:last-child){
+            @include mx-1px-side($border-color-light,bottom,before);
+
+            &::before{
+                left:$container-padding-side;
+            }
         }
     }
     // mx-cell-head mx-cell-foot
     &-head,&-foot{
         display: inline-block;
-        padding: $container-padding-base $container-padding-base $container-padding-base 0;
+        padding: $container-padding-base 0 $container-padding-base 0;
     }
+
     // mx-cell-body
     &-body{
         @extend .mx-flex-item;
-        padding: $container-padding-base $container-padding-base $container-padding-base 0;
+        padding: $container-padding-base $container-padding-base $container-padding-base ;
     }
 
 
     // properties
-
-
     &-linked{
-        padding-right: 50px;
+
+        // padding-right: 40px;
+        &::after{
+            content: "";
+            display: block;
+            width: .5rem;
+            height: .5rem;
+            margin-left: 5px;
+            margin-right: 2px;
+            border-top: 1px solid $cell-linked-icon-color;
+            border-right:1px solid $cell-linked-icon-color;
+            transform: rotate(45deg);
+        }
+        &:active{
+            background-color: $cell-clicked-background;
+        }
     }
 }
