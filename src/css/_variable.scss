@@ -1,6 +1,10 @@
 //
 $namespace: "mx-"; //命名空间
 
+
+$container-padding-side:15px;
+$container-padding-base:0.5em;
+
 // font
 $font-family-base: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 $font-size-base: 14px;
@@ -41,8 +45,7 @@ $webview-background-color: #fff;
 }
 
 
-//
-
+//border
 $border-color-base:#999;
 $border-color-dark:darken($border-color-base,10%);
 $border-color-light:lighten($border-color-base,20%);

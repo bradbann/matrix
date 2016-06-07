@@ -43,7 +43,13 @@ var result = {
         path: options.output,
         filename: options.js.to + (env == 'production' ? '' : jshash) + '.js'
     },
-    module: { loaders: loaders },
+    module: {
+        loaders: loaders,
+        postLoaders: [
+            { test: /vue-icons/, loader: "callback-loader"}
+          ]
+    },
+    callbackLoader:require("vue-icons/icon-loader")(["fa-thumbs-up"]),
     postcss: function(){
         return [AutoPrefixer({ browsers: ['last 20 versions'] })]
     },

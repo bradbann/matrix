@@ -4,6 +4,7 @@
         @include mx-1px-side($border-color-base,top,before);
         @include mx-1px-side($border-color-base,bottom,after);
         background-color: #fff;
+        padding-left: $container-padding-side;
     }
     // .mx-cell
     &{
@@ -12,14 +13,25 @@
                  .mx-flex-align-center;
         &:not(:last-child){
             @include mx-1px-side(lighten($border-color-base,20%),bottom,before);
+
         }
     }
     // mx-cell-head mx-cell-foot
     &-head,&-foot{
         display: inline-block;
+        padding: $container-padding-base $container-padding-base $container-padding-base 0;
     }
     // mx-cell-body
     &-body{
         @extend .mx-flex-item;
+        padding: $container-padding-base $container-padding-base $container-padding-base 0;
+    }
+
+
+    // properties
+
+
+    &-linked{
+        padding-right: 50px;
     }
 }

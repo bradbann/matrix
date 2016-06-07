@@ -3,6 +3,7 @@ import { Flex, Flex_item } from '../components/flex/index';
 import Btn from '../components/button/index';
 
 export default {
+    "icon"          :require("vue-icons"),
     // cell
     "cells"         : Cells,
     "cell"          : Cell,

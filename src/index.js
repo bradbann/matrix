@@ -53,6 +53,8 @@ class b extends webview {
                 <h1 class="ddd" @click="b">b redirect</h1>
                 <h1 class="ddd" @click="a">b forward</h1>
 
+                <icon name="fa-thumbs-up"></icon>
+
                 <cells>
                     <cell linked>
                         <cell:head>head</cell:head>
