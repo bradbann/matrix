@@ -1,9 +1,10 @@
 import { Cells, Cell, Cell_head, Cell_body, Cell_foot } from '../components/cell/index';
+import Icons from 'vue-icons';
 import { Flex, Flex_item } from '../components/flex/index';
 import Btn from '../components/button/index';
 
 export default {
-    "icon"          :require("vue-icons"),
+    "icon"          : Icons,
     // cell
     "cells"         : Cells,
     "cell"          : Cell,

@@ -49,7 +49,12 @@ var result = {
             { test: /vue-icons/, loader: "callback-loader"}
           ]
     },
-    callbackLoader:require("vue-icons/icon-loader")(["fa-thumbs-up"]),
+    callbackLoader:require("vue-icons/icon-loader")([
+        "fa-thumbs-up",
+        "fa-angle-right",
+        "iconic-chevron-right",
+        "octicon-chevron-right"
+    ]),
     postcss: function(){
         return [AutoPrefixer({ browsers: ['last 20 versions'] })]
     },
