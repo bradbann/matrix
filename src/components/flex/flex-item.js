@@ -8,11 +8,13 @@ export default class Flex_Item extends Component {
     _computed(options){
         if ( !options ){ options = {} }
         options.style = function(){
-            const cls = [];
-            cls.push('-webkit-box-flex: ' + this.grow);
-            cls.push('-webkit-flex: ' + this.grow);
-            cls.push('-ms-flex: ' + this.grow);
-            cls.push('flex: ' + this.grow);
+            const cls = [
+                '-webkit-box-flex: ' + this.grow,
+                '-webkit-flex: ' + this.grow,
+                '-ms-flex: ' + this.grow,
+                'flex: ' + this.grow
+            ];
+
             return cls.join(';');
         }
         if ( typeof this.computed === 'function' ){
