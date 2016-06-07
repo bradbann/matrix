@@ -3,6 +3,7 @@ import Component from '../../app/component';
 export default class Flex_Item extends Component {
     constructor(){
         super();
+        this.name = 'flex-item';
     }
 
     _computed(options){

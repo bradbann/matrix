@@ -3,6 +3,7 @@ import Component from '../../app/component';
 export default class Panel_Foot extends Component {
     constructor(){
         super();
+        this.name = 'panel-foot';
     }
 
     _template(){

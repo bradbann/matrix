@@ -3,6 +3,7 @@ import Component from '../../app/component';
 export default class Panel_Head extends Component {
     constructor(){
         super();
+        this.name = 'panel-head';
     }
 
     _template(){

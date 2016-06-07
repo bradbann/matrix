@@ -3,6 +3,7 @@ import Component from '../../app/component';
 export default class Cell extends Component {
     constructor(){
         super();
+        this.name = 'cell';
     }
 
     _template(){

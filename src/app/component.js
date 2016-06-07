@@ -1,9 +1,9 @@
-import { widgets } from '../main';
+import * as MX from '../main';
 
 export default class Component {
     constructor(){
         this._isMx = true;
-        this._vue_options = { mixins: [{ components: widgets }] };
+        this._vue_options = {};
     }
 
     $_extend(property, defaults){
@@ -20,7 +20,7 @@ export default class Component {
     }
 
     $_name(){
-        this._vue_options.name = this.name;
+        this._vue_options.name = typeof this.name === 'function' ? this.name() : this.name;
     }
 
     $_data(){

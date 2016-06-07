@@ -45,5 +45,24 @@ while ( i-- ){
     }
 }
 
-Vue.mixin({ components: COMPONENTS });
+export const $define = function(name, cb){
+    let _component;
+
+    if ( typeof cb === 'function' && !cb.prototype ){
+        _component = cb(component, components);
+    }else{
+        _component = cb;
+    }
+
+    components[name] = _component;
+
+    if ( !!_component.prototype ){
+        let cp = new _component();
+        cp.$_install();
+        widgets[name] = cp._vue_options;
+    }else{
+        widgets[name] = _component;
+    }
+}
+
 export const widgets = COMPONENTS;
