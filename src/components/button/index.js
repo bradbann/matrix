@@ -8,7 +8,7 @@ export default class Button extends Component {
     _computed(options){
         if ( !options ){ options = {} }
         options.class = function(){
-            const cls = [this.type];
+            const cls = ['mx-button-' + this.type];
             if ( this.block ){
                 cls.push('mx-block');
             }
@@ -32,7 +32,7 @@ export default class Button extends Component {
         props.block = Boolean;
         props.type = {
             type: String,
-            default: 'mx-button-default'
+            default: 'default'
         }
 
         if ( typeof this.props === 'function' ){

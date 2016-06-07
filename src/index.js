@@ -76,7 +76,7 @@ class b extends webview {
                     <flex:item :grow="3">X</flex:item>
                     <flex:item :grow="4">X</flex:item>
                 </flex>
-                <btn block>xxxx</btn>
+                <btn block type="warn">xxxx</btn>
             `,
             methods: {
                 a: this.a,
