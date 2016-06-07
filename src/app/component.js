@@ -1,9 +1,9 @@
-import { components } from '../main';
+import { widgets } from '../main';
 
 export default class Component {
     constructor(){
         this._isMx = true;
-        this._vue_options = { mixins: [{components}] };
+        this._vue_options = { mixins: [{ components: widgets }] };
     }
 
     $_extend(property, defaults){
