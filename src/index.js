@@ -1,8 +1,24 @@
-import { ready, bootstrap, webview, Promise } from './main';
-
+import { ready, bootstrap, webview, Promise, $define, widgets, component } from './main';
 
 require('normalize.css');
 require('./css/matrix.scss');
+
+class Tab extends component {
+    constructor(){
+        super();
+    }
+
+    _template(){
+        return `<div class="tab">tab</div>`;
+    }
+}
+
+
+$define('tab', Tab);
+console.log(widgets)
+
+
+
 
 class a extends webview {
     constructor(node){

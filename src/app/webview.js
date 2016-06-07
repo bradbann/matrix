@@ -1,5 +1,5 @@
 'use strict';
-
+import * as MX from '../main';
 import { EventEmitter } from 'events';
 import { redirect, reback, forward, back, refresh } from './directive';
 import Vue from 'vue';
@@ -61,8 +61,10 @@ export default class Webview extends EventEmitter {
         if ( !Array.isArray(options.mixins) ){
             options.mixins = [options.mixins];
         }
+
         options.mixins.push({
-            directives: { redirect, reback, forward, back, refresh }
+            directives: { redirect, reback, forward, back, refresh },
+            components: MX.widgets
         });
         return options;
     }
