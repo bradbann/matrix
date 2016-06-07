@@ -4,16 +4,20 @@ import { Panel, Panel_head, Panel_body, Panel_foot } from '../components/panel/i
 import Icons from 'vue-icons';
 import { Flex, Flex_item } from '../components/flex/index';
 import Btn from '../components/button/index';
+import Middle from '../components/middle/index';
 
 Icons.name = 'icon';
 
 export default {
+    // middle
+    "middle"        : Middle,
+
     //container
     "container"     : Container,
 
     // icon
     "icon"          : Icons,
-    
+
     // cell
     "cells"         : Cells,
     "cell"          : Cell,
