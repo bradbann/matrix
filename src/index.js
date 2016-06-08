@@ -88,6 +88,20 @@ class flex extends webview {
     }
 }
 
+class appview extends webview {
+    constructor(node){
+        super(node);
+    }
+    render(){
+        return {
+            template: require("./temp/appview.html"),
+            ready(){
+                //console.log(this)
+            }
+        }
+    }
+}
+
 
 
 ready(function(){
@@ -110,6 +124,9 @@ ready(function(){
     })
     app.at('/flex', function(next){
         app.publish(flex, next);
+    })
+    app.at('/appview', function(next){
+        app.publish(appview, next);
     })
 
     app.at('/a/b/c', function(next){
