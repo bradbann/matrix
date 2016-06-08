@@ -47,4 +47,15 @@
             }
         }
     }
+    &-head{
+        padding: 15px;
+        color:#fff;
+        background-color: #00c1ec;
+        .mx-flex-box{
+            height: 100%;
+        }
+    }
+    &-and{
+        // width: 100%;
+    }
 }

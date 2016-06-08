@@ -1,8 +1,16 @@
 <appview>
-    <appview:head justify="center">
-        <span v-back url="/">
-            back
-        </span>
+    <appview:head class="test-head">
+        <flex  align-items="center">
+            <flex:item v-reback url="/">
+                 back
+            </flex:item>
+            <flex:item flex="1" class="mx-text-center">
+                Flex <small>this is for flex</small>
+            </flex:item>
+            <flex:item>
+                Menu
+            </flex:item>
+        </flex>
     </appview:head>
     <appview:body>
         阮一峰原文
@@ -29,11 +37,11 @@
 
         <h4 class="mx-text-center">骰子4 </h4>
         <flex class="test-dice" align-content="between" wrap="wrap">
-            <flex flex="0 0 100%" justify="between">
+            <flex flex="0 0 100%" justify="between" class="test-and">
                 <flex:item class="test-dice-pot "></flex:item>
                 <flex:item class="test-dice-pot "></flex:item>
             </flex>
-            <flex flex="0 0 100%" justify="between" align-items="end">
+            <flex flex="0 0 100%" justify="between" align-items="end"  class="test-and">
                 <flex:item class="test-dice-pot "></flex:item>
                 <flex:item class="test-dice-pot "></flex:item>
             </flex>
@@ -69,5 +77,18 @@
         </flex>
 
     </appview:body>
+    <appview:foot>
+        <cell linked>
+            <cell:head>
+                left
+            </cell:head>
+            <cell:body>
+                这里是底部
+            </cell:body>
+            <cell:foot>
+                right
+            </cell:foot>
+        </cell>
+    </appview:foot>
 
 </appview>
