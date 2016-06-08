@@ -26,8 +26,10 @@ export default class Flex extends Component {
         options.class = function(){
             const classes = [];
 
-            classes.push('mx-flex-direction-' + this.direction);
-
+            if ( this.direction ){
+                classes.push('mx-flex-direction-' + this.direction);
+            }
+        
             if ( this.justify ){
                 classes.push('mx-flex-justify-' + this.justify);
             }
