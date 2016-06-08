@@ -1,0 +1,39 @@
+<h1 v-back url="/">
+    back
+</h1>
+
+
+
+阮一峰原文
+<a target="_blank" href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">查看原文</a>
+<h3 class="mx-text-center">matrix 实现 flex布局 🎲</h3>
+
+<h4 class="mx-text-center">骰子1 </h4>
+<flex justify="center" align-items="center" class="test-dice ">
+    <flex:item  class="test-dice-pot red"></flex:item>
+</flex>
+
+<h4 class="mx-text-center">骰子2 </h4>
+<flex  justify="between"   class="test-dice ">
+    <flex:item  class="test-dice-pot "></flex:item>
+    <flex:item  align-self="end" class="test-dice-pot "></flex:item>
+</flex>
+
+<h4 class="mx-text-center">骰子3 </h4>
+<flex class="test-dice" justify="between" >
+    <flex:item  class="test-dice-pot "></flex:item>
+    <flex:item align-self="center" class="test-dice-pot "></flex:item>
+    <flex:item align-self="end"  class="test-dice-pot "></flex:item>
+</flex>
+
+<h4 class="mx-text-center">骰子4 </h4>
+<flex class="test-dice" align-content="between" wrap="wrap">
+    <flex flex="0 0 100%"  justify="between">
+        <flex:item  class="test-dice-pot "></flex:item>
+        <flex:item  class="test-dice-pot "></flex:item>
+    </flex>
+    <flex flex="0 0 100%"  justify="between">
+        <flex:item  class="test-dice-pot "></flex:item>
+        <flex:item  class="test-dice-pot "></flex:item>
+    </flex>
+</flex>

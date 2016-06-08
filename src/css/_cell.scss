@@ -16,13 +16,13 @@
     &{
         @extend  .mx-flex-box,
                  .mx-flex-justify-center,
-                 .mx-flex-align-center;
+                 .mx-flex-align-items-center;
 
         padding-left: $container-padding-side;
         padding-right: $container-padding-side;
+        border-color: $border-color-light;
         width: 100%;
 
-        border-color: $border-color-light;
         &:not(:last-child){
             @include mx-1px-side($border-color-light,bottom,before);
             &::before{
@@ -47,6 +47,7 @@
     &-body{
         @extend .mx-flex-item;
         padding: $container-padding-base;
+        flex: 1;
     }
 
 

@@ -74,6 +74,21 @@ class b extends webview {
 }
 
 
+class flex extends webview {
+    constructor(node){
+        super(node);
+    }
+    render(){
+        return {
+            template: require("./temp/flex.html"),
+            ready(){
+                //console.log(this)
+            }
+        }
+    }
+}
+
+
 
 ready(function(){
     const app = bootstrap();
@@ -92,6 +107,9 @@ ready(function(){
 
     app.at('/', function(next){
         app.publish(b, next);
+    })
+    app.at('/flex', function(next){
+        app.publish(flex, next);
     })
 
     app.at('/a/b/c', function(next){

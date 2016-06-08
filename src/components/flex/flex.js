@@ -23,8 +23,8 @@ export default class Flex extends Component {
                 classes.push('mx-flex-justify-' + this.justify);
             }
 
-            if ( this.alignItem ){
-                classes.push('mx-flex-align-item-' + this.alignItem);
+            if ( this.alignItems ){
+                classes.push('mx-flex-align-items-' + this.alignItems);
             }
 
             if ( this.alignContent ){
@@ -65,7 +65,7 @@ export default class Flex extends Component {
         props.justify = String;
 
         // start|center|end|between|around
-        props.alignItem = String;
+        props.alignItems = String;
 
         // start|center|end|between|around
         props.alignContent = String;

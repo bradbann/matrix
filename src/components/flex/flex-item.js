@@ -9,15 +9,17 @@ export default class Flex_Item extends Component {
     _computed(options){
         if ( !options ){ options = {} }
         options.style = function(){
-            if ( !this.flex ){
-                this.flex = '0';
+            const cls = [];
+
+            if(this.flex){
+                cls.push(
+                    '-webkit-box-flex: ' + this.flex,
+                    '-webkit-flex: ' + this.flex,
+                    '-ms-flex: ' + this.flex,
+                    'flex: ' + this.flex
+                )
             }
-            const cls = [
-                '-webkit-box-flex: ' + this.flex,
-                '-webkit-flex: ' + this.flex,
-                '-ms-flex: ' + this.flex,
-                'flex: ' + this.flex
-            ];
+
 
             if ( this.order ) {
                 cls.push('order:' + this.order);

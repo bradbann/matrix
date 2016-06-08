@@ -29,7 +29,7 @@
     }
     &-foot{
         @extend .mx-flex-box;
-        @extend .mx-flex-align-center;
+        @extend .mx-flex-align-items-center;
         @extend .mx-flex-justify-center;
 
         color: $font-color-help;
