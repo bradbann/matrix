@@ -11,6 +11,15 @@ export default class Flex extends Component {
         options.style = function(){
             const styles = [];
 
+            if(this.flex){
+                styles.push(
+                    '-webkit-box-flex: ' + this.flex,
+                    '-webkit-flex: ' + this.flex,
+                    '-ms-flex: ' + this.flex,
+                    'flex: ' + this.flex
+                )
+            }
+
             return styles.join(';');
         }
 
@@ -55,11 +64,10 @@ export default class Flex extends Component {
     _props(props){
         if ( !props ){ props = {} };
 
+        props.flex = String;
+
         // row|column|row-reverse|column-reverse
-        props.direction = {
-            type: String,
-            default: 'row'
-        }
+        props.direction = String;
 
         // start|center|end|between|around
         props.justify = String;
