@@ -1,9 +1,9 @@
 import Component from '../../app/component';
 
-export default class Middle extends Component {
+export default class Aspect extends Component {
     constructor(){
         super();
-        this.name = 'ratio';
+        this.name = 'aspect';
     }
     _computed(options){
         if ( !options ){ options = {} }
@@ -24,14 +24,14 @@ export default class Middle extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-ratio" role="ratio" :style="{width:width}" :class="class"><div class="mx-ratio-inner"><slot></slot></div><div class="mx-ratio-after" :style="{'padding-bottom':value}"></div></div>`;
+        return `<div class="mx-aspect" role="aspect" :style="{width:width}" :class="class"><div class="mx-aspect-inner"><slot></slot></div><div class="mx-aspect-after" :style="{'padding-bottom':ratio}"></div></div>`;
     }
 
     _props(props){
         if ( !props ){ props = {} };
         props.width = {type:String,default:'100%'};
         props.align = String;
-        props.value = {type:String,default:"100%"}
+        props.ratio = {type:String,default:"100%"}
 
         if ( typeof this.props === 'function' ){
             props = this.props(props);
