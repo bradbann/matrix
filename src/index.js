@@ -87,6 +87,19 @@ class flex extends webview {
         }
     }
 }
+class panel extends webview {
+    constructor(node){
+        super(node);
+    }
+    render(){
+        return {
+            template: require("./temp/panel.html"),
+            ready(){
+                //console.log(this)
+            }
+        }
+    }
+}
 
 class appview extends webview {
     constructor(node){
@@ -102,6 +115,20 @@ class appview extends webview {
     }
 }
 
+
+class aspect extends webview {
+    constructor(node){
+        super(node);
+    }
+    render(){
+        return {
+            template: require("./temp/aspect.html"),
+            ready(){
+                //console.log(this)
+            }
+        }
+    }
+}
 
 
 ready(function(){
@@ -127,6 +154,12 @@ ready(function(){
     })
     app.at('/appview', function(next){
         app.publish(appview, next);
+    })
+    app.at('/panel', function(next){
+        app.publish(panel, next);
+    })
+    app.at('/aspect', function(next){
+        app.publish(aspect, next);
     })
 
     app.at('/a/b/c', function(next){

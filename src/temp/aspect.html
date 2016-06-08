@@ -1,0 +1,58 @@
+<appview>
+    <appview:head class="test-head">
+        <flex align-items="center">
+            <flex:item v-reback url="/">
+                back
+            </flex:item>
+            <flex:item flex="1" class="mx-text-center">
+                Panel
+            </flex:item>
+            <flex:item>
+                Menu
+            </flex:item>
+        </flex>
+    </appview:head>
+    <appview:body>
+
+        <h3>
+         aspect可以用来 写一些比例块。他的高度跟宽度保持一定比例，在宽度不指定时，宽度默认为100%</h3>
+
+        <aspect ratio="150%" width="80%">
+            <middle align="center" height="100%">
+                150%
+            </middle>
+        </aspect>
+        <br>
+        <aspect ratio="100%" width="200">
+            <middle align="center" height="100%">
+                100%
+            </middle>
+        </aspect>
+
+        <br>
+        <aspect ratio="80%" width="200">
+            <middle align="center" height="100%">
+                80%
+            </middle>
+        </aspect>
+
+        <br>
+
+        <aspect ratio="80%">
+            80%
+            <middle align="center" height="100%" style="font-size:0;">
+                <aspect ratio="100%" width="50%" style="background-color:red">
+                    <middle align="center" height="100%">
+                        100%
+                    </middle>
+                </aspect>
+                <aspect ratio="100%" width="50%" style="background-color:blue">
+                    <middle align="center" height="100%">
+                        100%
+                    </middle>
+                </aspect>
+            </middle>
+        </aspect>
+
+    </appview:body>
+</appview>
