@@ -9,15 +9,39 @@ export default class Flex_Item extends Component {
     _computed(options){
         if ( !options ){ options = {} }
         options.style = function(){
+            if ( !this.flex ){
+                this.flex = '0';
+            }
             const cls = [
-                '-webkit-box-flex: ' + this.grow,
-                '-webkit-flex: ' + this.grow,
-                '-ms-flex: ' + this.grow,
-                'flex: ' + this.grow
+                '-webkit-box-flex: ' + this.flex,
+                '-webkit-flex: ' + this.flex,
+                '-ms-flex: ' + this.flex,
+                'flex: ' + this.flex
             ];
+
+            if ( this.order ) {
+                cls.push('order:' + this.order);
+            }
 
             return cls.join(';');
         }
+
+        options.classes = function(){
+            const classes = [];
+
+            if ( this.justify ){
+                classes.push('mx-flex-justify-' + this.justify);
+            }
+
+            if ( this.alignSelf ){
+                classes.push('mx-flex-align-self-' + this.alignSelf);
+            }
+
+            return classes.join(' ');
+        }
+
+
+
         if ( typeof this.computed === 'function' ){
             options = this.computed(options);
         }
@@ -28,16 +52,13 @@ export default class Flex_Item extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-flex-item" :style="style"><slot></slot></div>`;
+        return `<div class="mx-flex-item" :class="classes" :style="style"><slot></slot></div>`;
     }
 
     _props(props){
-        if ( !props ){ props = {} };
+        if ( !props ){ props = [] };
 
-        props.grow = {
-            type: Number,
-            default: 1
-        }
+        props.push('flex', 'order', 'justify', 'align-self', 'basis');
 
         if ( typeof this.props === 'function' ){
             props = this.props(props);
