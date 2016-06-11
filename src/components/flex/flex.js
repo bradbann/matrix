@@ -9,18 +9,10 @@ export default class Flex extends Component {
     _computed(options){
         if ( !options ){ options = {} }
         options.style = function(){
-            const styles = [];
-
-            if(this.flex){
-                styles.push(
-                    '-webkit-box-flex: ' + this.flex,
-                    '-webkit-flex: ' + this.flex,
-                    '-ms-flex: ' + this.flex,
-                    'flex: ' + this.flex
-                )
-            }
-
-            return styles.join(';');
+            return this.flex != undefined ? {
+                boxFlex: this.flex,
+                flex: this.flex
+            } : {}
         }
 
         options.class = function(){
