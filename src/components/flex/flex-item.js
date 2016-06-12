@@ -9,23 +9,19 @@ export default class Flex_Item extends Component {
     _computed(options){
         if ( !options ){ options = {} }
         options.style = function(){
-            const cls = [];
+            const cls = {};
 
-            if(this.flex){
-                cls.push(
-                    '-webkit-box-flex: ' + this.flex,
-                    '-webkit-flex: ' + this.flex,
-                    '-ms-flex: ' + this.flex,
-                    'flex: ' + this.flex
-                )
+            if ( this.flex ){
+                cls.boxFlex = this.flex;
+                cls.flex = this.flex;
             }
 
 
             if ( this.order ) {
-                cls.push('order:' + this.order);
+                cls.order = this.order;
             }
 
-            return cls.join(';');
+            return cls;
         }
 
         options.classes = function(){
@@ -41,8 +37,6 @@ export default class Flex_Item extends Component {
 
             return classes.join(' ');
         }
-
-
 
         if ( typeof this.computed === 'function' ){
             options = this.computed(options);
