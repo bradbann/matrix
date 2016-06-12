@@ -24,4 +24,10 @@ a{
 }
 input,textarea{
     user-select:text;
+    resize: none;
+    box-shadow: none;
+    -webkit-appearance:none;
+}
+input,select,option,textarea{
+    outline: none;
 }

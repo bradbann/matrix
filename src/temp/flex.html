@@ -1,18 +1,6 @@
-<appview>
-    <appview:head class="test-head">
-        <flex  align-items="center">
-            <flex:item v-reback url="/">
-                 back
-            </flex:item>
-            <flex:item flex="1" class="mx-text-center">
-                Flex <small>this is for flex</small>
-            </flex:item>
-            <flex:item>
-                Menu
-            </flex:item>
-        </flex>
-    </appview:head>
-    <appview:body>
+<appview >
+
+    <appview:body class="test-sidegap">
         阮一峰原文
         <a target="_blank" href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html">查看原文</a>
         <h3 class="mx-text-center">matrix 实现 flex布局 🎲</h3>
@@ -77,18 +65,20 @@
         </flex>
 
     </appview:body>
-    <appview:foot>
-        <cell linked>
-            <cell:head>
-                left
-            </cell:head>
-            <cell:body>
-                这里是底部
-            </cell:body>
-            <cell:foot>
-                right
-            </cell:foot>
-        </cell>
+
+    <appview:foot class="test-menu">
+        <flex  align-items="center">
+            <flex:item v-reback url="/">
+                 back
+            </flex:item>
+            <flex:item flex="1" class="mx-text-center">
+                Flex <small>this is for flex</small>
+            </flex:item>
+            <flex:item>
+                Menu
+            </flex:item>
+        </flex>
     </appview:foot>
+
 
 </appview>

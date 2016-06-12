@@ -22,6 +22,7 @@
     "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
     "html-minify-loader": "^1.1.0",
     "less": "^2.6.1",
@@ -32,6 +33,7 @@
     "rimraf": "*",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "vue-icons": "^1.0.0",
     "webpack": "^1.12.15",
     "webpack-dev-server": "^1.14.1"

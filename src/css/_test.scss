@@ -1,14 +1,18 @@
 
 // style for test
 
+
+$test-bg:#Ba77ff;
 .mx-sidebar{
+    color: #fff;
+    text-align: center;
     .avatar{
         margin: 30px auto;
         text-align: center;
         position: relative;
         img{
-            width: 150px;
-            height: 150px;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             object-position: center center;
             border-radius: 50%;
@@ -26,7 +30,20 @@
     }
 }
 
+.mx-aspect{
+    background-color: #BA77FF;
+    color: #fff;
+}
+
+
+
 .test{
+    &-sidegap{
+        padding:0 15px;
+    }
+    &-high{
+        height: 100%
+    }
     &-dice{
         padding: 20px;
         width: 150px;
@@ -47,10 +64,11 @@
             }
         }
     }
-    &-head{
-        padding: 15px;
+    &-menu{
+        height: 50px;
+        padding:  0 $container-padding-side;
         color:#fff;
-        background-color: #00c1ec;
+        background-color: #BA77FF;
         .mx-flex-box{
             height: 100%;
         }
@@ -58,4 +76,24 @@
     &-and{
         // width: 100%;
     }
+    &-middle{
+        width: 200px;
+        background-color: #Ba77ff;
+        margin: 10px auto;
+        color: #fff;
+    }
+    &-cell{
+        &-1{
+            width: 50px;
+            height: 50px;
+        }
+    }
+    &-textarea{
+        color: #666;
+        width: 100%;
+    }
+}
+
+body{
+    background-color: #Ba77ff;
 }

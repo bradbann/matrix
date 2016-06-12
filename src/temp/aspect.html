@@ -1,18 +1,6 @@
 <appview>
-    <appview:head class="test-head">
-        <flex align-items="center">
-            <flex:item v-reback url="/">
-                back
-            </flex:item>
-            <flex:item flex="1" class="mx-text-center">
-                Panel
-            </flex:item>
-            <flex:item>
-                Menu
-            </flex:item>
-        </flex>
-    </appview:head>
-    <appview:body>
+
+    <appview:body  class="test-sidegap">
 
         <h3>
          aspect可以用来 写一些比例块。他的高度跟宽度保持一定比例，在宽度不指定时，宽度默认为100%</h3>
@@ -38,15 +26,15 @@
 
         <br>
 
-        <aspect ratio="80%">
+        <aspect ratio="80%" class="mx-text-center">
             80%
             <middle align="center" height="100%" style="font-size:0;">
-                <aspect ratio="100%" width="50%" style="background-color:red">
+                <aspect ratio="100%" width="50%" style="background-color:rgba(0,0,0,0.2)">
                     <middle align="center" height="100%">
                         100%
                     </middle>
                 </aspect>
-                <aspect ratio="100%" width="50%" style="background-color:blue">
+                <aspect ratio="100%" width="50%" style="background-color:rgba(255,255,255,0.2)">
                     <middle align="center" height="100%">
                         100%
                     </middle>
@@ -55,4 +43,17 @@
         </aspect>
 
     </appview:body>
+    <appview:foot class="test-menu">
+        <flex align-items="center">
+            <flex:item v-reback url="/">
+                back
+            </flex:item>
+            <flex:item flex="1" class="mx-text-center">
+                Aspect
+            </flex:item>
+            <flex:item>
+                Menu
+            </flex:item>
+        </flex>
+    </appview:foot>
 </appview>

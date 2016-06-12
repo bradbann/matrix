@@ -53,18 +53,42 @@ class b extends webview {
     constructor(node){
         super(node);
     }
+
     a(){
         this.$forward('/a/b/c')
     }
     b(){
         this.$redirect('/a/b/c')
     }
+
+
+    menuclick(openstate,event){
+        let body=  document.body;
+        if(this.state.menuOpen){
+            event.preventDefault();
+            event.stopPropagation();
+            openstate=false;
+        }
+        if(openstate){
+            body.classList.add("mx-sidebar-open");
+            this.state.menuOpen=true;
+        }else{
+            body.classList.remove("mx-sidebar-open");
+            this.state.menuOpen=false;
+        }
+    }
     render(){
         return {
             template: require("./temp/index.html"),
+            data:{
+                state:{
+                    menuOpen:false
+                }
+            },
             methods: {
                 a: this.a,
-                b: this.b
+                b: this.b,
+                menuclick:this.menuclick
             },
             ready(){
                 //console.log(this)
@@ -129,6 +153,35 @@ class aspect extends webview {
         }
     }
 }
+class middle extends webview {
+    constructor(node){
+        super(node);
+    }
+    render(){
+        return {
+            template: require("./temp/middle.html"),
+            ready(){
+                //console.log(this)
+            }
+        }
+    }
+}
+
+class cell extends webview {
+    constructor(node){
+        super(node);
+    }
+    render(){
+        return {
+            template: require("./temp/cell.html"),
+            ready(){
+                //console.log(this)
+            }
+        }
+    }
+}
+
+
 
 
 ready(function(){
@@ -160,6 +213,12 @@ ready(function(){
     })
     app.at('/aspect', function(next){
         app.publish(aspect, next);
+    })
+    app.at('/middle', function(next){
+        app.publish(middle, next);
+    })
+    app.at('/cell', function(next){
+        app.publish(cell, next);
     })
 
     app.at('/a/b/c', function(next){

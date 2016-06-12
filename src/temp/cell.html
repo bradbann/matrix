@@ -1,0 +1,67 @@
+<appview>
+    <appview:body>
+        <cells>
+            <cell  >
+                <cell:head><img class="test-cell-1" src="../testres/img/avatar.png" alt=""></cell:head>
+                <cell:body> Author ：Evio Shen </cell:body>
+            </cell>
+            <cell linked >
+                <cell:body>
+                    地区：
+                </cell:body>
+                <cell:foot>
+                    <select name="" id="">
+                        <option value="杭州">杭州</option>
+                        <option value="杭州">杭州</option>
+                        <option value="杭州">杭州</option>
+                        <option value="杭州">杭州</option>
+                    </select>
+                </cell:foot>
+            </cell>
+            <cell  linked>
+                <cell:body>
+                    性别:
+                </cell:body>
+                <cell:foot>
+                    <input type="radio" value="1" name="sex">男
+                    <input type="radio" value="0" name="sex">女
+
+                </cell:foot>
+            </cell>
+            <cell linked >
+                <cell:body>邮箱</cell:body>
+                <cell:foot>
+                    <input class="mx-text-right" type="email" placeholder="evio@vip.qq.com">
+                </cell:foot>
+            </cell>
+            <cell >
+                <cell:body>
+                    签名
+                    <div>
+                        <textarea class="test-textarea" name="" id="" cols="30" rows="5" placeholder="请输入签名">我就纳闷了</textarea>
+                    </div>
+                </cell:body>
+            </cell>
+            <cell linked >
+                <cell:body>最喜欢的颜色 </cell:body>
+                <cell:foot><input type="color"></cell:foot>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>button </cell:body>
+            </cell>
+        </cells>
+    </appview:body>
+    <appview:foot class="test-menu">
+        <flex align-items="center" justify="center">
+            <flex:item  flex="0 0 4em" v-reback url="/">
+                back
+            </flex:item>
+            <flex:item flex="1" class="mx-text-center">
+                Matrix
+            </flex:item>
+            <flex:item flex="0 0 4em" class="mx-text-right">
+                contacts
+            </flex:item>
+        </flex>
+    </appview:foot>
+</appview>

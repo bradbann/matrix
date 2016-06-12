@@ -1,24 +1,41 @@
+<appview @click="menuclick(false,$event)">
 
-
-
-
-<cells >
-    <cell linked v-redirect url="/flex">
-        <cell:body>flex </cell:body>
-    </cell>
-    <cell linked v-redirect url="/flex">
-        <cell:body>cell </cell:body>
-    </cell>
-    <cell linked v-redirect url="/flex">
-        <cell:body>middle</cell:body>
-    </cell>
-    <cell linked v-redirect url="/aspect">
-        <cell:body>aspect </cell:body>
-    </cell>
-    <cell linked v-redirect url="/panel">
-        <cell:body>panel </cell:body>
-    </cell>
-    <cell linked v-redirect url="/appview">
-        <cell:body>appview </cell:body>
-    </cell>
-</cells>
+    <appview:body>
+        <cells>
+            <cell linked v-redirect url="/appview">
+                <cell:body>appview </cell:body>
+            </cell>
+            <cell linked v-redirect url="/panel">
+                <cell:body>panel </cell:body>
+            </cell>
+            <cell linked v-redirect url="/cell">
+                <cell:body>cell </cell:body>
+            </cell>
+            <cell linked v-redirect url="/flex">
+                <cell:body>flex </cell:body>
+            </cell>
+            <cell linked v-redirect url="/middle">
+                <cell:body>middle</cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>aspect </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>button </cell:body>
+            </cell>
+        </cells>
+    </appview:body>
+    <appview:foot class="test-menu">
+        <flex align-items="center" justify="center">
+            <flex:item @click.stop="menuclick(true,$event)" flex="0 0 4em">
+                menu
+            </flex:item>
+            <flex:item flex="1" class="mx-text-center">
+                Matrix
+            </flex:item>
+            <flex:item flex="0 0 4em" class="mx-text-right">
+                contacts
+            </flex:item>
+        </flex>
+    </appview:foot>
+</appview>
