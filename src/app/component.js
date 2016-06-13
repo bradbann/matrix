@@ -168,5 +168,6 @@ export default class Component {
         this.$_mixins();
         this.$_name();
         this.$_extends();
+        return this;
     }
 }

@@ -31,7 +31,13 @@ export const ready = function(cb){
     });
 };
 
-export const $define = function(name, cb){
+export const compile = function(_component){
+    if ( !_component.prototype ) return _component;
+
+    return (new _component()).$_install()._vue_options;
+}
+
+export const define = function(name, cb){
     let _component;
 
     if ( typeof cb === 'function' && !cb.prototype ){
@@ -41,14 +47,7 @@ export const $define = function(name, cb){
     }
 
     components[name] = _component;
-
-    if ( !!_component.prototype ){
-        let cp = new _component();
-        cp.$_install();
-        COMPONENTLIST[name] = cp._vue_options;
-    }else{
-        COMPONENTLIST[name] = _component;
-    }
+    COMPONENTLIST[name] = compile(_component);
 }
 
 export const widgets = COMPONENTLIST;
