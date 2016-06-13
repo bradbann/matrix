@@ -1,3 +1,4 @@
+import { compile } from './util';
 import Container from '../components/container/index';
 import { Cells, Cell, Cell_head, Cell_body, Cell_foot } from '../components/cell/index';
 import { Panel, Panel_head, Panel_body, Panel_foot } from '../components/panel/index';
@@ -53,18 +54,7 @@ const COMPONENTS = {
 let keys = Object.keys(COMPONENTS);
 let i = keys.length;
 let result = {};
-
-while ( i-- ){
-    let cp = COMPONENTS[keys[i]];
-    if ( !!cp.prototype ){
-        cp = new cp();
-        cp.$_install();
-        result[keys[i]] = cp._vue_options;
-    }
-    else {
-        result[keys[i]] = cp;
-    }
-}
+while ( i-- ) result[keys[i]] = compile(COMPONENTS[keys[i]]);
 
 export const Components = COMPONENTS;
 export const COMPONENTLIST = result;

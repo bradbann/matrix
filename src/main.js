@@ -2,16 +2,19 @@ import 'setimmediate';
 import Bootstrap from './app/boot';
 import Ready from 'domready';
 import FastClick from 'fastclick';
+
 import Vue from 'vue';
-import Server from './app/connect';
-import Webview from './app/webview';
-import { Components, COMPONENTLIST } from './app/components';
-import ComponentConstructor from './app/component';
 import Scroll from './app/scroll';
+import Connect from './app/connect';
+import Webview from './app/webview';
+import ComponentConstructor from './app/component';
+import { Components, COMPONENTLIST } from './app/components';
 
 export { Promise } from 'es6-promise';
 export { EventEmitter } from 'events';
-export const server = Server;
+export { compile } from './app/util';
+
+export const connect = Connect;
 export const webview = Webview;
 export const vue = Vue;
 export const components = Components;
@@ -30,12 +33,6 @@ export const ready = function(cb){
         cb();
     });
 };
-
-export const compile = function(_component){
-    if ( !_component.prototype ) return _component;
-
-    return (new _component()).$_install()._vue_options;
-}
 
 export const define = function(name, cb){
     let _component;

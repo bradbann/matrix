@@ -20,3 +20,9 @@ export const isElement = function isElement(el){
     const type = typedof(el);
     return /^HTML/i.test(type) && /Element$/i.test(type);
 }
+
+export const compile = function(_component){
+    if ( !_component.prototype ) return _component;
+
+    return (new _component()).$_install()._vue_options;
+}
