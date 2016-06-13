@@ -188,7 +188,7 @@ ready(function(){
     const app = bootstrap({
         backgroundColor: '#eee',
         debug: true,
-        animate:'cube'     //  slide|fade|scale|drown|cube
+        animate:'slide'     //  slide|fade|scale|drown|cube
     });
 
     app.on('route:start', function(){
