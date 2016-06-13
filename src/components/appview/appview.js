@@ -30,12 +30,13 @@ export default class AppView extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<div class="mx-appview" role="appview" :style="style"><slot></slot></div>`;
+        return `<div class="mx-appview" role="appview" :class="{'mx-appview-horizontal': horizontal}" :style="style"><slot></slot></div>`;
     }
 
     _props(props){
         if ( !props ){ props = {} };
         props.blank = Boolean;
+        props.horizontal = Boolean;
 
         if ( typeof this.props === 'function' ){
             props = this.props(props);
