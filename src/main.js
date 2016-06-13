@@ -2,27 +2,26 @@ require('normalize.css');
 require('./css/matrix.scss');
 
 import 'setimmediate';
-import Bootstrap from './app/boot';
-import Ready from 'domready';
-import FastClick from 'fastclick';
+import Vue                              from 'vue';
+import Ready                            from 'domready';
+import Scroll                           from './app/scroll';
+import Connect                          from './app/connect';
+import Webview                          from './app/webview';
+import Bootstrap                        from './app/boot';
+import FastClick                        from 'fastclick';
+import ComponentConstructor             from './app/component';
+import { Components, COMPONENTLIST }    from './app/components';
 
-import Vue from 'vue';
-import Scroll from './app/scroll';
-import Connect from './app/connect';
-import Webview from './app/webview';
-import ComponentConstructor from './app/component';
-import { Components, COMPONENTLIST } from './app/components';
+export { Promise }                      from 'es6-promise';
+export { compile }                      from './app/util';
+export { EventEmitter }                 from 'events';
 
-export { Promise } from 'es6-promise';
-export { EventEmitter } from 'events';
-export { compile } from './app/util';
-
-export const connect = Connect;
-export const webview = Webview;
-export const vue = Vue;
+export const vue        = Vue;
+export const connect    = Connect;
+export const webview    = Webview;
+export const scroller   = Scroll;
+export const component  = ComponentConstructor;
 export const components = Components;
-export const component = ComponentConstructor;
-export const scroller = Scroll;
 
 export const bootstrap = function(el, options){
     const app = new Bootstrap(el, options);

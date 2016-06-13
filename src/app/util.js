@@ -16,13 +16,19 @@ export const typedof = function(obj, type){
     }
 }
 
-export const isElement = function isElement(el){
+export const isElement = function(el){
     const type = typedof(el);
     return /^HTML/i.test(type) && /Element$/i.test(type);
 }
 
 export const compile = function(_component){
-    if ( !_component.prototype ) return _component;
+    if (
+        !_component.prototype
+        || (
+            _component.super
+            && _component.super.name === 'Vue'
+        )
+    ) return _component;
 
     return (new _component()).$_install()._vue_options;
 }
