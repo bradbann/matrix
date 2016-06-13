@@ -1,5 +1,5 @@
 {
-  "name": "mox",
+  "name": "miox",
   "version": "1.0.0",
   "description": "mox Tool",
   "main": "build/index.js",
@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "project-type": "umd",
-  "project-library": "mox",
+  "project-library": "miox",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.7.6",
