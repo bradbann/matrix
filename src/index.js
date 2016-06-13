@@ -1,5 +1,5 @@
-import { ready, bootstrap, webview, Promise, $define, widgets, component } from './main';
-
+import { ready, bootstrap, webview, Promise, $define, widgets, component, scroller } from './main';
+console.log(scroller);
 require('normalize.css');
 require('./css/matrix.scss');
 

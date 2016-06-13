@@ -7,6 +7,7 @@ import Server from './app/connect';
 import Webview from './app/webview';
 import { Components, COMPONENTLIST } from './app/components';
 import ComponentConstructor from './app/component';
+import Scroll from './app/scroll';
 
 export { Promise } from 'es6-promise';
 export { EventEmitter } from 'events';
@@ -15,6 +16,7 @@ export const webview = Webview;
 export const vue = Vue;
 export const components = Components;
 export const component = ComponentConstructor;
+export const scroller = Scroll;
 
 export const bootstrap = function(el, options){
     const app = new Bootstrap(el, options);
