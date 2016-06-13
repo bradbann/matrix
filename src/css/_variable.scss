@@ -57,13 +57,36 @@ $webview-background-color: #fff;
     box-shadow                : -8px 0 10px rgba(0,0,0,0.2);
     opacity                   : 1;
 }
-@mixin webview-animate-forward-state {
-    transform : translate3d(100%,0,0);
-    box-shadow: -8px 0 10px rgba(0,0,0,0.05);
+@mixin webview-animate-forward-state($animation) {
+    @if $animation == 'slide' {
+        transform : translate3d(100%,0,0);
+        box-shadow: -8px 0 10px rgba(0,0,0,0.05);
+    }
+    @if $animation == 'drown' {
+            transform:translate3d(100%,0,0);
+            box-shadow: none;
+    }
+    @if $animation == 'cube' {
+        transform : translate3d(100%,0,0);
+        box-shadow: -8px 0 10px rgba(0,0,0,0.05);
+    }
+
 }
-@mixin webview-animate-backward-state {
-    opacity  : 0.9;
-    transform: translate3d(-20%,0,0);
+@mixin webview-animate-backward-state($animation) {
+    @if $animation == "slide" {
+        opacity  : 0.9;
+        transform: translate3d(-20%,0,0);
+    }
+    @if $animation == "drown" {
+            opacity: 0.8;
+            transform-origin: right bottom;
+            transform: translate3d(5%,0,0) scale(0.95);
+    }
+    @if $animation == "cube" {
+        opacity  : 0.9;
+        transform: translate3d(-20%,0,0);
+    }
+
 }
 
 //sidebar

@@ -16,41 +16,28 @@
         transform: translate3d(0,0,0);
     }
     &-forward{
-        @include webview-animate-forward-state;
+
+        &.drown{
+            @include webview-animate-forward-state('drown');
+        }
+
+        &.slide,&.default{
+            @include webview-animate-forward-state("slide");
+        }
     }
     &-backward{
-        @include webview-animate-backward-state;
+
+        &.drown{
+            @include webview-animate-backward-state('drown');
+        }
+
+        &.slide,&.default{
+            @include webview-animate-backward-state('slide');
+        }
     }
+
     &.active{
         z-index: 1000;
         visibility: visible;
     }
-}
-
-
-// 测试用
-
-
-@at-root #wb1{
-    background-image: linear-gradient(to left,rgb(112, 60, 218),lighten(rgb(112, 60, 218),20%));
-}
-@at-root #wb2{
-    background-image: linear-gradient(to left,rgb(37, 190, 176),lighten(rgb(37, 190, 176),20%));
-}
-
-
-@at-root #pg1{
-    position: absolute;
-    bottom: 10px;
-    left: 0px;
-    width: 100%;
-    z-index: 9999;
-}
-@at-root .mx-btn{
-    display: inline-block;
-    background-color: rgb(194, 235, 79);
-    min-width: 10em;
-    padding: 0.5em;
-    text-align: center;
-    border-radius: 5px;
 }

@@ -187,7 +187,8 @@ class cell extends webview {
 ready(function(){
     const app = bootstrap({
         backgroundColor: '#333',
-        debug: true
+        debug: true,
+        animate:'slide'
     });
 
     app.on('route:start', function(){

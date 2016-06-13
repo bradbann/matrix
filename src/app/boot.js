@@ -11,7 +11,8 @@ const OPTIONS = {
     debug: false,
     delimiters: ["{{", "}}"],
     unsafeDelimiters: ["{{{", "}}}"],
-    async: true
+    async: true,
+    animate:'slide'    // fade|drown|cube
 };
 
 export default class BootStrap extends Connect {

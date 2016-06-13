@@ -1,7 +1,7 @@
 'use strict';
 
 import onTransitionEnd from './transitionend';
-const expectedDuration = 350;
+const expectedDuration = 3500;
 
 
 export const animateForward = function(oldWebview, newWebview, cb, className){
