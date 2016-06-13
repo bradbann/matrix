@@ -185,18 +185,22 @@ class cell extends webview {
 
 
 ready(function(){
-    const app = bootstrap();
+    const app = bootstrap({
+        backgroundColor: '#333',
+        debug: true
+    });
 
     app.on('route:start', function(){
-        console.log('route start');
+        //console.log('route start');
     })
 
     app.on('route:end', function(){
-        console.log('route end');
+        //console.log('route end');
     })
 
     app.on('ready', function(){
-        console.log('ready');
+        //console.log('ready');
+        //console.log(app)
     })
 
     app.at('/', function(next){

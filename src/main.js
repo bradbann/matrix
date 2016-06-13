@@ -16,8 +16,8 @@ export const vue = Vue;
 export const components = Components;
 export const component = ComponentConstructor;
 
-export const bootstrap = function(){
-    const app = new Bootstrap();
+export const bootstrap = function(el, options){
+    const app = new Bootstrap(el, options);
     Vue.prototype.$app = app;
     return app;
 };

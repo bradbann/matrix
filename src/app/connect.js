@@ -30,6 +30,7 @@ export default class Connect extends EventEmitter {
             Object.defineProperty(server, '$node', { get(){ return that.$node; } });
             Object.defineProperty(server, '$server', { get(){ return that.$server; } });
             Object.defineProperty(server, '$webviews', { get(){ return that.$webviews; } });
+            Object.defineProperty(server, '$options', { get(){ return that.$options; } });
             handle = function (next) {
                 server.handle(next);
             };
