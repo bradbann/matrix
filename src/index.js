@@ -186,7 +186,7 @@ class cell extends webview {
 
 ready(function(){
     const app = bootstrap({
-        backgroundColor: '#333',
+        backgroundColor: '#eee',
         debug: true,
         animate:'slide'
     });
