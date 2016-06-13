@@ -4,7 +4,7 @@ import onTransitionEnd from './transitionend';
 const expectedDuration = 350;
 
 
-export const animateForward = function(oldWebview, newWebview, cb){
+export const animateForward = function(oldWebview, newWebview, cb, className){
 
 
 
@@ -19,6 +19,9 @@ export const animateForward = function(oldWebview, newWebview, cb){
 
     newWebview.$node.style.transition="none";
     addClass(newWebview,'mx-webview-forward');
+
+    className && addClass(newWebview, className);
+    className && addClass(oldWebview, className);
 
 
 
@@ -40,12 +43,14 @@ export const animateForward = function(oldWebview, newWebview, cb){
         oldWebview.$node.style.zIndex = "";
         newWebview.$node.style.visibility = "";
         oldWebview.$node.style.visibility = "";
+        className && removeClass(newWebview, className);
+        className && removeClass(oldWebview, className);
         cb();
     });
 
 }
 
-export const animateBackward = function(oldWebview, newWebview, cb){
+export const animateBackward = function(oldWebview, newWebview, cb, className){
 
 
     //准备 变换
@@ -57,6 +62,9 @@ export const animateBackward = function(oldWebview, newWebview, cb){
 
     newWebview.$node.style.transition="none";
     addClass(newWebview,'mx-webview-backward');
+
+    className && addClass(newWebview, className);
+    className && addClass(oldWebview, className);
 
     //开始 变换
     setTimeout(function(){
@@ -74,6 +82,8 @@ export const animateBackward = function(oldWebview, newWebview, cb){
         oldWebview.$node.style.zIndex = "";
         newWebview.$node.style.visibility = "";
         oldWebview.$node.style.visibility = "";
+        className && removeClass(newWebview, className);
+        className && removeClass(oldWebview, className);
         cb();
     });
 }

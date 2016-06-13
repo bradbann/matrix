@@ -4,6 +4,7 @@ import { EventEmitter } from 'events';
 import Layer from './layer';
 
 import { animateForward, animateBackward } from './animate';
+import { typedof } from './util';
 
 export default class Connect extends EventEmitter {
     constructor(){
@@ -104,12 +105,43 @@ export default class Connect extends EventEmitter {
         }
     }
 
+    _choose(animate){
+        const options = this.$options;
+        let animateName, animateInFn, animateOutFn;
+        if ( typeof options.animate === 'string' ){
+            animateName = options.animate;
+        }
+        else if ( typedof(options.animate, 'Array') ){
+            animateInFn = options.animate[0];
+            animateOutFn = options.animate[1];
+        }
+        else if ( typeof options.animate === 'object' && !options.animate.prototype ){
+            animateInFn = options.animate.forward;
+            animateOutFn = options.animate.back;
+        }
+
+        return function(_oldWebview, _newWebview, next){
+            if ( animateName ){
+                animate(_oldWebview, _newWebview, next, animateName);
+            }
+            else if ( typeof animateInFn === 'function' && typeof animateOutFn === 'function' ){
+                if ( animate == animateForward ){
+                    animateInFn(_oldWebview, _newWebview, next);
+                }else{
+                    animateOutFn(_oldWebview, _newWebview, next);
+                }
+            }else{
+                animate(_oldWebview, _newWebview, next);
+            }
+        }
+    }
+
     _useForward(webview, next){
-        this._direction(webview, next, animateForward);
+        this._direction(webview, next, this._choose(animateForward));
     }
 
     _useBackward(webview, next){
-        this._direction(webview, next, animateBackward);
+        this._direction(webview, next, this._choose(animateBackward));
     }
 
     _refresh(webview, next){
