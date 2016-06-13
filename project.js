@@ -10,4 +10,4 @@ exports.js = {
     to: 'index'
 }
 
-exports.css = 'css/index';
+exports.css = 'index';

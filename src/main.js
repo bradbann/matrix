@@ -1,3 +1,6 @@
+require('normalize.css');
+require('./css/matrix.scss');
+
 import 'setimmediate';
 import Bootstrap from './app/boot';
 import Ready from 'domready';

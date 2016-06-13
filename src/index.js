@@ -1,7 +1,5 @@
 import { ready, bootstrap, webview, Promise, define, widgets, component, scroller } from './main';
 // console.log(scroller);
-require('normalize.css');
-require('./css/matrix.scss');
 
 // class Tab extends component {
 //     constructor(){
