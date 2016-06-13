@@ -1,5 +1,6 @@
 'use strict';
 
+import { addClass, removeClass } from './util';
 import onTransitionEnd from './transitionend';
 const expectedDuration = 350;
 
@@ -86,16 +87,4 @@ export const animateBackward = function(oldWebview, newWebview, cb, className){
         className && removeClass(oldWebview, className);
         cb();
     });
-}
-
-
-function addClass(el, cls){
-    if (!el) return;
-    el.$node.classList.add(cls);
-}
-function removeClass(el, cls){
-    if (!el) return;
-    if ( el.$node.classList.contains(cls) ){
-        el.$node.classList.remove(cls);
-    }
 }

@@ -32,3 +32,15 @@ export const compile = function(_component){
 
     return (new _component()).$_install()._vue_options;
 }
+
+export const addClass = function(el, cls){
+    if (!el) return;
+    el.$node.classList.add(cls);
+}
+
+export const removeClass = function(el, cls){
+    if (!el) return;
+    if ( el.$node.classList.contains(cls) ){
+        el.$node.classList.remove(cls);
+    }
+}
