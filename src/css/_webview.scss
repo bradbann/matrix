@@ -1,3 +1,4 @@
+
 &webview{
     &{
         @include webview-animate-current-state;
@@ -15,14 +16,25 @@
         z-index: 900;
         transform: translate3d(0,0,0);
     }
+
     &-forward{
+
 
         &.drown{
             @include webview-animate-forward-state('drown');
         }
 
-        &.slide,&.default{
+        &.slide{
             @include webview-animate-forward-state("slide");
+        }
+        &.fade{
+            @include webview-animate-forward-state("fade");
+        }
+        &.scale{
+            @include webview-animate-forward-state("scale");
+        }
+        &.cube{
+            @include webview-animate-forward-state("cube");
         }
     }
     &-backward{
@@ -31,8 +43,17 @@
             @include webview-animate-backward-state('drown');
         }
 
-        &.slide,&.default{
+        &.slide{
             @include webview-animate-backward-state('slide');
+        }
+        &.fade{
+            @include webview-animate-backward-state('fade');
+        }
+        &.scale{
+            @include webview-animate-backward-state('scale');
+        }
+        &.cube{
+            @include webview-animate-backward-state('cube');
         }
     }
 
