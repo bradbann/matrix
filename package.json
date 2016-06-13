@@ -1,7 +1,7 @@
 {
-  "name": "matrix",
+  "name": "miox",
   "version": "1.0.0",
-  "description": "matrix Tool",
+  "description": "mox Tool",
   "main": "build/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev node_modules/.bin/webpack-dev-server --host 0.0.0.0 --progress --colors --inline --hot --display-error-details --content-base src/",
@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "project-type": "umd",
-  "project-library": "matrix",
+  "project-library": "miox",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.7.6",
