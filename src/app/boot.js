@@ -3,8 +3,16 @@
 import Http from './http';
 import Connect from './connect';
 import vue from 'vue';
+import { extendOptions, typedof, isElement } from './util';
 
 const Body = document.body;
+const OPTIONS = {
+    backgroundColor: '#222',
+    debug: false,
+    delimiters: ["{{", "}}"],
+    unsafeDelimiters: ["{{{", "}}}"],
+    async: true
+};
 
 export default class BootStrap extends Connect {
     constructor(el, options){
@@ -34,13 +42,7 @@ export default class BootStrap extends Connect {
         this.$webviews = {};
         this.$server.$app = this;
         this.$el = _el;
-        this.$options = extendOptions({
-            backgroundColor: '#222',
-            debug: false,
-            delimiters: ["{{", "}}"],
-            unsafeDelimiters: ["{{{", "}}}"],
-            async: true
-        }, _options);
+        this.$options = extendOptions(OPTIONS, _options);
 
         if ( this.$options.debug ){
             vue.config.debug = true;
@@ -70,25 +72,4 @@ export default class BootStrap extends Connect {
         this.on('route:end', () => this.$node.style.backgroundColor = this.$options.backgroundColor);
         this.emit('ready');
     }
-}
-
-function extendOptions(a, b){
-    for ( let i in b ){
-        a[i] = b[i];
-    }
-    return a;
-}
-
-function typedof(obj, type){
-    const _type = Object.prototype.toString.call(obj).split(' ')[1].replace(/\]$/, '');
-    if ( type ){
-        return _type == type;
-    }else{
-        return _type;
-    }
-}
-
-function isElement(el){
-    const type = typedof(el);
-    return /^HTML/i.test(type) && /Element$/i.test(type);
 }
