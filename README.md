@@ -21,11 +21,20 @@ npm install --save miox
 
 ``` javascript
 import { bootstrap, ready, webview } from 'miox';
+import requirejs from 'requirejs';
 
 class IndexPage extends webview {
     constructor(){
         super();
     }
+
+    ready(){
+        return function(){
+            console.log('app rendered:');
+            console.log(this);
+        }
+    }
+
     render(){
         return {
             template: `
@@ -62,6 +71,14 @@ ready(function(){
     app.at('/', function(next){
         app.publish(IndexPage, next);
     });
+
+    // use requirejs for async load
+    app.at('/a/b', function(next){
+        // do some loading events.
+        requirejs('http://a.com/b.js', function(b){
+            app.publish(b, next);
+        })
+    })
 
     app.listen();
 })
