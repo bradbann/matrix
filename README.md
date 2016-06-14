@@ -65,6 +65,13 @@ ready(function(){
         debug: true //在打包时候将这个设置为false
     });
 
+    // 使用中间件
+    app.use(function(next){
+        console.log('use middleware');
+        setTimeout(next, 5000);
+    })
+
+    // 定义路由
     app.define('/', IndexPage);
 
     // or you can write like this:
@@ -83,3 +90,128 @@ ready(function(){
     app.listen();
 })
 ```
+
+随然以上代码看起来比较多，但是分割一下模块就简单很多了。那么，我们继续来看下这些api的作用。
+
+## API Usage
+
+### MIOX的静态方法活着属性
+
+#### Vue
+
+返回`1.0.24`版本的`Vue`对象方法。
+
+#### Promise
+
+返回`Promise`对象方法，如果浏览器不支持promise的话。
+
+#### components
+
+返回内置组件列表
+
+#### component
+
+返回原生组件的原声class对象，用于被继承
+
+``` javascript
+class TAB extends component {
+    constructor(){
+        super();
+    }
+
+    _template(template){
+        return `<div class="mx-tab"><slot></slot></div>`
+    }
+}
+```
+
+#### connect
+
+返回中间件继承对象
+
+``` javascript
+const app = new bootstrap();
+const INDEX = new connect();
+
+INDEX.at('/', function(next){
+    INDEX.publish(WEBVIEW, next);
+});
+
+app.use(INDEX);
+app.listen();
+```
+
+#### webview
+
+返回`webview`原生对象
+
+#### scroller
+
+返回滚动事件的监听对象
+
+#### compile
+
+返回编译组件的方法。比如我们编译一个组件,返回该组件编译后的vue组件配置对象.
+
+``` javascript
+const a = Vue.extend(compile(components.cells));
+console.log(a);
+```
+
+#### EventEmitter
+
+返回`EventEmitter`;
+
+#### ready
+
+返回`domready`的方法。
+
+#### define
+
+定义一个内置的全局组件。
+
+``` javascript
+class Tab extends component {
+    constructor(){
+        super();
+    }
+
+    _template(){
+        return `<div class="tab">tab</div>`;
+    }
+}
+
+
+define('tab', Tab);
+
+console.log(widgets)
+```
+
+或者这样写
+
+``` javascript
+define('tab', function(component, components){
+    class Tab extends component {
+        constructor(){
+            super();
+        }
+
+        _template(){
+            return `<div class="tab">tab</div>`;
+        }
+    }
+
+    return Tab;
+})
+```
+
+#### bootstrap
+
+启动一个app服务, 配置参数如下：
+
+ - `backgroundColor`: '#222',
+ - `debug`: false,
+ - `delimiters`: ["{{", "}}"],
+ - `unsafeDelimiters`: ["{{{", "}}}"],
+ - `async`: true,
+ - `animate`:'slide'    // fade|drown|cube
