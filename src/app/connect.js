@@ -13,6 +13,10 @@ export default class Connect extends EventEmitter {
         this.stack = [];
     }
 
+    define(route, webview){
+        return this.at(route, next => this.publish(webview, next));
+    }
+
     _route(route, fn, options){
         let handle = fn;
         let path = route;

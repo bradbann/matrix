@@ -202,31 +202,16 @@ ready(function(){
         //console.log(app)
     })
 
-    app.at('/', function(next){
-        app.publish(b, next);
-    })
-    app.at('/flex', function(next){
-        app.publish(flex, next);
-    })
-    app.at('/appview', function(next){
-        app.publish(appview, next);
-    })
-    app.at('/panel', function(next){
-        app.publish(panel, next);
-    })
-    app.at('/aspect', function(next){
-        app.publish(aspect, next);
-    })
-    app.at('/middle', function(next){
-        app.publish(middle, next);
-    })
-    app.at('/cell', function(next){
-        app.publish(cell, next);
-    })
-
-    app.at('/a/b/c', function(next){
-        app.publish(a, next);
-    })
+    app
+        .define('/', b)
+        .define('/flex', flex)
+        .define('/appview', appview)
+        .define('/panel', panel)
+        .define('/aspect', aspect)
+        .define('/middle', middle)
+        .define('/cell', cell)
+        .define('/a/b/c', a)
+        ;
 
     app.listen();
 })
