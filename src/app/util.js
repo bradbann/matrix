@@ -1,11 +1,6 @@
 'use strict';
 
-export const extendOptions = function(a, b){
-    for ( let i in b ){
-        a[i] = b[i];
-    }
-    return a;
-}
+import unique from 'unique-array';
 
 export const typedof = function(obj, type){
     const _type = Object.prototype.toString.call(obj).split(' ')[1].replace(/\]$/, '');
@@ -43,4 +38,33 @@ export const removeClass = function(el, cls){
     if ( el.$node.classList.contains(cls) ){
         el.$node.classList.remove(cls);
     }
+}
+
+export const deepExtend = function(a, b){
+    let d = Object.keys(b).sort();
+
+    var i = d.length;
+    while ( i-- ){
+        let name = d[i];
+        let value = b[name];
+        let target = a[name];
+        if ( target ){
+            if ( Array.isArray(target) ){
+                if ( Array.isArray(value) ){
+                    a[name] = unique(target.concat(value));
+                }else{
+                    if ( target.indexOf(value) == -1 ){
+                        target.push(value);
+                    }
+                }
+            }else{
+                if ( target != value ){
+                    a[name] = [target, value];
+                }
+            }
+        }else{
+            a[name] = value;
+        }
+    }
+    return a;
 }

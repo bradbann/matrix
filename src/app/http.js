@@ -1,7 +1,7 @@
 import { createHashHistory } from 'history';
 import { parse, format } from 'url';
 import { EventEmitter } from 'events';
-import { exto } from '../util';
+import { deepExtend } from './util';
 
 export default class Http extends EventEmitter {
     constructor(){
@@ -118,7 +118,7 @@ export default class Http extends EventEmitter {
         }
 
         const searchQuery = parse(search || '', true);
-        this.query = exto(searchQuery.query, this.extra);
+        this.query = deepExtend(searchQuery.query, this.extra);
         this._first && (delete this._first);
         this.emit('http:change', cb => {
             if ( this.removes && this.removes.length ){
