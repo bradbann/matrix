@@ -95,7 +95,7 @@ ready(function(){
 
 ## API Usage
 
-### MIOX的静态方法活着属性
+### MIOX的静态方法或者属性
 
 #### Vue
 
@@ -183,8 +183,6 @@ class Tab extends component {
 
 
 define('tab', Tab);
-
-console.log(widgets)
 ```
 
 或者这样写
@@ -215,3 +213,11 @@ define('tab', function(component, components){
  - `unsafeDelimiters`: ["{{{", "}}}"],
  - `async`: true,
  - `animate`:'slide'    // fade|drown|cube
+
+#### widgets
+
+全局组件被编译橙vue配置对象后的集合。
+
+``` javascript
+console.log(widgets);
+```
