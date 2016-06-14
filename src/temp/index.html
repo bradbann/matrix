@@ -26,16 +26,10 @@
         </cells>
     </appview:body>
     <appview:foot class="test-menu">
-        <flex align-items="center" justify="center">
-            <flex:item @click.stop="menuclick(true,$event)" flex="0 0 4em">
-                menu
-            </flex:item>
-            <flex:item flex="1" class="mx-text-center">
-                Matrix
-            </flex:item>
-            <flex:item flex="0 0 4em" class="mx-text-right">
-                contacts
-            </flex:item>
-        </flex>
+        <navgation>
+            <navgation:item left width="4em"><span @click.stop="menuclick(true,$event)">Menu<span></navgation:item>
+            <navgation:item center>index page</navgation:item>
+            <navgation:item right width="4em">contacts</navgation:item>
+        </navgation>
     </appview:foot>
 </appview>
