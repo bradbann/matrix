@@ -3,7 +3,7 @@
 import Http from './http';
 import Connect from './connect';
 import vue from 'vue';
-import { deepExtend, typedof, isElement } from './util';
+import { flowExtend, typedof, isElement } from './util';
 
 const Body = document.body;
 const OPTIONS = {
@@ -43,7 +43,7 @@ export default class BootStrap extends Connect {
         this.$webviews = {};
         this.$server.$app = this;
         this.$el = _el;
-        this.$options = deepExtend(OPTIONS, _options);
+        this.$options = flowExtend(OPTIONS, _options);
 
         if ( this.$options.debug ){
             vue.config.debug = true;

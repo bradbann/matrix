@@ -7,8 +7,6 @@ const expectedDuration = 350;
 
 export const animateForward = function(oldWebview, newWebview, cb, className){
 
-
-
     // 准备 变换
     newWebview.$node.style.zIndex = 1000;
     oldWebview.$node.style.zIndex = 999;

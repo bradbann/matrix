@@ -2,6 +2,13 @@
 
 import unique from 'unique-array';
 
+export const flowExtend = function(a, b){
+    for ( let i in b ){
+        a[i] = b[i];
+    }
+    return a;
+}
+
 export const typedof = function(obj, type){
     const _type = Object.prototype.toString.call(obj).split(' ')[1].replace(/\]$/, '');
     if ( type ){
