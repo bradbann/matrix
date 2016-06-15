@@ -69,6 +69,22 @@ export default class Connect extends EventEmitter {
         });
     }
 
+    $redirect(url){
+        this.$server.redirect(url);
+    }
+    $reback(url){
+        this.$server.reback(url);
+    }
+    $forward(url){
+        this.$server.forward(url);
+    }
+    $back(url){
+        this.$server.back(url);
+    }
+    $refresh(url){
+        this.$server.refresh(url);
+    }
+
     publish(webview, next){
         const direction = this.$server.action;
         switch (direction){

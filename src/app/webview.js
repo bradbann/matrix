@@ -16,6 +16,22 @@ export default class Webview extends EventEmitter {
         this.$vm.$destroy(true);
     }
 
+    $redirect(url){
+        this.$server.redirect(url);
+    }
+    $reback(url){
+        this.$server.reback(url);
+    }
+    $forward(url){
+        this.$server.forward(url);
+    }
+    $back(url){
+        this.$server.back(url);
+    }
+    $refresh(url){
+        this.$server.refresh(url);
+    }
+
     _publish(next){
         const that = this;
         let options = this.render ? this.render() : {};
@@ -85,11 +101,11 @@ export default class Webview extends EventEmitter {
         if ( !options.methods ){
             options.methods = {};
         }
-        options.methods.$redirect = function(url){ this.$server.redirect(url); }
-        options.methods.$reback = function(url){ this.$server.reback(url); }
-        options.methods.$forward = function(url){ this.$server.forward(url); }
-        options.methods.$back = function(url){ this.$server.back(url); }
-        options.methods.$refresh = function(){ this.$server.refresh(); }
+        options.methods.$redirect = function(url){ this.$redirect(url); }
+        options.methods.$reback = function(url){ this.$reback(url); }
+        options.methods.$forward = function(url){ this.$forward(url); }
+        options.methods.$back = function(url){ this.$back(url); }
+        options.methods.$refresh = function(){ this.$refresh(); }
         if ( !options.mixins ){
             options.mixins = [];
         }

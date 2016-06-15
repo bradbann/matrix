@@ -340,7 +340,17 @@ app.on('route:end', function(){
 
 #### 方法
 
-##### app.
+##### this.$redirect(url) 与 this.$reback(url)
+
+这2个方法都会重新创建`webview`来产生页面
+
+##### this.$forward(url) 与 this.$back(url)
+
+这2个方法都会搜索已经存在的url是否匹配上当前需要跳转的url，如果存在，使用后退或者前进，但是方法永远固定。如果没有该url，将会自动创建。
+
+##### this.$refresh(url)
+
+刷新页面
 
 ## MIOX 的webview创建
 
