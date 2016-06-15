@@ -12,7 +12,7 @@ export default class Checkbox extends Component {
         return `
             <label class="mx-checkbox" :type="type" role="input:checkbox" :for="id" >
                 <input :checked="checked" :id="id" type="checkbox" :name="name" :value="value" class="mx-checkbox-input">
-                <span @click="elClick" class="mx-checkbox-vision"></span>
+                <span :style="{'font-size':size}"  @click="elClick" class="mx-checkbox-vision"></span>
                 <slot><slot>
             </label>`;
     }
@@ -22,7 +22,7 @@ export default class Checkbox extends Component {
         methods.elClick=function(){
             this.$el.click()
         }
-        
+
         return take('methods', methods);
     }
 

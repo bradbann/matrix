@@ -75,7 +75,7 @@
 
         }
         input[type=checkbox]:checked+.mx-checkbox-vision {
-            background-color: rgba($component-color,0.5);
+            background-color: rgba($component-color,1);
             &::before {
                 opacity  : 1;
             }
