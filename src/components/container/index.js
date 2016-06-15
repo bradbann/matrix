@@ -6,7 +6,7 @@ export default class Container extends Component {
         this.name = 'container';
     }
 
-    _computed(options){
+    _computed(options, take){
         if ( !options ){ options = {} }
         options.style = function(){
             const cls = [];
@@ -15,10 +15,7 @@ export default class Container extends Component {
             }
             return cls.join(' ');
         }
-        if ( typeof this.computed === 'function' ){
-            options = this.computed(options);
-        }
-        return options;
+        return take('computed', options);
     }
 
     _template(){
@@ -28,15 +25,10 @@ export default class Container extends Component {
         return `<div class="mx-container" role="container" :class="{'mx-container-border': this.border}" :style="style"><slot></slot></div>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = {} };
         props.border = Boolean;
         props.borderColor = String;
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

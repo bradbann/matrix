@@ -9,22 +9,24 @@ export default class Checkbox extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<label class="mx-checkbox" :type="type" role="input:checkbox" :for="id" ><input :checked="checked" :id="id" type="checkbox" :name="name" :value="value" class="mx-checkbox-input"><span @click="elClick" class="mx-checkbox-vision"></span><slot><slot></label>`;
+        return `
+            <label class="mx-checkbox" :type="type" role="input:checkbox" :for="id" >
+                <input :checked="checked" :id="id" type="checkbox" :name="name" :value="value" class="mx-checkbox-input">
+                <span @click="elClick" class="mx-checkbox-vision"></span>
+                <slot><slot>
+            </label>`;
     }
-    _methods(methods){
+    _methods(methods, take){
         if(!methods) methods = {};
 
         methods.elClick=function(){
             this.$el.click()
         }
-        if (this.methods){
-            methods = this.methods(methods);
-        }
-
-        return methods;
+        
+        return take('methods', methods);
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = {} };
         props = {
             name :String,
@@ -34,11 +36,6 @@ export default class Checkbox extends Component {
             type:String,
             checked:Boolean
         }
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

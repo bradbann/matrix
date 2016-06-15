@@ -6,8 +6,9 @@ export default class Flex extends Component {
         this.name = 'flex';
     }
 
-    _computed(options){
+    _computed(options, take){
         if ( !options ){ options = {} }
+
         options.style = function(){
             return this.flex != undefined ? {
                 boxFlex: this.flex,
@@ -41,11 +42,7 @@ export default class Flex extends Component {
             return classes.join(' ');
         }
 
-
-        if ( typeof this.computed === 'function' ){
-            options = this.computed(options);
-        }
-        return options;
+        return take('computed', options);
     }
 
     _template(){
@@ -55,7 +52,7 @@ export default class Flex extends Component {
         return `<div class="mx-flex-box" :class="class" :style="style"><slot></slot></div>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = {} };
 
         props.flex = String;
@@ -75,10 +72,6 @@ export default class Flex extends Component {
         // wrap|nowrap|wrap-reverse
         props.wrap = String;
 
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

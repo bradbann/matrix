@@ -13,15 +13,9 @@ export default class Cells extends Component {
         return `<div class="mx-cells" role="cells" :style="{'border-color':borderColor}"><slot></slot></div>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = {} };
-
         props.borderColor = String;
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

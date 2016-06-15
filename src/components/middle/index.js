@@ -5,7 +5,7 @@ export default class Middle extends Component {
         super();
         this.name = 'middle';
     }
-    _computed(options){
+    _computed(options, take){
         if ( !options ){ options = {} }
         options.class = function(){
             const cls = [];
@@ -14,10 +14,7 @@ export default class Middle extends Component {
             }
             return cls.join(' ');
         }
-        if ( typeof this.computed === 'function' ){
-            options = this.computed(options);
-        }
-        return options;
+        return take('computed', options);
     }
 
     _template(){
@@ -27,14 +24,9 @@ export default class Middle extends Component {
         return `<div class="mx-middle-outter" role="middle" :style="{'height':height}" :class="class"><div class="mx-middle-inner"><slot></slot></div></div>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = [] };
         props.push('height', 'align');
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

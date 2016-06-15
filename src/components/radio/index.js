@@ -11,27 +11,19 @@ export default class Radio extends Component {
         }
         return `<label class="mx-radio" role="input:radio" :for="id" ><input :id="id" type="radio" :name="name" :value="value" class="mx-radio-input"><span @click="radioClick" class="mx-radio-vision"></span><slot><slot></label>`;
     }
-    _methods(methods){
+    _methods(methods, take){
         if(!methods) methods = {};
 
         methods.radioClick=function(){
             this.$el.click()
         }
-        if (this.methods){
-            methods = this.methods(methods);
-        }
 
-        return methods;
+        return take('methods', methods);
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = [] };
         props.push('name', 'value','id','size');
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

@@ -8,24 +8,18 @@ export default class Navgation_Item extends Component {
         this.name = 'navgation-item';
     }
 
-    _components(components){
+    _components(components, take){
         if ( !components ) components = {};
         components['flex:item'] = compile(Flex_Item);
-        if ( this.components ){
-            components = this.components(components);
-        }
-        return components;
+        return take('components', components);
     }
 
-    _computed(computed){
+    _computed(computed, take){
         if ( !computed ) computed = {};
         computed.grid = function(){
             return (this.center ? 1 : 0 ) + ' 0 ' + (this.width || 0);
         }
-        if ( this.computed ){
-            computed = this.computed(computed);
-        }
-        return computed;
+        return take('computed', computed);
     }
 
     _template(){
@@ -35,15 +29,12 @@ export default class Navgation_Item extends Component {
         return `<flex:item :flex.sync="grid" :class="{'mx-text-center': center, 'mx-text-left': left, 'mx-text-right': right}"><slot></slot></flex:item>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ) props = {};
         props.width = String;
         props.center = Boolean;
         props.left = Boolean;
         props.right = Boolean;
-        if ( this.props ){
-            props = this.props(props);
-        }
-        return props;
+        return take('props', props);
     }
 }
