@@ -9,7 +9,7 @@ export default class Component {
         let _key = this._vue_options[property];
         if ( key ){
             const val = key.call(this, _key, (name, value) => {
-                if ( typeof this[name] = 'function' ){
+                if ( typeof this[name] == 'function' ){
                     value = this[name](value);
                 }
                 return value;
@@ -31,7 +31,7 @@ export default class Component {
         let _data = this._vue_options.data;
         if ( data ){
             data = data(_data, (name, value) => {
-                if ( typeof this[name] = 'function' ){
+                if ( typeof this[name] == 'function' ){
                     value = this[name](value);
                 }
                 return value;
