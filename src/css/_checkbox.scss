@@ -1,0 +1,41 @@
+&checkbox{
+    &[type=switch]{
+
+        .mx-checkbox-vision{
+            display: inline-block;
+            width: 2.5em;
+            height: 1em;
+            margin: 0 .5em;
+            background-color: rgba(29,29,38,0.15);
+            border-radius: 300px;
+            position: relative;
+            &::before{
+                content:'';
+                display: block;
+                width:1.4em;
+                height: 1.4em;
+                position: absolute;
+                top: -0.2em;
+                left: -20%;
+                background-color: #BEBEC1;
+                border-radius: 50%;
+                transition: transform 100ms ease-in-out,background-color 100ms ease;
+            }
+        }
+
+
+        input[type=checkbox]:checked+.mx-checkbox-vision{
+            background-color: rgba($component-color,0.5);
+            &::before{
+                transform: translate3d(150%,0,0);
+                background-color: $component-color;
+            }
+        }
+
+    }
+    &-input{
+        appearance:none;
+        display: none;
+    }
+
+}

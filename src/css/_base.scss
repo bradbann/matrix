@@ -22,11 +22,13 @@ a{
     cursor: $link-cursor;
     text-decoration: none;
 }
-input,textarea{
+input[type=text],input[type=password],input[type=number],input[type=email],input[type=tel],textarea{
     user-select:text;
     resize: none;
     box-shadow: none;
     -webkit-appearance:none;
+    border: none;
+    background: transparent;
 }
 input,select,option,textarea{
     outline: none;

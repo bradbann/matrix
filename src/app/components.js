@@ -3,6 +3,9 @@ import Middle from '../components/middle/index';
 import Aspect from '../components/aspect/index';
 import Container from '../components/container/index';
 
+import Radio from '../components/radio/index';
+import Checkbox from '../components/checkbox/index';
+
 import { compile } from './util';
 import { Flex, Flex_item } from '../components/flex/index';
 import { Navgation, Navgation_Item } from '../components/navgation/index';
@@ -13,6 +16,10 @@ import { Appview, Appview_head, Appview_body, Appview_foot } from '../components
 const COMPONENTS = {
     // middle
     "middle"        : Middle,
+
+    'radio'         : Radio,
+    
+    'checkbox'         : Checkbox,
 
     //ratio
     "aspect"         :Aspect,

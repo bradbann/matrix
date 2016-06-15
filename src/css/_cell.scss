@@ -64,6 +64,7 @@
             border-top: 1px solid $cell-linked-icon-color;
             border-right:1px solid $cell-linked-icon-color;
             transform: rotate(45deg);
+            flex-shrink: 0;
         }
         &:active{
             background-color: $cell-clicked-background;

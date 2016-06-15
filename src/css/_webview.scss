@@ -14,16 +14,13 @@
         visibility: hidden;
         background-color: $webview-background-color;
         z-index: 900;
-        transform: translate3d(0,0,0);
+
     }
 
     &-forward{
-
-
         &.drown{
             @include webview-animate-forward-state('drown');
         }
-
         &.slide{
             @include webview-animate-forward-state("slide");
         }
@@ -33,16 +30,12 @@
         &.scale{
             @include webview-animate-forward-state("scale");
         }
-        &.cube{
-            @include webview-animate-forward-state("cube");
-        }
     }
     &-backward{
 
         &.drown{
             @include webview-animate-backward-state('drown');
         }
-
         &.slide{
             @include webview-animate-backward-state('slide');
         }
@@ -52,9 +45,7 @@
         &.scale{
             @include webview-animate-backward-state('scale');
         }
-        &.cube{
-            @include webview-animate-backward-state('cube');
-        }
+
     }
 
     &.active{

@@ -95,6 +95,15 @@ $test-bg:#Ba77ff;
     &6{
         width: 100%;
     }
+    &-frame{
+        width: 350px;
+        overflow: scroll;
+    }
+    &-inner{
+        width: 900px;
+        height: 600px;
+        background-color: rgb(174, 238, 18)
+    }
 }
 
 body{
