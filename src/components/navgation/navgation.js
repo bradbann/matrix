@@ -8,13 +8,10 @@ export default class Navgation extends Component {
         this.name = 'navgation';
     }
 
-    _components(components){
+    _components(components, take){
         if ( !components ) components = {};
         components.flex = compile(Flex);
-        if ( this.components ){
-            components = this.components(components);
-        }
-        return components;
+        return take('components', components);
     }
 
     _template(){

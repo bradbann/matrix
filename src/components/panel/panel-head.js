@@ -13,14 +13,9 @@ export default class Panel_Head extends Component {
         return `<div class="mx-panel-head" :class="{'mx-panel-linked':linked}"><slot></slot></div>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = {} };
         props.linked = Boolean;
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

@@ -6,7 +6,7 @@ export default class AppView extends Component {
         this.name = 'appview';
     }
 
-    _computed(computed){
+    _computed(computed, take){
         if ( !computed ){
             computed = {};
         }
@@ -19,11 +19,7 @@ export default class AppView extends Component {
             }
         }
 
-        if ( this.computed ){
-            computed = this.computed(computed);
-        }
-
-        return computed;
+        return take('computed', computed);
     }
 
     _template(){
@@ -33,15 +29,10 @@ export default class AppView extends Component {
         return `<div class="mx-appview" role="appview" :class="{'mx-appview-horizontal': horizontal}" :style="style"><slot></slot></div>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = {} };
         props.blank = Boolean;
         props.horizontal = Boolean;
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        return take('props', props);
     }
 }

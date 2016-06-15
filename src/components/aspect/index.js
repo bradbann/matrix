@@ -5,7 +5,7 @@ export default class Aspect extends Component {
         super();
         this.name = 'aspect';
     }
-    _computed(options){
+    _computed(options, take){
         if ( !options ){ options = {} }
         options.class = function(){
             const cls = [];
@@ -14,10 +14,7 @@ export default class Aspect extends Component {
             }
             return cls.join(' ');
         }
-        if ( typeof this.computed === 'function' ){
-            options = this.computed(options);
-        }
-        return options;
+        return take('computed', options);
     }
 
     _template(){
@@ -27,16 +24,11 @@ export default class Aspect extends Component {
         return `<div class="mx-aspect" role="aspect" :style="{width:width}" :class="class"><div class="mx-aspect-inner"><slot></slot></div><div class="mx-aspect-after" :style="{'padding-bottom':ratio}"></div></div>`;
     }
 
-    _props(props){
+    _props(props, take){
         if ( !props ){ props = {} };
-        props.width = {type:String,default:'100%'};
+        props.width = { type: String, default: '100%' };
         props.align = String;
-        props.ratio = {type:String,default:"100%"}
-
-        if ( typeof this.props === 'function' ){
-            props = this.props(props);
-        }
-
-        return props;
+        props.ratio = { type: String, default: "100%" }
+        return take('props', props);
     }
 }
