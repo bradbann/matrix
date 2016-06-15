@@ -8,7 +8,12 @@ export default class Component {
         let key = this['_' + property] || this[property];
         let _key = this._vue_options[property];
         if ( key ){
-            const val = key.call(this, _key);
+            const val = key.call(this, _key, (name, value) => {
+                if ( typeof this[name] = 'function' ){
+                    value = this[name](value);
+                }
+                return value;
+            });
             if ( defaults != undefined && val == undefined ){
                 this._vue_options[property] = defaults;
             }else{
@@ -25,7 +30,12 @@ export default class Component {
         let data = this._data || this.data;
         let _data = this._vue_options.data;
         if ( data ){
-            data = data(_data);
+            data = data(_data, (name, value) => {
+                if ( typeof this[name] = 'function' ){
+                    value = this[name](value);
+                }
+                return value;
+            });
 
             if ( !data ) return;
 

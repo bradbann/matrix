@@ -95,6 +95,8 @@ ready(function(){
 
 ## API Usage
 
+api简介
+
 ### MIOX的静态方法或者属性
 
 #### Vue
@@ -217,10 +219,257 @@ define('tab', function(component, components){
     - {json}
         - forward: {function} 进入动画
         - back: {function} 退出动画
+
+一旦创建完毕，将返回一个`app`对象。
+
+
 #### widgets
 
-全局组件被编译橙vue配置对象后的集合。
+全局组件被编译成vue配置对象后的集合。
 
 ``` javascript
 console.log(widgets);
+```
+
+
+### MIOX 的中间件模式
+
+请参阅 [http://www.expressjs.com.cn/4x/api.html#app.use](http://www.expressjs.com.cn/4x/api.html#app.use)
+
+我们的路由中间件同理`express`的路由中间件。
+
+#### use(path, fn)
+
+> *非严格模式匹配路由规则*
+
+ - `path` {string | undefined}  路由规则，如果不存在就是`/`
+ - `fn` {function|router} 路由回调或者路由新中间件对象。如果启用的是新中间件对象，那么此中间件用作路由的分发。
+
+``` javascript
+app.use(function(next){
+	console.log('Hello world!');
+	next();
+})
+```
+
+如果是路由分发
+
+``` javascript
+const server = new connect();
+
+server.use(function(next){
+	console.log('Hello world!');
+	next();
+});
+
+app.use(server);
+```
+
+#### at(path, fn)
+
+> *严格模式匹配路由规则*
+
+ - `path` {string | undefined} 路由规则，如果不存在就是 `/`
+ - `fn` 匹配回调
+
+``` javascript
+app.at('/', function(next){
+	app.publish(webview, next);
+})
+```
+
+#### 严格模式与非严格模式
+
+如果我嘛当前路径是`/a/b/c`
+
+在非严格模式下 `/a` 或者`/a/b`或者`/a/b/c`都能匹配上当前路径
+
+在严格模式下 `/a`和`/a/b`都不能匹配上当前路径，只有`/a/b/c`能匹配
+
+#### publish(webview, next)
+
+ - `webview` {class} 需要被渲染的webview对象
+ - `next` 渲染完毕后的回调
+
+``` javascript
+app.publish(webview, next);
+connect.publish(webview, next);
+```
+
+#### define(name, object)
+
+定义一个简化的路由到`webview`模板对象
+
+``` javascript
+app.define('/a/b/', webview);
+```
+
+### MIOX 的全局事件
+
+#### event:ready
+
+框架渲染完毕后的事件
+
+``` javascript
+app.on('ready', function(){
+	console.log('ready');
+})
+```
+
+#### event: route:start
+
+路由开始匹配前的事件
+
+``` javascript
+app.on('route:start', function(){
+	console.log('route start');
+})
+```
+
+#### event route:end
+
+路由匹配完成后的事件
+
+``` javascript
+app.on('route:end', function(){
+	console.log('route end');
+})
+```
+
+## MIOX 的webview创建
+
+创建一个`webview`需要继承自原生的webview对象。来看一个例子：
+
+``` javascript
+import { webview } from 'miox';
+
+class IndexPageWebview extends webview {
+	constructor(){
+		super();
+	}
+
+	// ready和destoryed 方法将同事继承自配置参数
+	ready(){
+		console.log('ready2')
+	}
+
+	destoryed(){
+		console.log('destoryed 3')
+	}
+
+	// 我们通过render方法渲染出webview的vue配置对象
+	render(){
+		return {
+			template: `<h1 @click="a">11111111</h1>...`,
+			ready(){
+				console.log('ready 1')
+			},
+			destoryed(){
+				console.log('destoryed 1')
+			},
+			methods: {
+				a(){
+					alert(1)
+				}
+			}
+		}
+	}
+}
+```
+
+webview的创建，核心就是编写render返回的vue参数。参数匹配请具体参考 [http://cn.vuejs.org/api/](http://cn.vuejs.org/api/)
+
+
+## MIOX 的组件编写与继承
+
+所有组件的编写都基于原生组件对象或者已有组件对象
+
+基于原生
+
+``` javascript
+import { component } from 'miox';
+
+class tab extends component {
+	constructor(){
+		super();
+	}
+
+	_data(data, take){
+		if (!data) data = { b: 2, c: 3 };
+
+		//支持复用
+		data = take('data', data);
+
+		return data;
+		// 或者这样返回function
+		return function(){
+			return data;
+		}
+	}
+
+	_computed(computeds, take){
+		if ( !computeds ) computeds = {};
+
+		computeds.a = function(){
+			return this.b + this.c;
+		}
+
+		// 支持复用
+		computeds = take('computed', computeds);
+
+		return computeds;
+	}
+
+	// 模板化方法
+	_template(){
+		if ( this.template ){
+			// 支持再复用
+			return this.template();
+		}
+		return `<div>...</div>`
+	}
+
+	_props(props, take){
+		if ( !props ) props = {};
+		props.main = Boolean;
+
+		// 支持复用
+		props = take('props', props);
+
+		return props;
+	}
+}
+```
+
+所有webview的方法都是vuejs配置参数都变形，变形逻辑如下：
+
+如果我们要配置vuejs的`props`属性，那么我们使用`_props`或者直接`props`的方法来返回数据。这个方法接受2个参数：
+
+ - `source-data` 原始数据，即这个对象的原始存在数据
+ - `take` 继承回调。用来支持后续的再继承功能。而这个方法同样存在2个参数：
+	 - `name` 再继承的方法名称
+	 - `data` 继承数据
+
+如何较好的设计组件，将决定组件的可服用继承性。
+
+我们来看一个已由组件的变化继承：
+
+``` javascript
+import { components } from 'miox';
+
+class NewComponent extends components.cells {
+	constructor(){
+		super();
+	}
+
+	props(props, take){
+		props.keep = Boolean;
+
+		// 如果不写take方法，那么下次将无法被继承
+		props = tabke('extend_props', props);
+		// 同时下次被继承时候的名称为'extend_props'
+
+		return props;
+	}
+}
 ```
