@@ -9,7 +9,7 @@ export default class Radio extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<label class="mx-radio" role="input:radio" :for="id" ><input :id="id" type="radio" :name="name" :value="value" class="mx-radio-input"><span @click="radioClick" class="mx-radio-vision"></span><slot><slot></label>`;
+        return `<label class="mx-radio" role="input:radio" :for="id" :style="{'font-size':size}"><input :id="id" type="radio" :name="name" :value="value" class="mx-radio-input"><span @click="radioClick" class="mx-radio-vision"></span><slot><slot></label>`;
     }
     _methods(methods){
         if(!methods) methods = {};
