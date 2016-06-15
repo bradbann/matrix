@@ -38,14 +38,51 @@
                 </cell:foot>
             </cell>
 
-            <cell  linked>
+            <cell  >
                 <cell:body>
                     性别:
                 </cell:body>
                 <cell:foot>
-                    <checkbox type="switch"></checkbox>
+                    <checkbox name="bbb" value="1111" type="switch"></checkbox>
+                </cell:foot>
+
+                <cell:foot>
+                    <checkbox name="ccc" value="2222" type="default"></checkbox>
                 </cell:foot>
             </cell>
+
+            <cell  >
+                <cell:body>
+                    性别:
+                </cell:body>
+                <cell:foot>
+                    <checkbox name="bbb" value="1111" type="switch"></checkbox>
+                </cell:foot>
+
+                <cell:foot>
+                    <checkbox name="ccc" value="2222" type="default"></checkbox>
+                </cell:foot>
+            </cell>
+
+            <cell v-for="1 in 5" >
+                <cell:body>
+                    性别:
+                </cell:body>
+                <cell:foot>
+                    <checkbox name="bbb" value="1111" type="switch" checked ></checkbox>
+                </cell:foot>
+            </cell>
+
+            <cell v-for="1 in 5" >
+                <cell:body>
+                    性别 {{$index}}:
+                </cell:body>
+                <cell:foot>
+                    <checkbox name="ccc" value="2222" type="default"  ></checkbox>
+                </cell:foot>
+            </cell>
+
+
             <cell linked >
                 <cell:body>邮箱</cell:body>
                 <cell:foot>
