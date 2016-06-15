@@ -207,13 +207,16 @@ define('tab', function(component, components){
 
 启动一个app服务, 配置参数如下：
 
- - `backgroundColor`: '#222',
- - `debug`: false,
- - `delimiters`: ["{{", "}}"],
- - `unsafeDelimiters`: ["{{{", "}}}"],
- - `async`: true,
- - `animate`:'slide'    // fade|drown|cube
-
+ - `backgroundColor` 默认:'#222',
+ - `debug` 默认:false,
+ - `delimiters` 默认:["{{", "}}"],
+ - `unsafeDelimiters` 默认:["{{{", "}}}"],
+ - `async` 默认:true,
+ - `animate` 默认:'slide'
+    - {string} slide|fade|scale|drown|cube
+    - {json}
+        - forward: {function} 进入动画
+        - back: {function} 退出动画
 #### widgets
 
 全局组件被编译橙vue配置对象后的集合。
