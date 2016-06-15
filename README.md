@@ -1,6 +1,6 @@
 # MIOX
 
-它是一套基于`vuejs`的快速APP创建的框架，解决在实际生产环境中遇到的｀webview｀之间切换的路由架构。通过对`history`的监听来同步webview页面，达到与原生app相同的webview功能。
+它是一套基于`vuejs`的快速APP创建的框架，解决在实际生产环境中遇到的`webview`之间切换的路由架构。通过对`history`的监听来同步webview页面，达到与原生app相同的webview功能。
 
 ## 优势
 
