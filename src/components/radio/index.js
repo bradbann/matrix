@@ -9,21 +9,35 @@ export default class Radio extends Component {
         if ( typeof this.template === 'function' ){
             return this.template();
         }
-        return `<label class="mx-radio" role="input:radio" :for="id" ><input :id="id" type="radio" :name="name" :value="value" class="mx-radio-input"><span :style="{'font-size':size}" @click="radioClick" class="mx-radio-vision"></span><slot><slot></label>`;
+        return `
+        <label class="mx-radio" role="input:radio">
+            <input type="radio" :name="name" :value="value" class="mx-radio-input" v-model="data">
+            <span :style="{'font-size':size}" @click.stop="radioClick" class="mx-radio-vision"></span>
+            <slot><slot>
+        </label>`;
     }
     _methods(methods, take){
         if(!methods) methods = {};
 
         methods.radioClick=function(){
-            this.$el.click()
+            this.data = this.value;
         }
-    
+
         return take('methods', methods);
+    }
+
+    _events(events, take){
+        if ( !events ) events = {};
+        events['message:click'] = function(){
+            this.radioClick();
+        }
+
+        return take('events', events);
     }
 
     _props(props, take){
         if ( !props ){ props = [] };
-        props.push('name', 'value','id','size');
+        props.push('name', 'value', 'size', 'data');
         return take('props', props);
     }
 }

@@ -15,9 +15,10 @@ export default class Cell extends Component {
     _methods(methods, take){
         if(!methods) methods = {};
 
-        methods.forClick=function(){
-            console.log(document.getElementById(this.for));
-            document.getElementById(this.for).click();
+        methods.forClick = function(){
+            if ( this.throught ){
+                this.$broadcast('message:click');
+            }
         }
 
         return take('methods', methods);
@@ -26,6 +27,7 @@ export default class Cell extends Component {
     _props(props, take){
         if ( !props ){ props = {} };
         props.linked = Boolean;
+        props.throught = Boolean;
         props.borderColor = String;
         props.left = { type: String, default: '' };
         props.for = String;

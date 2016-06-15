@@ -172,6 +172,9 @@ class cell extends webview {
     render(){
         return {
             template: require("./temp/cell.html"),
+            data: {
+                a: 'men'
+            },
             ready(){
                 //console.log(this)
             }

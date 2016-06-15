@@ -27,29 +27,38 @@
                     <radio  name="sex" value="women">女</radio>
                 </cell:foot>
             </cell>
-            <cell  linked for='aaa'>
+            <cell  linked throught>
                 <cell:body>
                     性别:
                 </cell:body>
                 <cell:foot>
-                    <radio id="aaa"  size="300%" name="aaa" value="women">woman</radio>
+                    <radio size="300%" name="aaa" value="women" :data.sync="a">woman</radio>
                 </cell:foot>
             </cell>
-            <cell  linked>
+            <cell  linked throught>
                 <cell:body>
                     性别:
                 </cell:body>
                 <cell:foot>
-                    <radio size="180%" name="aaa" value="man">man</radio>
+                    <radio size="180%" name="aaa" value="men" :data.sync="a">man</radio>
                 </cell:foot>
             </cell>
 
-            <cell  linked>
+            <cell  linked throught>
                 <cell:body>
                     性别:
                 </cell:body>
                 <cell:foot>
-                    <radio  name="aaa" value="yao">yao</radio>
+                    <radio  name="aaa" value="yao" :data.sync="a">yao</radio>
+                </cell:foot>
+            </cell>
+
+            <cell  linked throught>
+                <cell:body>
+                    性别:
+                </cell:body>
+                <cell:foot>
+                    <radio  name="aaa" value="yaorrrrr" :data.sync="a">yaaaaao</radio>
                 </cell:foot>
             </cell>
 

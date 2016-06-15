@@ -336,6 +336,12 @@ app.on('route:end', function(){
 })
 ```
 
+### App 的内部条转方法
+
+#### 方法
+
+##### app.
+
 ## MIOX 的webview创建
 
 创建一个`webview`需要继承自原生的webview对象。来看一个例子：
