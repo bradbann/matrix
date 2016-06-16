@@ -23,6 +23,7 @@ export const webview    = Webview;
 export const scroller   = Scroll;
 export const component  = ComponentConstructor;
 export const components = Util.MioxComponents;
+export const util       = Util;
 
 export const bootstrap = function(el, options){
     const app = new Bootstrap(el, options);
@@ -41,17 +42,17 @@ export const define = function(name, cb){
     if ( typeof name === 'string' && cb ){
         let _component;
 
-        if ( typeof cb === 'function' && !cb.prototype ){
+        if (typeof cb === 'function' && !cb.prototype){
             _component = cb(component, components);
         }else{
             _component = cb;
         }
 
-        components[name] = _component;
+        Util.MioxComponents[name] = _component;
         Util.VueComponents[name] = compile(_component);
     }else{
         for ( let i in name ){
-            components[name] = name[i];
+            Util.MioxComponents[i] = name[i];
             Util.VueComponents[i] = compile(name[i]);
         }
     }

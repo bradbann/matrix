@@ -4,24 +4,32 @@ import ComponentInit from 'miox-components';
 
 ComponentInit(miox);
 
-//define(Appview);
-
-// console.log(scroller);
-
-// class Tab extends component {
+// //define(Appview);
+//
+// // console.log(scroller);
+// const aaa = miox.components.cells;
+// //console.log(aaa.prototype.$_mark)
+// for ( let i in aaa.constructor ){
+//     //console.log(i)
+// }
+// class Tab extends aaa {
 //     constructor(){
 //         super();
 //     }
 //
-//     _template(){
-//         return `<div class="tab">tab</div>`;
+//     template(){
+//         return `<div class="mx-cells eee" role="cells" :style="{'border-color':borderColor}" :class="{'ttt':main}"><slot></slot></div>`;
+//     }
+//
+//     props(props){
+//         if ( !props ) props = {};
+//         props.main = Boolean;
+//         return props;
 //     }
 // }
+// //console.log(Tab.arguments)
 //
-//
-// define('tab', Tab);
-//
-// console.log(widgets)
+// miox.define('tab', Tab);
 
 
 class a extends miox.webview {
