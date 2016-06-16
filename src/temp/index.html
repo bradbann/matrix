@@ -1,6 +1,6 @@
-<appview @click="menuclick(false,$event)">
+<appview @click="menuclick(false,$event)" >
 
-    <appview:body>
+    <appview:body v-touch.literal="abc">
 
         <cells>
             <cell linked v-redirect url="/appview">
@@ -17,6 +17,36 @@
             </cell>
             <cell linked v-redirect url="/middle">
                 <cell:body>middle</cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>aspect </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>button </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>aspect </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>button </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>aspect </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>button </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>aspect </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>button </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>aspect </cell:body>
+            </cell>
+            <cell linked v-redirect url="/aspect">
+                <cell:body>button </cell:body>
             </cell>
             <cell linked v-redirect url="/aspect">
                 <cell:body>aspect </cell:body>

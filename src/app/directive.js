@@ -27,3 +27,29 @@ function httpURL(method){
         }
     }
 }
+
+
+/**
+ * v-touch.literal = '[event name]';
+ * 将touch动作产生的scrollTop反应到对应的event-name事件上
+ * 唯一参数 top {number}
+ */
+export const touch = {
+    priority: 3000,
+    bind(){
+        Vue.util.on(this.el, 'scroll', this._cb = (e) => {
+            if (e.target.tagName.match(/input|textarea|select/i)) {
+                return
+            }
+            this.vm.$emit(this.mark, this.el.scrollTop);
+        });
+    },
+    update(val, old){
+        this.mark = val;
+        old && this.vm.$off(old);
+    },
+    unbind(){
+        Vue.util.off(this.el, 'scroll', this._cb);
+        delete this._cb;
+    }
+}

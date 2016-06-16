@@ -103,8 +103,13 @@ class b extends miox.webview {
                 b: this.b,
                 menuclick:this.menuclick
             },
+            events: {
+                abc(top){
+                    
+                }
+            },
             ready(){
-                //console.log(this)
+
             }
         }
     }

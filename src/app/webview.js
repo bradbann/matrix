@@ -1,7 +1,7 @@
 'use strict';
 import { compile, VueComponents } from './util';
 import { EventEmitter } from 'events';
-import { redirect, reback, forward, back, refresh } from './directive';
+import { redirect, reback, forward, back, refresh, touch } from './directive';
 import Vue from 'vue';
 
 
@@ -113,7 +113,7 @@ export default class Webview extends EventEmitter {
         }
 
         options.mixins.push({
-            directives: { redirect, reback, forward, back, refresh },
+            directives: { redirect, reback, forward, back, refresh, touch },
             components: VueComponents
         });
         return options;
