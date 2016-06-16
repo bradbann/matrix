@@ -1,4 +1,11 @@
-import { ready, bootstrap, webview, Promise, define, widgets, component, scroller } from './main';
+import * as miox from './main';
+import ComponentInit from 'miox-components';
+//import Appview from 'miox-componets/appview/index';
+
+ComponentInit(miox);
+
+//define(Appview);
+
 // console.log(scroller);
 
 // class Tab extends component {
@@ -17,7 +24,7 @@ import { ready, bootstrap, webview, Promise, define, widgets, component, scrolle
 // console.log(widgets)
 
 
-class a extends webview {
+class a extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -47,7 +54,7 @@ class a extends webview {
     }
 }
 
-class b extends webview {
+class b extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -96,7 +103,7 @@ class b extends webview {
 }
 
 
-class flex extends webview {
+class flex extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -109,7 +116,7 @@ class flex extends webview {
         }
     }
 }
-class panel extends webview {
+class panel extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -123,7 +130,7 @@ class panel extends webview {
     }
 }
 
-class appview extends webview {
+class appview extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -138,7 +145,7 @@ class appview extends webview {
 }
 
 
-class aspect extends webview {
+class aspect extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -151,7 +158,7 @@ class aspect extends webview {
         }
     }
 }
-class middle extends webview {
+class middle extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -165,7 +172,7 @@ class middle extends webview {
     }
 }
 
-class cell extends webview {
+class cell extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -185,8 +192,8 @@ class cell extends webview {
 
 
 
-ready(function(){
-    const app = bootstrap({
+miox.ready(function(){
+    const app = miox.bootstrap({
         backgroundColor: '#eee',
         debug: true,
         animate:'drown'     //  slide|fade|scale|drown

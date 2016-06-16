@@ -16,8 +16,8 @@ function httpURL(method){
         params: ['url'],
         bind(){
              this._cb = () => {
-                 if ( !this.params.url ) return;
-                 this.vm.$root[method](this.params.url);
+                if ( !this.params.url ) return;
+                this.vm.$root[method](this.params.url);
              };
              Vue.util.on(this.el, 'click', this._cb);
         },

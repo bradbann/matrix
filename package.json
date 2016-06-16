@@ -8,7 +8,8 @@
     "build": "rimraf ./build && cross-env NODE_ENV=production webpack -p",
     "git": "git add . && git commit -am 'update' && git push",
     "done": "npm run build && npm run git",
-    "publish": "npm run done &&  npm publish"
+    "publish": "npm run done &&  npm publish",
+    "widget": "webpack --config widgets.config.js"
   },
   "files": [
       "build",

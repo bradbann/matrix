@@ -185,7 +185,7 @@ export default class Connect extends EventEmitter {
         webviewNode.classList.add('mx-webview');
         const $webview = new webview(webviewNode);
         this.$webviews[this.$server._key] = $webview;
-        $webview.$root = this;
+        $webview.$server = this.$server;
         this.$server._webview = $webview;
         $webview._publish(next);
     }

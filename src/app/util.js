@@ -2,6 +2,9 @@
 
 import unique from 'unique-array';
 
+export const MioxComponents = {};
+export const VueComponents = {};
+
 export const flowExtend = function(a, b){
     for ( let i in b ){
         a[i] = b[i];

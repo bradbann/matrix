@@ -9,19 +9,20 @@ import Connect                          from './app/connect';
 import Webview                          from './app/webview';
 import Bootstrap                        from './app/boot';
 import FastClick                        from 'fastclick';
+import * as Util                        from './app/util';
 import ComponentConstructor             from './app/component';
-import { Components, COMPONENTLIST }    from './app/components';
+//import { Components, COMPONENTLIST }    from './app/components';
 
 export { Promise }                      from 'es6-promise';
-export { compile }                      from './app/util';
 export { EventEmitter }                 from 'events';
 
 export const vue        = Vue;
 export const connect    = Connect;
+export const compile    = Util.compile;
 export const webview    = Webview;
 export const scroller   = Scroll;
 export const component  = ComponentConstructor;
-export const components = Components;
+export const components = Util.MioxComponents;
 
 export const bootstrap = function(el, options){
     const app = new Bootstrap(el, options);
@@ -37,16 +38,21 @@ export const ready = function(cb){
 };
 
 export const define = function(name, cb){
-    let _component;
+    if ( typeof name === 'string' && cb ){
+        let _component;
 
-    if ( typeof cb === 'function' && !cb.prototype ){
-        _component = cb(component, components);
+        if ( typeof cb === 'function' && !cb.prototype ){
+            _component = cb(component, components);
+        }else{
+            _component = cb;
+        }
+
+        components[name] = _component;
+        Util.VueComponents[name] = compile(_component);
     }else{
-        _component = cb;
+        for ( let i in name ){
+            components[name] = name[i];
+            Util.VueComponents[i] = compile(name[i]);
+        }
     }
-
-    components[name] = _component;
-    COMPONENTLIST[name] = compile(_component);
 }
-
-export const widgets = COMPONENTLIST;

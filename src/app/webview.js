@@ -1,6 +1,5 @@
 'use strict';
-import { compile } from './util';
-import { COMPONENTLIST } from './components';
+import { compile, VueComponents } from './util';
 import { EventEmitter } from 'events';
 import { redirect, reback, forward, back, refresh } from './directive';
 import Vue from 'vue';
@@ -101,11 +100,11 @@ export default class Webview extends EventEmitter {
         if ( !options.methods ){
             options.methods = {};
         }
-        options.methods.$redirect = function(url){ this.$redirect(url); }
-        options.methods.$reback = function(url){ this.$reback(url); }
-        options.methods.$forward = function(url){ this.$forward(url); }
-        options.methods.$back = function(url){ this.$back(url); }
-        options.methods.$refresh = function(){ this.$refresh(); }
+        options.methods.$redirect = (url) => { this.$redirect(url); }
+        options.methods.$reback = (url) => { this.$reback(url); }
+        options.methods.$forward = (url) => { this.$forward(url); }
+        options.methods.$back = (url) => { this.$back(url); }
+        options.methods.$refresh = () => { this.$refresh(); }
         if ( !options.mixins ){
             options.mixins = [];
         }
@@ -115,7 +114,7 @@ export default class Webview extends EventEmitter {
 
         options.mixins.push({
             directives: { redirect, reback, forward, back, refresh },
-            components: COMPONENTLIST
+            components: VueComponents
         });
         return options;
     }
