@@ -1,5 +1,4 @@
 import * as miox from './main';
-console.log(miox.components)
 class Tab extends miox.component {
     constructor(){
         super();

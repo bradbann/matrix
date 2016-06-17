@@ -80,7 +80,7 @@ class b extends miox.webview {
         }
     }
     render(){
-        return {
+        const j = {
             template: require("./temp/index.html"),
             data:{
                 state:{
@@ -92,15 +92,15 @@ class b extends miox.webview {
                 b: this.b,
                 menuclick:this.menuclick
             },
-            events: {
-                abc(top){
-
-                }
-            },
+            events: {},
             ready(){
 
             }
         }
+        j.events['abc:click'] = function(top){
+            console.log(top);
+        }
+        return j;
     }
 }
 

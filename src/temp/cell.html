@@ -27,38 +27,38 @@
                     <radio  name="sex" value="women">女</radio>
                 </cell-foot>
             </cell>
-            <cell  linked throught>
+            <cell  linked v-click:a1>
                 <cell-body>
                     性别:
                 </cell-body>
                 <cell-foot>
-                    <radio size="300%" name="aaa" value="women" :data.sync="a">woman</radio>
+                    <radio size="300%" name="aaa" value="women" :data.sync="a" v-ref:a1>woman</radio>
                 </cell-foot>
             </cell>
-            <cell  linked throught>
+            <cell  linked v-click:a2>
                 <cell-body>
                     性别:
                 </cell-body>
                 <cell-foot>
-                    <radio size="180%" name="aaa" value="men" :data.sync="a">man</radio>
-                </cell-foot>
-            </cell>
-
-            <cell  linked throught>
-                <cell-body>
-                    性别:
-                </cell-body>
-                <cell-foot>
-                    <radio  name="aaa" value="yao" :data.sync="a">yao</radio>
+                    <radio size="180%" name="aaa" value="men" :data.sync="a" v-ref:a2>man</radio>
                 </cell-foot>
             </cell>
 
-            <cell  linked throught>
+            <cell  linked v-click:a3>
                 <cell-body>
                     性别:
                 </cell-body>
                 <cell-foot>
-                    <radio  name="aaa" value="yaorrrrr" :data.sync="a">yaaaaao</radio>
+                    <radio  name="aaa" value="yao" :data.sync="a" v-ref:a3>yao</radio>
+                </cell-foot>
+            </cell>
+
+            <cell  linked v-click:a4>
+                <cell-body>
+                    性别:
+                </cell-body>
+                <cell-foot>
+                    <radio  name="aaa" value="yaorrrrr" :data.sync="a" v-ref:a4>yaaaaao</radio>
                 </cell-foot>
             </cell>
 
