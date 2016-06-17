@@ -36,7 +36,8 @@ export const ready = function(cb){
     });
 };
 
-export const define = function(name, cb){
+export const define = function(name, cb, globalInset){
+    let VueExtends;
     if ( typeof name === 'string' && cb ){
         let _component;
 
@@ -47,11 +48,22 @@ export const define = function(name, cb){
         }
 
         Util.MioxComponents[name] = _component;
-        Util.VueComponents[name] = compile(_component);
+        VueExtends = compile(_component);
+
+        if ( globalInset ){
+            Vue.component(name, VueExtends);
+        }else{
+            Util.VueComponents[name] = VueExtends;
+        }
     }else{
         for ( let i in name ){
             Util.MioxComponents[i] = name[i];
-            Util.VueComponents[i] = compile(name[i]);
+            VueExtends = compile(name[i]);
+            if ( !!cb ){
+                Vue.component(i, VueExtends);
+            }else{
+                Util.VueComponents[i] = VueExtends;
+            }
         }
     }
 }
