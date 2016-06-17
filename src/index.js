@@ -3,6 +3,8 @@ import ComponentInit from 'miox-components';
 //import Appview from 'miox-componets/appview/index';
 import ttt from './a';
 
+import './css/matrix.scss'
+
 ComponentInit(miox);
 
 // //define(Appview);

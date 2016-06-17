@@ -1,0 +1,10 @@
+&middle{
+    &-outter{
+        display: table;
+        width: 100%;
+    }
+    &-inner{
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
