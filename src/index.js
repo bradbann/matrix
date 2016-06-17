@@ -1,6 +1,7 @@
 import * as miox from './main';
 import ComponentInit from 'miox-components';
 //import Appview from 'miox-componets/appview/index';
+import ttt from './a';
 
 ComponentInit(miox);
 
@@ -12,24 +13,10 @@ ComponentInit(miox);
 // for ( let i in aaa.constructor ){
 //     //console.log(i)
 // }
-// class Tab extends aaa {
-//     constructor(){
-//         super();
-//     }
-//
-//     template(){
-//         return `<div class="mx-cells eee" role="cells" :style="{'border-color':borderColor}" :class="{'ttt':main}"><slot></slot></div>`;
-//     }
-//
-//     props(props){
-//         if ( !props ) props = {};
-//         props.main = Boolean;
-//         return props;
-//     }
-// }
-// //console.log(Tab.arguments)
-//
-// miox.define('tab', Tab);
+
+//console.log(Tab.arguments)
+
+miox.define('tab', ttt);
 
 
 class a extends miox.webview {
@@ -105,7 +92,7 @@ class b extends miox.webview {
             },
             events: {
                 abc(top){
-                    
+
                 }
             },
             ready(){

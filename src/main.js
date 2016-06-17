@@ -40,7 +40,7 @@ export const define = function(name, cb){
     if ( typeof name === 'string' && cb ){
         let _component;
 
-        if (typeof cb === 'function' && !cb.prototype){
+        if (typeof cb === 'function' && !cb.prototype && !cb.prototype.$_install){
             _component = cb(component, components);
         }else{
             _component = cb;
