@@ -10,7 +10,10 @@ import Bootstrap                        from './app/boot';
 import FastClick                        from 'fastclick';
 import * as Util                        from './app/util';
 import ComponentConstructor             from './app/component';
-//import { Components, COMPONENTLIST }    from './app/components';
+import {
+    redirect, reback, forward, back, refresh,
+    touch, click
+}                                       from './app/directive';
 
 export { Promise }                      from 'es6-promise';
 export { EventEmitter }                 from 'events';
@@ -67,3 +70,11 @@ export const define = function(name, cb, globalInset){
         }
     }
 }
+
+Vue.directive('click', click);
+Vue.directive('touch', touch);
+Vue.directive('redirect', redirect);
+Vue.directive('reback', reback);
+Vue.directive('forward', forward);
+Vue.directive('back', back);
+Vue.directive('refresh', refresh);

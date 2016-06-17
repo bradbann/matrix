@@ -25,12 +25,6 @@ class a extends miox.webview {
     constructor(node){
         super(node);
     }
-    a(){
-        this.$back('/')
-    }
-    b(){
-        this.$reback('/')
-    }
     render(){
         return {
             template: `
@@ -40,10 +34,6 @@ class a extends miox.webview {
                 <h1 class="ddd" @click="a">a back</h1>
                 <h1 class="ddd" @click="b">a reback</h1>
             `,
-            methods: {
-                a: this.a,
-                b: this.b
-            },
             ready(){
                 //console.log(this)
             }
@@ -63,6 +53,11 @@ class b extends miox.webview {
         this.$redirect('/a/b/c')
     }
 
+    MX_comment(){
+        return {
+            template: `<div class="comment">comment</div>`
+        }
+    }
 
     menuclick(openstate,event){
         let body=  document.body;
