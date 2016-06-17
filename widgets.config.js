@@ -28,6 +28,8 @@ else{
         { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!postcss!sass")  },
         { test: /\.html$/, loader: "html!html-minify" }
     );
+
+    plugins.push(new ExtractTextPlugin('./index.css'));
 }
 
 var result = {
