@@ -3,6 +3,9 @@ import { parse, format } from 'url';
 import { EventEmitter } from 'events';
 import { deepExtend } from './util';
 
+const delay = 1000 / 60;
+const noop = function(){};
+
 export default class Http extends EventEmitter {
     constructor(){
         super();
@@ -30,7 +33,7 @@ export default class Http extends EventEmitter {
 
     _init(){
         this.history = createHashHistory();
-        this.history.listen(local => setImmediate(() => this._listen(local)));
+        this.history.listen(local => setTimeout(() => this._listen(local), delay));
     }
 
     _listen(local){
@@ -69,7 +72,7 @@ export default class Http extends EventEmitter {
         }
     }
 
-    _removeAll(cb){
+    _removeAll(cb = noop){
         let len = window.sessionStorage.length;
         while( len-- ){
             let key = window.sessionStorage.key(len);
@@ -77,10 +80,10 @@ export default class Http extends EventEmitter {
                 window.sessionStorage.removeItem(key);
             }
         }
-        cb && setImmediate(cb);
+        setImmediate(cb);
     }
 
-    _removeByKey(index, localkey, cb){
+    _removeByKey(index, localkey, cb = noop){
         let len = window.sessionStorage.length;
         let removes = [];
         while( len-- ){
@@ -94,10 +97,8 @@ export default class Http extends EventEmitter {
             }
         }
         setImmediate(() => {
-            if ( removes.length ){
-                this.removes = removes;
-            }
-            cb && cb();
+            if ( removes.length ) this.removes = removes;
+            cb();
         });
     }
 
@@ -120,7 +121,7 @@ export default class Http extends EventEmitter {
         const searchQuery = parse(search || '', true);
         this.query = deepExtend(searchQuery.query, this.extra);
         this._first && (delete this._first);
-        this.emit('http:change', cb => {
+        this.emit('http:change', (cb = noop) => {
             if ( this.removes && this.removes.length ){
                 this.removes.forEach(item => {
                     if ( this.$app.$webviews[item] ){
@@ -134,10 +135,10 @@ export default class Http extends EventEmitter {
             if ( this._force ) {
                 delete this._force;
             }
-            setImmediate(() => {
+            setTimeout(() => {
                 this._animating = false;
-                cb && cb();
-            });
+                cb();
+            }, delay);
         });
     }
 
