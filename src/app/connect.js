@@ -172,9 +172,7 @@ export default class Connect extends EventEmitter {
                 next();
             });
         }else{
-            if ( this.$webviews[this.$server._id].refresh ){
-                this.$webviews[this.$server._id].refresh();
-            }
+            _Webview.refresh && _Webview.refresh();
             next();
         }
     }
