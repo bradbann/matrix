@@ -139,7 +139,7 @@ class TAB extends component {
         super();
     }
 
-    _template(template){
+    template(){
         return `<div class="mx-tab"><slot></slot></div>`
     }
 }
@@ -192,7 +192,7 @@ class Tab extends component {
         super();
     }
 
-    _template(){
+    template(){
         return `<div class="tab">tab</div>`;
     }
 }
@@ -210,7 +210,7 @@ define('tab', function(component, components){
             super();
         }
 
-        _template(){
+        template(){
             return `<div class="tab">tab</div>`;
         }
     }
@@ -343,8 +343,6 @@ app.on('route:end', function(){
 
 ### App 的内部条转方法
 
-#### 方法
-
 ##### this.$redirect(url) 与 this.$reback(url)
 
 这2个方法都会重新创建`webview`来产生页面
@@ -353,7 +351,7 @@ app.on('route:end', function(){
 
 这2个方法都会搜索已经存在的url是否匹配上当前需要跳转的url，如果存在，使用后退或者前进，但是方法永远固定。如果没有该url，将会自动创建。
 
-##### this.$refresh(url)
+##### this.$refresh()
 
 刷新页面
 
@@ -415,48 +413,25 @@ class tab extends component {
 		super();
 	}
 
-	_data(data, take){
-		if (!data) data = { b: 2, c: 3 };
-
-		//支持复用
-		data = take('data', data);
-
-		return data;
-		// 或者这样返回function
-		return function(){
-			return data;
-		}
+	data(){
+		return { b: 2, c: 3 };
 	}
 
-	_computed(computeds, take){
-		if ( !computeds ) computeds = {};
-
+	computed(computeds){
 		computeds.a = function(){
 			return this.b + this.c;
 		}
-
-		// 支持复用
-		computeds = take('computed', computeds);
-
 		return computeds;
 	}
 
 	// 模板化方法
-	_template(){
-		if ( this.template ){
-			// 支持再复用
-			return this.template();
-		}
+	template(){
 		return `<div>...</div>`
 	}
 
-	_props(props, take){
-		if ( !props ) props = {};
+	props(props, take){
+		const props = {};
 		props.main = Boolean;
-
-		// 支持复用
-		props = take('props', props);
-
 		return props;
 	}
 }
@@ -464,12 +439,9 @@ class tab extends component {
 
 所有webview的方法都是vuejs配置参数都变形，变形逻辑如下：
 
-如果我们要配置vuejs的`props`属性，那么我们使用`_props`或者直接`props`的方法来返回数据。这个方法接受2个参数：
+如果我们要配置vuejs的`props`属性，那么我们使用`props`的方法来返回数据。这个方法接受1个参数：
 
  - `source-data` 原始数据，即这个对象的原始存在数据
- - `take` 继承回调。用来支持后续的再继承功能。而这个方法同样存在2个参数：
-	 - `name` 再继承的方法名称
-	 - `data` 继承数据
 
 如何较好的设计组件，将决定组件的可服用继承性。
 
@@ -483,13 +455,9 @@ class NewComponent extends components.cells {
 		super();
 	}
 
-	props(props, take){
+	props(){
+        props = super.props();
 		props.keep = Boolean;
-
-		// 如果不写take方法，那么下次将无法被继承
-		props = tabke('extend_props', props);
-		// 同时下次被继承时候的名称为'extend_props'
-
 		return props;
 	}
 }

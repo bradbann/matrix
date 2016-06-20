@@ -20,6 +20,47 @@ ComponentInit(miox);
 
 miox.define('tab', ttt);
 
+class abc {
+    constructor(){
+        this.b = {};
+        this.f = {};
+    }
+    a(){
+        this.b.a = 1;
+    }
+    c(){
+        this.f.a = 1;
+    }
+}
+
+class t extends abc {
+    constructor(){
+        super();
+    }
+    a(){
+        super.a();
+        this.b.b = 2;
+    }
+}
+
+class g extends t {
+    constructor(){
+        super();
+    }
+    c(){
+        super.c();
+        this.f.b = 3;
+    }
+}
+
+
+const s = new g();
+
+s.a();
+s.c();
+
+console.log(s.b, s.f)
+
 
 class a extends miox.webview {
     constructor(node){

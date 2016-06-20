@@ -1,19 +1,28 @@
 export default class Component {
     constructor(){
         this._isMx = true;
-        this._vue_options = {};
+        this._vue_options = {
+            data: {},
+            computed: {},
+            methods: {},
+            watch: {},
+            directives: {},
+            elementDirectives: {},
+            filters: {},
+            components: {},
+            transitions: {},
+            partials: {},
+            events: {},
+            mixins: {},
+            extends: {}
+        };
     }
 
     $_extend(property, defaults){
-        let key = this['_' + property] || this[property];
+        let key = this[property];
         let _key = this._vue_options[property];
         if ( key ){
-            const val = key.call(this, _key, (name, value) => {
-                if ( typeof this[name] == 'function' ){
-                    value = this[name](value);
-                }
-                return value;
-            });
+            const val = key.call(this, _key);
             if ( defaults != undefined && val == undefined ){
                 this._vue_options[property] = defaults;
             }else{
@@ -27,16 +36,10 @@ export default class Component {
     }
 
     $_data(){
-        let data = this._data || this.data;
+        let data = this.data;
         let _data = this._vue_options.data;
         if ( data ){
-            data = data(_data, (name, value) => {
-                if ( typeof this[name] == 'function' ){
-                    value = this[name](value);
-                }
-                return value;
-            });
-
+            data = data(_data);
             if ( !data ) return;
 
             if ( typeof data !== 'function' ){
