@@ -40,7 +40,10 @@ export default class Component {
         let _data = this._vue_options.data;
         if ( data ){
             data = data(_data);
-            if ( !data ) return;
+            if ( !data ) {
+                delete this._vue_options.data;
+                return;
+            }
 
             if ( typeof data !== 'function' ){
                 this._vue_options.data = function(){
@@ -50,6 +53,8 @@ export default class Component {
             }
 
             this._vue_options.data = data;
+        }else{
+            delete this._vue_options.data;
         }
     }
 
