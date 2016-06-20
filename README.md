@@ -25,6 +25,14 @@ npm install -g miox-cli
 
 安装完毕后使用 `mi create` 来创建你的应用。这是个简易脚手架，只用来创建项目。但是前提是你必须安装`webpack`.
 
+> npm run dev
+
+用来启动服务
+
+> npm run build
+
+用来打包项目
+
 ## 创建第一个简单应用
 
 ``` javascript
