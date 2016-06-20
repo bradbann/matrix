@@ -115,28 +115,29 @@ class b extends miox.webview {
             this.state.menuOpen=false;
         }
     }
-    render(){
-        const j = {
-            template: require("./temp/index.html"),
-            data:{
-                state:{
-                    menuOpen:false
-                }
-            },
-            methods: {
-                a: this.a,
-                b: this.b,
-                menuclick:this.menuclick
-            },
-            events: {},
-            ready(){
 
-            }
-        }
-        j.events['abc:click'] = function(top){
+    data(data){
+        data.state = {menuOpen:false}
+        return data;
+    }
+
+    methods(methods){
+        methods = super.methods(methods);
+        methods.a = this.a;
+        methods.b = this.b;
+        methods.menuclick = this.menuclick;
+        return methods;
+    }
+
+    events(events){
+        events['abc:click'] = function(top){
             console.log(top);
         }
-        return j;
+        return events;
+    }
+
+    render(){
+        return require("./temp/index.html");
     }
 }
 

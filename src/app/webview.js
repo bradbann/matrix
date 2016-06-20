@@ -2,7 +2,68 @@
 import { compile, VueComponents } from './util';
 import { EventEmitter } from 'events';
 import Vue from 'vue';
+import Component from './component';
+const noop = function(){}
 
+export default class Webview extends Component {
+    constructor(node){
+        super();
+        this.$node = node;
+        this.name = 'Webview';
+    }
+
+    $destroy(){ this.$vm.$destroy(true); }
+    $redirect(url){ this.$server.redirect(url); }
+    $reback(url){ this.$server.reback(url); }
+    $forward(url){ this.$server.forward(url); }
+    $back(url){ this.$server.back(url); }
+    $refresh(){ this.$server.refresh(); }
+
+    methods(methods){
+        methods.$redirect = (url) => { this.$redirect(url); }
+        methods.$reback = (url) => { this.$reback(url); }
+        methods.$forward = (url) => { this.$forward(url); }
+        methods.$back = (url) => { this.$back(url); }
+        methods.$refresh = () => { this.$refresh(); }
+        return methods;
+    }
+
+    mixins(mixins){
+        mixins.push({ components: VueComponents });
+        return mixins;
+    }
+
+    _publish(next){
+        try{
+        const that = this;
+        let template = this.render ? this.render() : '';
+        this.$_install();
+
+        const options = this._vue_options;
+        if ( template ){
+            options.template = template;
+        }
+        if ( typeof options.data === 'function' ){
+            options.data = options.data();
+        }
+        const ready = options.ready || noop;
+        options.ready = function(){
+            console.log('in')
+            this.$server = this.$app.$server;
+            ready.call(this);
+            next(that);
+        }
+
+        options.el = this.$node;
+        options.replace = false;
+
+        this.$vm = new Vue(options);
+        this.$vm.$webview = this;
+        }catch(e){console.error(e)}
+    }
+}
+
+/*
 export default class Webview extends EventEmitter {
     constructor(node){
         super();
@@ -14,7 +75,7 @@ export default class Webview extends EventEmitter {
     $reback(url){ this.$server.reback(url); }
     $forward(url){ this.$server.forward(url); }
     $back(url){ this.$server.back(url); }
-    $refresh(url){ this.$server.refresh(url); }
+    $refresh(){ this.$server.refresh(); }
 
     _publish(next){
         const that = this;
@@ -86,3 +147,4 @@ export default class Webview extends EventEmitter {
         return options;
     }
 }
+*/

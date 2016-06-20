@@ -1,3 +1,4 @@
+import { compile } from './util';
 export default class Component {
     constructor(){
         this._isMx = true;
@@ -13,7 +14,7 @@ export default class Component {
             transitions: {},
             partials: {},
             events: {},
-            mixins: {},
+            mixins: [],
             extends: {}
         };
     }
@@ -27,6 +28,24 @@ export default class Component {
                 this._vue_options[property] = defaults;
             }else{
                 this._vue_options[property] = val;
+            }
+            if ( property === 'components' ){
+                for ( let i in this._vue_options.components ) this._vue_options.components[i] = compile(this._vue_options.components);
+            }
+            if ( property === 'mixins' ){
+                let mixins = this._vue_options.mixins;
+                if ( Array.isArray(mixins) ){
+                    this._vue_options.mixins = mixins.map(function(mixin){
+                        if ( mixin.components ){
+                            for ( let j in mixin.components ) mixin.components[j] = compile(mixin.components[j]);
+                        }
+                        return mixin;
+                    });
+                }else{
+                    if ( mixins.components ){
+                        for ( let z in mixins.components ) this._vue_options.mixins.components[z] = compile(mixins.components[z]);
+                    }
+                }
             }
         }
     }
