@@ -17,13 +17,25 @@
 npm install --save miox
 ```
 
+## 工具
+
+``` bash
+npm install -g miox-cli
+```
+
+安装完毕后使用 `mi create` 来创建你的应用。这是个简易脚手架，只用来创建项目。但是前提是你必须安装`webpack`.
+
 ## 创建第一个简单应用
 
 ``` javascript
-import { bootstrap, ready, webview } from 'miox';
+import * as miox from 'miox';
+import mioxComponents from 'miox-components';
 import requirejs from 'requirejs';
 
-class IndexPage extends webview {
+// 安装native组件
+mioxComponents(miox);
+
+class IndexPage extends miox.webview {
     constructor(){
         super();
     }
@@ -39,19 +51,17 @@ class IndexPage extends webview {
         return {
             template: `
                 <appview>
-                    <appview:head>
+                    <appview-head>
                         <navgation>
-                            <navgation:item left width="4em">Menu</navgation:item>
-                            <navgation:center>MIOX FREAMWORK</navgation:item>
-                            <navgation:item right width="4em">Configs</navgation:item>
+                            <navgation-item left>Menu</navgation-item>
+                            <navgation-item center>MIOX FREAMWORK</navgation-item>
+                            <navgation-item right>Configs</navgation-item>
                         </navgation>
-                    </appview:head>
-                    <appview:body>
-                        <container>
+                    </appview-head>
+                    <appview-body>
                             <h1>Welcome to use</h1>
                             <p>MIOX framework building apps.</p>
-                        </container>
-                    </appview:body>
+                    </appview-body>
                 </appview>
             `
         }
@@ -147,10 +157,6 @@ app.listen();
 
 返回`webview`原生对象
 
-#### scroller
-
-返回滚动事件的监听对象
-
 #### compile
 
 返回编译组件的方法。比如我们编译一个组件,返回该组件编译后的vue组件配置对象.
@@ -215,21 +221,12 @@ define('tab', function(component, components){
  - `unsafeDelimiters` 默认:["{{{", "}}}"],
  - `async` 默认:true,
  - `animate` 默认:'slide'
-    - {string} slide|fade|scale|drown|cube
+    - {string} slide|fade|scale|drown
     - {json}
         - forward: {function} 进入动画
         - back: {function} 退出动画
 
 一旦创建完毕，将返回一个`app`对象。
-
-
-#### widgets
-
-全局组件被编译成vue配置对象后的集合。
-
-``` javascript
-console.log(widgets);
-```
 
 
 ### MIOX 的中间件模式
