@@ -30,7 +30,8 @@ export default class Component {
                 this._vue_options[property] = val;
             }
             if ( property === 'components' ){
-                for ( let i in this._vue_options.components ) this._vue_options.components[i] = compile(this._vue_options.components);
+                let _cp = this._vue_options.components;
+                for ( let i in _cp ) this._vue_options.components[i] = compile(_cp[i]);
             }
             if ( property === 'mixins' ){
                 let mixins = this._vue_options.mixins;
