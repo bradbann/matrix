@@ -29,11 +29,21 @@ export const util       = Util;
 export const bootstrap = function(el, options){
     const app = new Bootstrap(el, options);
     Vue.prototype.$app = app;
-    Vue.prototype.$redirect = app.$server.redirect;
-    Vue.prototype.$reback = app.$server.reback;
-    Vue.prototype.$foward = app.$server.foward;
-    Vue.prototype.$back = app.$server.back;
-    Vue.prototype.$refresh = app.$server.refresh;
+    Vue.prototype.$redirect = function(url){
+        app.$server.redirect(url);
+    };
+    Vue.prototype.$reback = function(url){
+        app.$server.reback(url);
+    };
+    Vue.prototype.$foward = function(url){
+        app.$server.foward(url);
+    };
+    Vue.prototype.$back = function(url){
+        app.$server.back(url);
+    };
+    Vue.prototype.$refresh = function(){
+        app.$server.refresh();
+    };
     return app;
 };
 
