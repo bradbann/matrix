@@ -50,29 +50,28 @@ class IndexPage extends miox.webview {
 
     ready(){
         return function(){
+            super.ready && super.ready();
             console.log('app rendered:');
             console.log(this);
         }
     }
 
     render(){
-        return {
-            template: `
-                <appview>
-                    <appview-head>
-                        <navgation>
-                            <navgation-item left>Menu</navgation-item>
-                            <navgation-item center>MIOX FREAMWORK</navgation-item>
-                            <navgation-item right>Configs</navgation-item>
-                        </navgation>
-                    </appview-head>
-                    <appview-body>
-                            <h1>Welcome to use</h1>
-                            <p>MIOX framework building apps.</p>
-                    </appview-body>
-                </appview>
-            `
-        }
+        return `
+            <appview>
+                <appview-head>
+                    <navgation>
+                        <navgation-item left>Menu</navgation-item>
+                        <navgation-item center>MIOX FREAMWORK</navgation-item>
+                        <navgation-item right>Configs</navgation-item>
+                    </navgation>
+                </appview-head>
+                <appview-body>
+                        <h1>Welcome to use</h1>
+                        <p>MIOX framework building apps.</p>
+                </appview-body>
+            </appview>
+        `
     }
 }
 
@@ -369,34 +368,34 @@ class IndexPageWebview extends webview {
 
 	// ready和destoryed 方法将同事继承自配置参数
 	ready(){
-		console.log('ready2')
+		return function(){
+            super.ready && super.ready();
+            console.log('ready2');
+        }
 	}
 
 	destoryed(){
-		console.log('destoryed 3')
+        return function(){
+            super.destoryed && super.destoryed();
+            console.log('destoryed 3')
+        }
 	}
+
+    methods(methods){
+        methods.a = function(){
+            alert(1);
+        }
+        return methods;
+    }
 
 	// 我们通过render方法渲染出webview的vue配置对象
 	render(){
-		return {
-			template: `<h1 @click="a">11111111</h1>...`,
-			ready(){
-				console.log('ready 1')
-			},
-			destoryed(){
-				console.log('destoryed 1')
-			},
-			methods: {
-				a(){
-					alert(1)
-				}
-			}
-		}
+        return `<h1 @click="a">11111111</h1>...`;
 	}
 }
 ```
 
-webview的创建，核心就是编写render返回的vue参数。参数匹配请具体参考 [http://cn.vuejs.org/api/](http://cn.vuejs.org/api/)
+webview的创建，核心就是编写render返回的模板，其他任何方法都将继承vue配置参数方法，但是都需要`return`返回值。参数匹配请具体参考 [http://cn.vuejs.org/api/](http://cn.vuejs.org/api/)
 
 
 ## MIOX 的组件编写与继承

@@ -29,6 +29,11 @@ export const util       = Util;
 export const bootstrap = function(el, options){
     const app = new Bootstrap(el, options);
     Vue.prototype.$app = app;
+    Vue.prototype.$redirect = app.$server.redirect;
+    Vue.prototype.$reback = app.$server.reback;
+    Vue.prototype.$foward = app.$server.foward;
+    Vue.prototype.$back = app.$server.back;
+    Vue.prototype.$refresh = app.$server.refresh;
     return app;
 };
 

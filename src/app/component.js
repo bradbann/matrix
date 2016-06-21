@@ -1,4 +1,6 @@
 import { compile } from './util';
+const noop = function(){}
+
 export default class Component {
     constructor(){
         this._isMx = true;
@@ -24,11 +26,15 @@ export default class Component {
         let _key = this._vue_options[property];
         if ( key ){
             const val = key.call(this, _key);
-            if ( defaults != undefined && val == undefined ){
-                this._vue_options[property] = defaults;
+
+            if ( val === undefined ){
+                if ( defaults != undefined ){
+                    this._vue_options[property] = defaults;
+                }
             }else{
                 this._vue_options[property] = val;
             }
+
             if ( property === 'components' ){
                 let _cp = this._vue_options.components;
                 for ( let i in _cp ) this._vue_options.components[i] = compile(_cp[i]);
@@ -56,24 +62,18 @@ export default class Component {
     }
 
     $_data(){
-        let data = this.data;
-        let _data = this._vue_options.data;
-        if ( data ){
-            data = data(_data);
-            if ( !data ) {
-                delete this._vue_options.data;
-                return;
+        if ( !this.data ){
+            delete this._vue_options.data;
+            return;
+        }
+        let val = this.data(this._vue_options.data);
+        if ( val ) this._vue_options.data = val;
+        const data = this._vue_options.data;
+        if ( typeof data === 'object' ){
+            this._vue_options.data = function(){
+                return data;
             }
-
-            if ( typeof data !== 'function' ){
-                this._vue_options.data = function(){
-                    return data;
-                }
-                return;
-            }
-
-            this._vue_options.data = data;
-        }else{
+        }else if ( typeof data != 'function' ){
             delete this._vue_options.data;
         }
     }

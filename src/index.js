@@ -1,88 +1,9 @@
 import * as miox from './main';
 import ComponentInit from 'miox-components';
-//import Appview from 'miox-componets/appview/index';
-import ttt from './a';
-
-import './css/matrix.scss'
 
 ComponentInit(miox);
 
-// //define(Appview);
-//
-// // console.log(scroller);
-// const aaa = miox.components.cells;
-// //console.log(aaa.prototype.$_mark)
-// for ( let i in aaa.constructor ){
-//     //console.log(i)
-// }
-
-//console.log(Tab.arguments)
-
-miox.define('tab', ttt);
-
-class abc {
-    constructor(){
-        this.b = {};
-        this.f = {};
-    }
-    a(){
-        this.b.a = 1;
-    }
-    c(){
-        this.f.a = 1;
-    }
-}
-
-class t extends abc {
-    constructor(){
-        super();
-    }
-    a(){
-        super.a();
-        this.b.b = 2;
-    }
-}
-
-class g extends t {
-    constructor(){
-        super();
-    }
-    c(){
-        super.c();
-        this.f.b = 3;
-    }
-}
-
-
-const s = new g();
-
-s.a();
-s.c();
-
-console.log(s.b, s.f)
-
-
-class a extends miox.webview {
-    constructor(node){
-        super(node);
-    }
-    render(){
-        return {
-            template: `
-                <h1 class="ddd" v-back url="/">a back</h1>
-                <h1 class="ddd" v-reback url="/">a reback</h1>
-
-                <h1 class="ddd" @click="a">a back</h1>
-                <h1 class="ddd" @click="b">a reback</h1>
-            `,
-            ready(){
-                //console.log(this)
-            }
-        }
-    }
-}
-
-class b extends miox.webview {
+class IndexPage extends miox.webview {
     constructor(node){
         super(node);
     }
@@ -118,11 +39,9 @@ class b extends miox.webview {
 
     data(data){
         data.state = {menuOpen:false}
-        return data;
     }
 
     methods(methods){
-        methods = super.methods(methods);
         methods.a = this.a;
         methods.b = this.b;
         methods.menuclick = this.menuclick;
@@ -147,12 +66,7 @@ class flex extends miox.webview {
         super(node);
     }
     render(){
-        return {
-            template: require("./temp/flex.html"),
-            ready(){
-                //console.log(this)
-            }
-        }
+        return require("./temp/flex.html");
     }
 }
 class panel extends miox.webview {
@@ -160,12 +74,7 @@ class panel extends miox.webview {
         super(node);
     }
     render(){
-        return {
-            template: require("./temp/panel.html"),
-            ready(){
-                //console.log(this)
-            }
-        }
+        return require("./temp/panel.html")
     }
 }
 
@@ -174,12 +83,7 @@ class appview extends miox.webview {
         super(node);
     }
     render(){
-        return {
-            template: require("./temp/appview.html"),
-            ready(){
-                //console.log(this)
-            }
-        }
+        return require("./temp/appview.html")
     }
 }
 
@@ -189,12 +93,7 @@ class aspect extends miox.webview {
         super(node);
     }
     render(){
-        return {
-            template: require("./temp/aspect.html"),
-            ready(){
-                //console.log(this)
-            }
-        }
+        return require("./temp/aspect.html");
     }
 }
 class middle extends miox.webview {
@@ -202,12 +101,7 @@ class middle extends miox.webview {
         super(node);
     }
     render(){
-        return {
-            template: require("./temp/middle.html"),
-            ready(){
-                //console.log(this)
-            }
-        }
+        return require("./temp/middle.html")
     }
 }
 
@@ -215,16 +109,12 @@ class cell extends miox.webview {
     constructor(node){
         super(node);
     }
+    data(data = {}){
+        data.a = 'men';
+        return data;
+    }
     render(){
-        return {
-            template: require("./temp/cell.html"),
-            data: {
-                a: 'men'
-            },
-            ready(){
-                //console.log(this)
-            }
-        }
+        return require("./temp/cell.html");
     }
 }
 
@@ -252,14 +142,13 @@ miox.ready(function(){
     })
 
     app
-        .define('/', b)
+        .define('/', IndexPage)
         .define('/flex', flex)
         .define('/appview', appview)
         .define('/panel', panel)
         .define('/aspect', aspect)
         .define('/middle', middle)
         .define('/cell', cell)
-        .define('/a/b/c', a)
         ;
 
     app.listen();
