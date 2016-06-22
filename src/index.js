@@ -55,6 +55,14 @@ class IndexPage extends miox.webview {
         return events;
     }
 
+    active(){
+        console.log('index active');
+    }
+
+    unActive(){
+        console.log('index unactive');
+    }
+
     render(){
         return require("./temp/index.html");
     }
@@ -86,6 +94,12 @@ class appview extends miox.webview {
         return {
             a:1
         }
+    active(){
+        console.log('appview active');
+    }
+
+    unActive(){
+        console.log('appview unactive');
     }
     render(){
         console.log(this);
