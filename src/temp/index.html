@@ -1,6 +1,12 @@
 <appview @click="menuclick(false,$event)" >
 
     <appview-body v-touch:abc:click>
+        <toolbar v-ref:toolbar>
+                        <toolbar-item>1</toolbar-item>
+                        <toolbar-item>2</toolbar-item>
+                        <toolbar-item>3</toolbar-item>
+                        <toolbar-item>4</toolbar-item>
+                    </toolbar>
         <cells>
             <cell linked v-redirect url="/appview">
                 <cell-body>appview </cell-body>
