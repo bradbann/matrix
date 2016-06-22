@@ -14,7 +14,10 @@
         visibility: hidden;
         background-color: $webview-background-color;
         z-index: 900;
-
+        display: none;
+        &.moving{
+            display: block;
+        }
     }
 
     &-forward{
@@ -51,5 +54,6 @@
     &.active{
         z-index: 1000;
         visibility: visible;
+        display: block;
     }
 }

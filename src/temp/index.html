@@ -1,7 +1,7 @@
 <appview @click="menuclick(false,$event)" >
 
     <appview-body v-touch:abc:click>
-        <cells>
+        <cells v-for="1 in 10">
             <cell linked v-redirect url="/appview">
                 <cell-body>appview </cell-body>
             </cell>
@@ -20,37 +20,7 @@
             <cell linked v-redirect url="/aspect">
                 <cell-body>aspect </cell-body>
             </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>button </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>aspect </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>button </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>aspect </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>button </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>aspect </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>button </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>aspect </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>button </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
-                <cell-body>aspect </cell-body>
-            </cell>
-            <cell linked v-redirect url="/aspect">
+            <cell linked v-redirect url="/button">
                 <cell-body>button </cell-body>
             </cell>
         </cells>

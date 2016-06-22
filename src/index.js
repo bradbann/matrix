@@ -82,7 +82,13 @@ class appview extends miox.webview {
     constructor(node){
         super(node);
     }
+    data(){
+        return {
+            a:1
+        }
+    }
     render(){
+        console.log(this);
         return require("./temp/appview.html")
     }
 }
@@ -118,6 +124,15 @@ class cell extends miox.webview {
     }
 }
 
+class button extends miox.webview {
+    constructor(node){
+        super(node);
+    }
+    render(){
+        return require("./temp/button.html");
+    }
+}
+
 
 
 
@@ -149,6 +164,7 @@ miox.ready(function(){
         .define('/aspect', aspect)
         .define('/middle', middle)
         .define('/cell', cell)
+        .define('/button', button)
         ;
 
     app.listen();

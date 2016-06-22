@@ -14,6 +14,9 @@ export const animateForward = function(oldWebview, newWebview, cb, className){
     newWebview.$node.style.visibility = "visible";
     oldWebview.$node.style.visibility = "visible";
 
+    addClass(newWebview, 'moving');
+    addClass(oldWebview, 'moving');
+
 
 
     newWebview.$node.style.transition="none";
@@ -37,6 +40,10 @@ export const animateForward = function(oldWebview, newWebview, cb, className){
     //结束 变换
     onTransitionEnd(newWebview.$node, expectedDuration, function(){
         addClass(newWebview,'active');
+
+        removeClass(newWebview, 'moving');
+        removeClass(oldWebview, 'moving');
+
         removeClass(oldWebview, 'mx-webview-backward');
         newWebview.$node.style.zIndex = "";
         oldWebview.$node.style.zIndex = "";
@@ -59,6 +66,9 @@ export const animateBackward = function(oldWebview, newWebview, cb, className){
     newWebview.$node.style.visibility = "visible";
     oldWebview.$node.style.visibility = "visible";
 
+    addClass(newWebview, 'moving');
+    addClass(oldWebview, 'moving');
+
     newWebview.$node.style.transition="none";
     addClass(newWebview,'mx-webview-backward');
 
@@ -75,6 +85,10 @@ export const animateBackward = function(oldWebview, newWebview, cb, className){
     //结束 变换
     onTransitionEnd(newWebview.$node, expectedDuration, function(){
         addClass(newWebview,'active');
+
+        removeClass(newWebview, 'moving');
+        removeClass(oldWebview, 'moving');
+        
         removeClass(oldWebview, 'mx-webview-forward');
         removeClass(oldWebview, 'active');
         newWebview.$node.style.zIndex = "";
