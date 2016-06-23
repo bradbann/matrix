@@ -2,7 +2,7 @@
 // style for test
 
 
-$test-bg:#Ba77ff;
+$test-bg:$component-color;
 .mx-sidebar{
     color: #fff;
     text-align: center;
@@ -31,7 +31,7 @@ $test-bg:#Ba77ff;
 }
 
 .mx-aspect{
-    background-color: #BA77FF;
+    background-color: $component-color;
     color: #fff;
 }
 
@@ -68,7 +68,7 @@ $test-bg:#Ba77ff;
         height: 50px;
         padding:  0 $container-padding-side;
         color:#fff;
-        background-color: #BA77FF;
+        background-color: $test-bg;
         .mx-flex-box{
             height: 100%;
         }
@@ -78,7 +78,7 @@ $test-bg:#Ba77ff;
     }
     &-middle{
         width: 200px;
-        background-color: #Ba77ff;
+        background-color: $test-bg;
         margin: 10px auto;
         color: #fff;
     }
@@ -107,5 +107,5 @@ $test-bg:#Ba77ff;
 }
 
 body{
-    background-color: #Ba77ff;
+    background-color: $test-bg;
 }

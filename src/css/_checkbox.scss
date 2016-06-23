@@ -42,7 +42,7 @@
                 background-color: rgba($component-color,0.5);
             }
             &::after {
-                transform       : translate3d(2.5/1.4*100%,0,0);
+                transform       : translateX(2.5/1.4*100%);
                 background-color: $component-color;
             }
         }

@@ -94,6 +94,7 @@ class appview extends miox.webview {
         return {
             a:1
         }
+    }
     active(){
         console.log('appview active');
     }
@@ -142,6 +143,9 @@ class button extends miox.webview {
     constructor(node){
         super(node);
     }
+    active(){
+        console.log(this);
+    }
     render(){
         return require("./temp/button.html");
     }
@@ -154,7 +158,7 @@ miox.ready(function(){
     const app = miox.bootstrap({
         backgroundColor: '#eee',
         debug: true,
-        animate:'drown'     //  slide|fade|scale|drown
+        animate:'slide'     //  slide|fade|scale|drown
     });
 
     app.on('route:start', function(){

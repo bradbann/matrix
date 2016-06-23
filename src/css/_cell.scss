@@ -6,6 +6,7 @@
         background-color: #fff;
         margin:$cells-default-margin;
         border-color: $border-color-base;
+        overflow: hidden;
         &::before,&::after{
             border-color: inherit;
         }
