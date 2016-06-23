@@ -4,6 +4,7 @@ require('./css/matrix.scss');
 import 'setimmediate';
 import Vue                              from 'vue';
 import Ready                            from 'domready';
+import deepcopy                         from 'deepcopy';
 import Connect                          from './app/connect';
 import Webview                          from './app/webview';
 import Bootstrap                        from './app/boot';
@@ -86,6 +87,33 @@ export const define = function(name, cb, globalInset){
     }
 }
 
+export const transform = function(name, vue_options){
+    class newComponent extends component {
+        constructor(){
+            super();
+            this.name = name;
+            this._vue_options = {
+                data: deepCopy(vue_options.data, {}),
+                computed: deepCopy(vue_options.computed, {}),
+                methods: deepCopy(vue_options.methods,{}),
+                watch: deepCopy(vue_options.watch, {}),
+                directives: deepCopy(vue_options.directives, {}),
+                elementDirectives: deepCopy(vue_options.elementDirectives, {}),
+                filters: deepCopy(vue_options.filters, {}),
+                components: deepCopy(vue_options.components, {}),
+                transitions: deepCopy(vue_options.transitions, {}),
+                partials: deepCopy(vue_options.partials, {}),
+                events: deepCopy(vue_options.events, {}),
+                mixins: deepCopy(vue_options.mixins, []),
+                extends: deepCopy(vue_options.extends, {}),
+                extra: deepCopy(vue_options.extra, {})
+            }
+        }
+    }
+
+    return newComponent;
+}
+
 Vue.directive('click', click);
 Vue.directive('touch', touch);
 Vue.directive('redirect', redirect);
@@ -93,3 +121,11 @@ Vue.directive('reback', reback);
 Vue.directive('forward', forward);
 Vue.directive('back', back);
 Vue.directive('refresh', refresh);
+
+function deepCopy(object, defaults){
+    if ( object !== undefined ){
+        return deepcopy(object);
+    }else{
+        return defaults;
+    }
+}

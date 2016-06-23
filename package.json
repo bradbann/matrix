@@ -1,6 +1,6 @@
 {
   "name": "miox",
-  "version": "1.1.23",
+  "version": "1.1.24",
   "description": "mox Tool",
   "main": "build/index.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "widget": "rimraf ./node_modules/miox-components/build && NODE_ENV=production webpack --config widgets.config.js"
   },
   "files": [
-      "build",
-      "src/css"
+    "build",
+    "src/css"
   ],
   "author": "",
   "license": "MIT",
@@ -46,6 +46,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "deepcopy": "^0.6.3",
     "domready": "^1.0.8",
     "es6-promise": "^3.2.1",
     "events": "^1.1.0",

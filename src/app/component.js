@@ -217,7 +217,6 @@ export default class Component {
 
         for ( let i in extras ){
             this._vue_options[i] = extras[i];
-            delete this._vue_options.extra[i];
         }
 
         return this;
