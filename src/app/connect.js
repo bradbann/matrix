@@ -13,9 +13,14 @@ export default class Connect extends EventEmitter {
         this.stack = [];
     }
 
-    define(route, webview){
-        return this.at(route, next => this.publish(webview, next));
-    }
+    $redirect(url){ this.$server.redirect(url); }
+    $reback(url){ this.$server.reback(url); }
+    $forward(url){ this.$server.forward(url); }
+    $back(url){ this.$server.back(url); }
+    $refresh(){ this.$server.refresh(); }
+    define(route, webview){ return this.at(route, next => this.publish(webview, next)); }
+    _useForward(webview, next){ this._direction(webview, next, this._choose(animateForward)); }
+    _useBackward(webview, next){ this._direction(webview, next, this._choose(animateBackward)); }
 
     _route(route, fn, options){
         let handle = fn;
@@ -67,22 +72,6 @@ export default class Connect extends EventEmitter {
             strict: true,
             end: true
         });
-    }
-
-    $redirect(url){
-        this.$server.redirect(url);
-    }
-    $reback(url){
-        this.$server.reback(url);
-    }
-    $forward(url){
-        this.$server.forward(url);
-    }
-    $back(url){
-        this.$server.back(url);
-    }
-    $refresh(url){
-        this.$server.refresh(url);
     }
 
     publish(webview, next){
@@ -170,14 +159,6 @@ export default class Connect extends EventEmitter {
                 animate(_oldWebview, _newWebview, next);
             }
         }
-    }
-
-    _useForward(webview, next){
-        this._direction(webview, next, this._choose(animateForward));
-    }
-
-    _useBackward(webview, next){
-        this._direction(webview, next, this._choose(animateBackward));
     }
 
     _refresh(webview, next){

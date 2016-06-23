@@ -90,9 +90,9 @@ class appview extends miox.webview {
     constructor(node){
         super(node);
     }
-    data(){
+    data() {
         return {
-            a:1
+            a: 1
         }
     }
     active(){

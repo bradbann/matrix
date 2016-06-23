@@ -17,7 +17,8 @@ export default class Component {
             partials: {},
             events: {},
             mixins: [],
-            extends: {}
+            extends: {},
+            extra: {}
         };
     }
 
@@ -59,6 +60,10 @@ export default class Component {
 
     $_name(){
         this._vue_options.name = typeof this.name === 'function' ? this.name() : this.name;
+    }
+
+    $_extra(){
+        this.$_extend('extra', {});
     }
 
     $_data(){
@@ -206,6 +211,14 @@ export default class Component {
         this.$_mixins();
         this.$_name();
         this.$_extends();
+        this.$_extra();
+
+        const extras = this._vue_options.extra;
+
+        for ( let i in extras ){
+            this._vue_options[i] = extras[i];
+        }
+
         return this;
     }
 }
