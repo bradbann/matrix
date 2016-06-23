@@ -5,7 +5,8 @@
         display: inline-block;
         text-align: center;
         position: relative;
-        overflow: hidden
+        overflow: hidden;
+        transform: translateZ(0);
     }
 
     &[type=primary]{
@@ -35,25 +36,28 @@
     }
     &-rounded{
         border-radius: 9999px;
+        &::before{
+            border-radius: 9999px !important;
+        }
     }
     &-radius{
         border-radius: 10px;
     }
     &-wave{
         position: absolute;
-        background-color: $component-color;
+        background-color: lighten($component-color,10%);
         height: 100%;
         width: 0;
         top: 0;
         left: 0;
         margin-left: -100%;
         border-radius: 999px;
-        opacity: 0.2;
+        opacity: 0.4;
         z-index: 0;
         transform-origin: center center;
     }
     &-waving{
-        animation: ButtonWave 300ms ease-in;
+        animation: ButtonWave 300ms ease-out;
     }
     @keyframes ButtonWave{
         0%{

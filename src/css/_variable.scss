@@ -116,7 +116,7 @@ $webview-background-color: #fff;
 @mixin sidebar-open-app-state {
     transform-style : preserve-3d;
     transform       : translate3d(60%,0,30px)  rotateX(0) rotateY(0)  perspective(300px) ;
-    box-shadow      : 0 0 100px rgba(0,0,0,0.3);
+    // box-shadow      : 0 0 100px rgba(0,0,0,0.3);
     transform-origin: center center 200px;
     transition-timing-function: ease-in;
 }
