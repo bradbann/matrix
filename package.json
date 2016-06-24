@@ -1,6 +1,6 @@
 {
   "name": "miox",
-  "version": "1.1.24",
+  "version": "1.1.25",
   "description": "mox Tool",
   "main": "build/index.js",
   "scripts": {
