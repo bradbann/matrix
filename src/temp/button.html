@@ -4,13 +4,64 @@
     </appview-head>
 
     <appview-body>
-        <div class="test-sidegap">
-            <btn blocked waved type="primary">主按钮</btn>
+        <div class="test-sidegap mx-text-center">
+            <div class="test-box">
+                <btn type="primary" loading> Primary 按钮</btn>
+            </div>
 
-            <btn blocked waved type="default" >次按钮</btn>
+            <div class="test-box">
+                <btn type="Default" @click='click' :loading="loading">Default 按钮</btn>
+            </div>
 
-            <btn waved rounded align="center" >幽灵按钮</btn>
-            <btn  ></btn>
+            <div class="test-box">
+                <btn type="ghost" @click='click' :loading="loading"> Ghost 按钮</btn>
+            </div>
+
+            <div class="test-box">
+                <btn type="dashed" @click='click' :loading="loading">Dashed 按钮</btn>
+            </div>
+
+            <div class="test-box">
+                <wave radius="10px">
+                    <btn type="primary" >结合Wave的按钮</btn>
+                </wave>
+            </div>
+
+            <div class="test-box">
+                <wave >
+                    <btn rounded type="primary" radius="0">直角按钮</btn>
+                </wave>
+            </div>
+
+            <div class="test-box">
+                <btn type="primary" blocked @click='click' :loading="loading">块状 按钮</btn>
+            </div>
+
+
+            <div class="test-box">
+                <wave radius="300px" color="rgb(67, 180, 215)" opacity="0.1">
+                <btn align="center" radius="300px" :loading="loading">圆形按钮</btn>
+                </wave>
+            </div>
+
+            <div class="test-box">
+                <btn disabled align="center" radius="300px">禁用按钮</btn>
+            </div>
+            <div class="test-box">
+                <btn disabled align="center" radius="0">禁用按钮</btn>
+            </div>
+            <div class="test-box">
+                <btn disabled align="center" blocked >禁用按钮</btn>
+            </div>
+
+
+            <div class="test-box">
+                <btn size="14px"  >14px</btn><btn size="1.2rem" >1.2rem</btn><btn size="110%"  >110%</btn><btn size="80%" >80%</btn>
+            </div>
+
+
+
+
 
         </div>
     </appview-body>
