@@ -151,6 +151,17 @@ class button extends miox.webview {
     }
 }
 
+class wave extends miox.webview {
+    constructor(node){
+        super(node);
+    }
+    active(){
+        console.log(this);
+    }
+    render(){
+        return require("./temp/wave.html");
+    }
+}
 
 
 
@@ -183,6 +194,7 @@ miox.ready(function(){
         .define('/middle', middle)
         .define('/cell', cell)
         .define('/button', button)
+        .define('/wave', wave)
         ;
 
     app.listen();
