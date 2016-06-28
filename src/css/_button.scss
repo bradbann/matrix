@@ -1,34 +1,89 @@
 &button{
     &{
-        padding: 1em 2em;
+        padding: 0.6em 1.2em;
         display: inline-block;
+        vertical-align: middle;
         text-align: center;
         position: relative;
         overflow: hidden;
         transform: translateZ(0);
+        border-radius: 10px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
     }
+
 
     &[type=primary]{
         color: #fff;
         background-color: $component-color;
 
-        &:active{
-            background-color: darken($component-color,5%)
+        &:not([disabled]){
+            @at-root .desktop &:hover{
+                background-color: darken($component-color,5%)
+            }
+            &:active{
+                background-color: darken($component-color,5%)
+            }
+        }
+        .loading{
+            border-left-color: #fff;
+        }
+
+    }
+    &[type=default],&[type=ghost],&[type=dashed]{
+        // @include mx-1px($border-color-base);
+
+        color: $font-color-base;
+        transition: all 200ms ease;
+
+        .loading{
+            border-left-color: $component-color;
+        }
+
+        &:not([disabled]){
+            @at-root .desktop &:hover{
+                // @include mx-1px($component-color);
+                border-color: $component-color;
+                background-color: lighten(#f7f7f7,5%);
+                color: $component-color;
+                transition: all 200ms ease;
+            }
+            &.mx-button-loading{
+                // @include mx-1px($component-color);
+                border-color: $component-color;
+                background-color: lighten(#f7f7f7,5%);
+                color: $component-color;
+                transition: all 200ms ease;
+            }
+            &:active{
+                // @include mx-1px($component-color);
+                border-color: $component-color;
+                background-color: lighten(#f7f7f7,5%);
+                color: $component-color;
+                transition: all 200ms ease;
+            }
         }
     }
+
     &[type=default]{
-        @include mx-1px($border-color-base);
         background-color: #f7f7f7;
-        color: $font-color-base;
+        border:1px solid $border-color-base;
+    }
+    &[type=ghost]{
+        background-color: #fff;
+        border:1px solid $border-color-base;
+    }
+    &[type=dashed]{
+        background-color: #fff;
+        border:1px dashed $border-color-base;
+    }
 
-        transition: background-color 200ms ease;
-
-        &:active{
-            @include mx-1px($component-color);
-            background-color: lighten(#f7f7f7,5%);
-            color: $component-color;
-            transition: all 200ms ease;
-        }
+    &[disabled]{
+        cursor: not-allowed ;
+        color: $font-color-disable ;
+        background-color: #f7f7f7;
     }
     &-blocked{
         display: block;
@@ -42,31 +97,30 @@
     &-radius{
         border-radius: 10px;
     }
-    &-wave{
-        position: absolute;
-        background-color: lighten($component-color,10%);
-        height: 100%;
+    &-loading-icon{
+        display: inline-block;
+        vertical-align: middle;
         width: 0;
-        top: 0;
-        left: 0;
-        margin-left: -100%;
-        border-radius: 999px;
-        opacity: 0.4;
-        z-index: 0;
-        transform-origin: center center;
+        height: 0;
+        transition: width 200ms ease,height 200ms ease;
+        &.loading{
+            width:1.2em;
+            height: 1.2em;
+            margin-right: 0.3em;
+            border-radius: 50%;
+            border-width: 2px;
+            border-style: solid;
+            border-color: transparent;
+            animation: ButtonLoading 1s infinite linear;
+        }
     }
-    &-waving{
-        animation: ButtonWave 300ms ease-out;
-    }
-    @keyframes ButtonWave{
+
+    @keyframes ButtonLoading{
         0%{
-            width: 200%;
-            transform: scaleX(0) ;
+            transform: rotate(0);
         }
         100%{
-            width: 200%;
-            transform: scaleX(1) ;
-            border-radius: 0;
+            transform: rotate(360deg)
         }
     }
 }

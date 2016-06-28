@@ -1,5 +1,6 @@
 import * as miox from './main';
 import ComponentInit from 'miox-components';
+import device from './js/device.min.js';
 
 ComponentInit(miox);
 
@@ -143,8 +144,26 @@ class button extends miox.webview {
     constructor(node){
         super(node);
     }
+    data(){
+        return {
+            loading:false
+        }
+    }
+    methods(){
+        return {
+            click:function(){
+                this.loading = true;
+                setTimeout(()=>{
+                    this.loading = false;
+                },4000)
+            }
+        }
+    }
     active(){
         console.log(this);
+        setTimeout(()=>{
+            this.loading = false
+        },2000)
     }
     render(){
         return require("./temp/button.html");

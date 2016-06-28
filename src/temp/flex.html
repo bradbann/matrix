@@ -2,6 +2,13 @@
 
     <appview-body class="test-sidegap">
 
+        <flex>
+            <flex-item flex="0 0 100px">1</flex-item>
+            <flex-item flex="0 0 100px">2</flex-item>
+            <flex-item flex="0 0 100px">3</flex-item>
+            <flex-item flex="0 0 100px">4</flex-item>
+        </flex>
+
 
 
 
@@ -15,11 +22,11 @@
         </flex>
 
         <h4 class="mx-text-center">骰子2 </h4>
-        <flex justify="between" class="test-dice mx-direction-column">
-            <flex align-items="start">
+        <flex justify="between" class="test-dice" direction="column">
+            <flex justify="start">
                 <flex-item class="test-dice-pot "></flex-item>
             </flex>
-            <flex align-items="end" justify="end">
+            <flex justify="end">
                 <flex-item class="test-dice-pot "></flex-item>
             </flex>
         </flex>
