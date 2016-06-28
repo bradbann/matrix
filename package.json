@@ -1,6 +1,6 @@
 {
   "name": "miox",
-  "version": "1.1.25",
+  "version": "1.1.26",
   "description": "mox Tool",
   "main": "build/index.js",
   "scripts": {
@@ -19,6 +19,10 @@
   "license": "MIT",
   "project-type": "umd",
   "project-library": "miox",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cevio/matrix"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.7.6",
@@ -43,9 +47,7 @@
     "url-loader": "^0.5.7",
     "vue-icons": "^1.0.0",
     "webpack": "^1.12.15",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^1.14.1",
     "deepcopy": "^0.6.3",
     "domready": "^1.0.8",
     "es6-promise": "^3.2.1",
@@ -58,5 +60,6 @@
     "unique-array": "^1.0.1",
     "url": "^0.11.0",
     "vue": "^1.0.24"
-  }
+  },
+  "dependencies": {}
 }
