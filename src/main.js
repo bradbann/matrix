@@ -36,8 +36,8 @@ export const bootstrap = function(el, options){
     Vue.prototype.$reback = function(url){
         app.$server.reback(url);
     };
-    Vue.prototype.$foward = function(url){
-        app.$server.foward(url);
+    Vue.prototype.$forward = function(url){
+        app.$server.forward(url);
     };
     Vue.prototype.$back = function(url){
         app.$server.back(url);
